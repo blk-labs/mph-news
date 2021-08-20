@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Link from 'next/link';
+import Head from 'next/head';
 import axios from 'axios';
 import { useRouter } from 'next/router'
 
@@ -21,7 +21,7 @@ import MoreMarkup from '../../components/story/MoreMarkup'
 import StoryMap from '../../components/story/StoryMap'
 import Loading from '../../components/layout/Loading'
 import Footer from '../../components/layout/Footer'
-import SEO from '../../components/utils/SEO'
+// import SEO from '../../components/utils/SEO'
 
 // This gets called on every request
 export async function getServerSideProps(context) {
@@ -83,12 +83,30 @@ export function Story(props) {
 
 	return (
 		<div>
-			<SEO
+			{/* <SEO
 				title={props.post.title}
 				description={props.post.subtitle || props.post.body}
 				image={{ src: props.post.postImage, width: 250, height: 250 }}
 				pathname={router.query.sid}
-			/>
+			/> */}
+			<Head>
+				<title>
+					{props.post.title}
+				</title>
+				<meta property="og:url" content={`https://news.mypoliticalhub.com/${router.asPath}`} />
+				<meta property="og:type" content="website" />
+				{/* <meta property="fb:app_id" content="your fb app id" /> */}
+				<meta
+					property="og:title"
+					content={props.post.title}
+				/>
+				<meta name="twitter:card" content="summary" />
+				<meta
+					property="og:description"
+					content={(props.post.subtitle || props.post.body).substring(0,190) + "..."}
+				/>
+				<meta property="og:image" content={props.post.postImage} />
+			</Head>
 			<Container maxWidth='lg'>
 				<Grid className={classes.headerCont} container>
 					<Grid style={{ position: 'relative' }} item xs={12} lg={8}>

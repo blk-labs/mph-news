@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton'
-import ToolTip from  '@material-ui/core/ToolTip';
+import Tooltip from  '@material-ui/core/Tooltip';
 import CheckIcon from '@material-ui/icons/CheckCircle';
 import DocumentIcon from '@material-ui/icons/Description';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
@@ -118,11 +118,11 @@ export function AddDocument(props) {
         <span className={classes.userCont}>
         	<Typography style={{ marginRight: '.25rem' }} variant="caption">Add Document</Typography>
 					<input type="file" id="docInput" hidden="hidden" onChange={handleDocChange} />
-					<ToolTip title="Edit profile picture" placement="top">
+					<Tooltip title="Edit profile picture" placement="top">
 						<IconButton onClick={handleAdd}>
 							<DocumentIcon className={classes.btnClass} />
 						</IconButton>
-					</ToolTip>
+					</Tooltip>
 					{ docu && <CheckIcon color="secondary" /> }
         </span>
         <span className={classes.userCont}>

@@ -13,7 +13,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton'
-import ToolTip from  '@material-ui/core/ToolTip';
+import Tooltip from  '@material-ui/core/Tooltip';
 import CheckIcon from '@material-ui/icons/CheckCircle';
 import PhotoCamera from  '@material-ui/icons/PhotoCameraOutlined';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
@@ -194,11 +194,11 @@ export function EditStory(props) {
 				        <span className={classes.userCont}>
 				        	<Typography style={{ marginRight: '.25rem' }} variant="caption">Change Picture</Typography>
 									<input type="file" id="imageInput" hidden="hidden" onChange={handleImgChange} />
-									<ToolTip title="Edit profile picture" placement="top">
+									<Tooltip title="Edit profile picture" placement="top">
 										<IconButton onClick={handleAdd}>
 											<PhotoCamera className={classes.picBtn} />
 										</IconButton>
-									</ToolTip>
+									</Tooltip>
 									{ image && <CheckIcon color="secondary" /> }
 				        </span>
 			        }

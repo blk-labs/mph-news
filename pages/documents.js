@@ -34,13 +34,13 @@ export function Documents(props) {
 					<div>
 						{
 							docs.map((doc, i) => (
-								<Grid container>
+								<Grid container key={i}>
 									<div style={{ display: 'flex', width: '100%', marginTop: '2rem', alignItems: 'flex-start' }}>
 										<span style={{ marginRight: '1rem' }}>
 											<Typography variant='button' style={{ fontWeight: 'bold' }}>{doc.title}</Typography>
 											<Typography variant='body2'>{doc.info}</Typography>
 										</span>
-										<a style={aClass} href={doc.url || ""} download={doc.url || ""} target="_blank">
+										<a style={aClass} href={doc.url || ""} download={doc.url || ""} target="_blank" rel="noreferrer">
 											<Typography variant="caption">Download</Typography>
 											<GetAppIcon />
 										</a>

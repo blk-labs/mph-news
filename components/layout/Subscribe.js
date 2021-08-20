@@ -50,7 +50,7 @@ export default function Subscribe(props) {
 			!matches &&
 			<span>
 				<Typography variant='h5' style={{ marginBottom: '1rem' }} className={classes.titleCont}><em>Weekly News Updates</em></Typography>
-				<Typography variant='body1'>Subscribe to get the week's most<br /> important news.</Typography>
+				<Typography variant='body1'>Subscribe to get the week&apos;s most<br /> important news.</Typography>
 			  <TextField
 			  	color="secondary"
 			  	value={subscribe}
@@ -69,7 +69,7 @@ export default function Subscribe(props) {
 		  	/>
 				<hr className={`${classes.hrTop} ${classes.hrSub}`} />
 				<Typography variant='h5' style={{ marginBottom: '1rem' }} className={classes.titleCont}><em>Want To Reach Out?</em></Typography>
-				<Typography variant='body1'>Do you have info to share with our team?<br /><Link className={classes.linkClass} style={{ textDecoration: 'underline' }} href='/contact'>Here's</Link> how you can reach us.</Typography>
+				<Typography variant='body1'>Do you have info to share with our team?<br /><Link className={classes.linkClass} style={{ textDecoration: 'underline' }} href='/contact'>Here&apos;s</Link> how you can reach us.</Typography>
 			</span>
 			}
 		</Grid>

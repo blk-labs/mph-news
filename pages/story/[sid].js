@@ -76,7 +76,7 @@ export function Story(props) {
 
 	const readMarkup = (
 		<div className={`${classes.linkCont}`}>
-			<p style={{ margin: 0 }}><i>Read the full article <a target="_blank" href={link || ""}>HERE!</a></i></p>
+			<p style={{ margin: 0 }}><i>Read the full article <a target="_blank" rel="noreferrer" href={link || ""}>HERE!</a></i></p>
 			<p style={{ margin: 0, marginTop: 'auto' }}><i>What do you think? Type in the comments section below.</i></p>
 		</div>
 	)

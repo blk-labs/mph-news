@@ -252,7 +252,7 @@ export function AddStory(props) {
 	          horizontal: 'center',
 	        }}
 	      >
-	        <Typography className={classes.popover}>Image hasn't been uploaded yet.</Typography>
+	        <Typography className={classes.popover}>Image hasn&apos;t been uploaded yet.</Typography>
 	      </Popover>
       </form>
 		</div>

@@ -103,8 +103,8 @@ export function Topics(props) {
 							<div className={classes.gridBtm}>
 							{
 								topic.filter((data, i) => i > 0).splice(0,4).map((data, i) => (
-									<span>
-										<SideMap topic={data} key={i} />
+									<span key={i}>
+										<SideMap topic={data} />
 										{ topic.filter((data, i) => i > 0).splice(0,4).length !== i + 1 ? <hr className={classes.newsHr} /> : null }
 									</span>
 								))

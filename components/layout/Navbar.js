@@ -203,7 +203,7 @@ export function Navbar(props) {
 				</Link>
 				<div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
 					{matches ?
-						<a href="https://mypoliticalhub.com/profile" style={{ textDecoration: 'none' }} target="_blank">
+						<a href="https://mypoliticalhub.com/profile" style={{ textDecoration: 'none' }} target="_blank" rel="noreferrer">
 							<div style={{ display: 'flex' }}>
 								<img src={hub.src} alt="" className={classes.hubClass} />
 								<Typography style={{ color: theme.palette.primary.main, fontWeight: 'bold', marginRight: '.5rem' }} variant="h5">hub</Typography>

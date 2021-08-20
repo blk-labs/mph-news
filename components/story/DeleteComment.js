@@ -34,7 +34,7 @@ export function Comments(props) {
   const { credentials: { email, moderator } } = props.user;
 
   const deleteMarkup = ((moderator === false) && (email !== props.email)) ? null : (
-  	<div onClick={handleDelete} class={classes.delete}>&#x2715;</div>
+  	<div onClick={handleDelete} className={classes.delete}>&#x2715;</div>
 	);
 
 	return (

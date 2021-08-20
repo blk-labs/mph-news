@@ -130,7 +130,7 @@ export function MobileNav(props) {
 	  				))
 	    		}
     		</div>
-        <a className={classes.linkClass} target="_blank" href='https://www.mypoliticalhub.com/profile'>
+        <a className={classes.linkClass} target="_blank" rel="noreferrer" href='https://www.mypoliticalhub.com/profile'>
           <Typography style={{ margin: '1rem 0' }} variant='h6'>Go To HUB &rarr;</Typography>
         </a>
     		<div style={{ marginTop: '2rem' }}>

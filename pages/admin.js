@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
 
 // Redux
 import { connect } from 'react-redux';
@@ -26,8 +26,8 @@ import DeleteStory from '../components/admin/DeleteStory'
 import AddDocument from '../components/admin/AddDocument'
 import DeleteDocument from '../components/admin/DeleteDocument'
 import EditorsPick from '../components/admin/EditorsPick'
-import logoFull from '../images/logoFullColor.png'
-import logo from '../images/logo.png'
+import logoFull from '../public/images/logoFullColor.png'
+import logo from '../public/images/logo.png'
 
 const useStyles = makeStyles((theme) => createStyles({
 	...theme.spreadThis,
@@ -119,16 +119,16 @@ export function Admin(props) {
   	setRemove(true)
   }
 
-  let history = useHistory();
+  let router = useRouter();
 
   const theme = useTheme();
   const classes = useStyles(props);
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
 	if (props.user.authenticated === false) {
-		history.push('/')
+		router.push('/')
 	} else if (props.user.credentials.moderator === false) {
-		history.push('/')
+		router.push('/')
 	} else {		
 	  let nav = document.getElementById('navBar');
 	  if (nav !== null) {

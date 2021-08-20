@@ -125,7 +125,7 @@ export function SearchModal(props) {
 				{searched && <Typography variant="body1" style={{ margin: '2rem 0' }}>{posts.length} Results</Typography>}
 				{
 					posts.length !== 0 && posts.map((post, i) => (
-						<a className={classes.linkClass} key={i} target="_blank" href={`/story/${post.id}`}>
+						<a className={classes.linkClass} key={i} target="_blank" rel="noreferrer" href={`/story/${post.id}`}>
 						<Grid className={classes.gridCont} container>
 							<Grid xs={12} md={1}>
 								<img src={post.postImage} className={classes.gridImg} alt="news" />

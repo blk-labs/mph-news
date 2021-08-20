@@ -52,7 +52,7 @@ export default function EditorsPick(props) {
 		<div>
 			{
 				posts.map((post, i) => (
-					<div>
+					<div key={i}>
 						<Grid container>
 							<Grid xs={11} className={classes.postCont}>
 								<Typography style={{ textTransform: 'capitalize' }} variant="subtitle1">{post.title}</Typography>

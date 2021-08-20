@@ -58,9 +58,9 @@ export default function PopularPoliticians(props) {
 				{
 					poliMap[0] !== undefined &&
 					poliMap.map((poli, i) => (
-						<Grid xs={6} lg={3}>
+						<Grid xs={6} lg={3} key={i}>
 							<div className={classes.body}>
-								<a target="_blank" className={classes.linkClass} href={`https://mypoliticalhub.com/profile/${poli.link}`}>
+								<a target="_blank" rel="noreferrer" className={classes.linkClass} href={`https://mypoliticalhub.com/profile/${poli.link}`}>
 									<span className={classes.hover}>{poli.position}</span>
 									<img src={poli.img.src} alt="mph-politician" className={classes.imgClass} />
 									<Typography variant="body1" style={{ fontWeight: 'bold' }}>{poli.name}</Typography>

@@ -79,7 +79,7 @@ export default function RecentNews(props) {
 				{rText}
 				{
 					news.map((data, i) => (
-						<Link key={i} className={classes.linkClass} key={i} href={`/story/${data.id}`}>
+						<Link key={i} className={classes.linkClass} href={`/story/${data.id}`}>
 							<div>
 								<Grid className={classes.recentCont} container>
 									<img src={data.postImage} alt="recent-img" className={classes.recentImg} />

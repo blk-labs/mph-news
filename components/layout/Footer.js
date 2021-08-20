@@ -66,16 +66,16 @@ export default function Footer(props) {
 						<img src={logo.src} alt="mph-logo-white" className={classes.footerLogo} />
 						<div style={{  marginTop: '2rem', display: 'flex', alignItems: 'center' }}>
 						<div className={classes.iconClass}>
-							<a target="_blank" className={classes.linkClass} href="https://web.facebook.com/My-Political-Hub-106231897488181/"><Facebook fontSize="large" /></a>
+							<a target="_blank" rel="noreferrer" className={classes.linkClass} href="https://web.facebook.com/My-Political-Hub-106231897488181/"><Facebook fontSize="large" /></a>
 						</div>
 						<div className={classes.iconClass}>
-							<a target="_blank" className={classes.linkClass} href="https://www.twitter.com/my_politicalhub"><Twitter fontSize="large" /></a>
+							<a target="_blank" rel="noreferrer" className={classes.linkClass} href="https://www.twitter.com/my_politicalhub"><Twitter fontSize="large" /></a>
 						</div>
 						<div className={classes.iconClass}>
-							<a target="_blank" className={classes.linkClass} href="https://www.youtube.com/channel/UCwnOgB3veQgUkuB0QCBX55w"><YouTube fontSize="large" /></a>
+							<a target="_blank" rel="noreferrer" className={classes.linkClass} href="https://www.youtube.com/channel/UCwnOgB3veQgUkuB0QCBX55w"><YouTube fontSize="large" /></a>
 						</div>
 						<div className={classes.iconClass}>
-							<a target="_blank" className={classes.linkClass} href="https://www.instagram.com/my_politicalhub"><Instagram fontSize="large" /></a>
+							<a target="_blank" rel="noreferrer" className={classes.linkClass} href="https://www.instagram.com/my_politicalhub"><Instagram fontSize="large" /></a>
 						</div>
 						</div>
 					</Grid>

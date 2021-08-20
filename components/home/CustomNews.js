@@ -59,8 +59,8 @@ export default function CustomNews(props) {
 					<Grid justify="space-around" container>
 						{
 							recommend.map((data, i) => (
-								<Grid xs={6} md={3} className={classes.gridClass}>
-									<Link key={i} className={classes.linkClass} key={i} href={`/story/${data.id}`}>
+								<Grid xs={6} md={3} className={classes.gridClass} key={i}>
+									<Link className={classes.linkClass} href={`/story/${data.id}`}>
 										<div>
 											<img src={data.postImage} className={classes.imgClass} alt="recommended" />
 											<Typography variant="subtitle2"><strong>{data.title}</strong></Typography>
@@ -77,8 +77,8 @@ export default function CustomNews(props) {
 					<Grid justify="space-around" container>
 						{
 							liked.map((data, i) => (
-								<Grid xs={6} md={3} className={classes.gridClass}>
-									<Link key={i} className={classes.linkClass} key={i} href={`/story/${data.id}`}>
+								<Grid xs={6} md={3} className={classes.gridClass} key={i}>
+									<Link className={classes.linkClass} href={`/story/${data.id}`}>
 										<div>
 											<img src={data.postImage} className={classes.imgClass} alt="recommended" />
 											<Typography variant="subtitle2"><strong>{data.title}</strong></Typography>

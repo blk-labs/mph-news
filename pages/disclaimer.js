@@ -35,7 +35,7 @@ export default class disclaimer extends React.Component {
 						<Typography variant="h6">SOURCES OF INFORMATION</Typography>
 						<br />
 						<Typography variant="body2">
-							The information available on this website and MPH Apps may not be most current or true. News summaries and commentaries are editors and and other contributors' opinion while profiles are compiled from multiple sources including published books on politicians biographies, news media both print and online, and other online resources. Bills and and other chambers events are either from the official website of the national assembly, print media, or political programs in radio and TV stations. Politicians may update their profiles themselves or through their employees and advisers.
+							The information available on this website and MPH Apps may not be most current or true. News summaries and commentaries are editors and and other contributors&apos; opinion while profiles are compiled from multiple sources including published books on politicians biographies, news media both print and online, and other online resources. Bills and and other chambers events are either from the official website of the national assembly, print media, or political programs in radio and TV stations. Politicians may update their profiles themselves or through their employees and advisers.
 						</Typography>
 						<Typography variant="body2">
 							MPH LIMITED is thus completely dissociating it self from any misinformation either intentional or otherwise that may arise from any information published on www.mypoliticalhub.com or MPH APPs.

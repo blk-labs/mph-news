@@ -47,7 +47,7 @@ export function DeleteDocument(props) {
 		<div>
 			{
 				docs.map((doc, i) => (
-					<div>
+					<div key={i}>
 						<Grid container>
 							<Grid xs={11} className={classes.postCont}>
 								<Typography style={{ textTransform: 'capitalize' }} variant="subtitle1">{doc.title}</Typography>

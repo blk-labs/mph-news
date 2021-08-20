@@ -32,7 +32,7 @@ export default class privacy extends React.Component {
 						<br /><br />
 						<Typography variant="h6">What we collect</Typography>
 						<br/>
-						<Typography variant="body2">We may collect the following information, we will always try and ask for the minimum amount of data to give you a good experience. Please check the app Auth Dialog or when you installed, you can go to Setting->Application Manager and then select Our Apps to see exactly what permission the app needs:
+						<Typography variant="body2">We may collect the following information, we will always try and ask for the minimum amount of data to give you a good experience. Please check the app Auth Dialog or when you installed, you can go to Setting-&gt;Application Manager and then select Our Apps to see exactly what permission the app needs:
 						<br/>-Device information(Country, Device version, Language, Network type)</Typography>
 						<br /><br />
 						<Typography variant="h6">What we do with the information we gather</Typography>

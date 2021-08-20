@@ -71,7 +71,7 @@ export default function TopicMap(props) {
 			<Typography style={{ fontWeight: 'bold' }} variant="h5">More Stories</Typography>
 			{
 				postsToShow.map((data, i) => (
-					<Link className={classes.linkClass} href={`/story/${data.id}`}>
+					<Link className={classes.linkClass} href={`/story/${data.id}`} key={i}>
 						<div key={i} className={classes.mapCont}>
 							<img src={data.postImage} alt={`${data.topic} img`} className={classes.imgClass} />
 							<div style={{ marginLeft: '1rem' }}>

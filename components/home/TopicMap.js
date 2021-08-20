@@ -69,7 +69,7 @@ export default function TopicMap(props) {
 			<hr style={{ borderColor: 'rgba(0,0,0,.25)', borderBottom: 0 }} />
 			{
 				news.filter((data, i) => i === 0).map((data, i) => (
-					<Link key={i} className={classes.linkClass} key={i} href={`/story/${data.id}`}>
+					<Link key={i} className={classes.linkClass} href={`/story/${data.id}`}>
 						<div>
 						<Grid className={classes.mainCont} key={i}>
 							<img src={data.postImage} className={classes.mainImg} alt={`${props.topic} image`} />
@@ -82,7 +82,7 @@ export default function TopicMap(props) {
 			}
 			{
 				news.filter((data, i) => i > 0).map((data, i) => (
-					<Link key={i} className={classes.linkClass} key={i} href={`/story/${data.id}`}>
+					<Link key={i} className={classes.linkClass} href={`/story/${data.id}`}>
 						<div>
 							{props.pass.length !== i + 1 ? <hr style={{ borderColor: 'rgba(0,0,0,.25)', borderBottom: 0 }} /> : null}
 							<Grid className={classes.groupCont} key={i}>

@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
 import Navbar from "../components/layout/Navbar"
+import Head from "next/head"
+import { Helmet } from 'react-helmet';
 
 // Redux
 import { SET_AUTHENTICATED } from '../redux/types';

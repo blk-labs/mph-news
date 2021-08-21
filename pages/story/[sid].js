@@ -29,8 +29,7 @@ export async function getServerSideProps(context) {
 	const res = await axios.get(`/post/${context.params.sid}`);
 	const data = await res.data;
 
-	console.log(data)
-
+	
 	// Pass data to the page via props
 	return { props: { post: data } }
 }
@@ -54,6 +53,8 @@ const useStyles = makeStyles((theme) => createStyles({
 export function Story(props) {
 	const router = useRouter()
 
+	console.log(props);
+
 	//   const [story, setStory] = useState(props.location.pathname.slice(7))
 
 	//   useEffect(() => {
@@ -68,7 +69,7 @@ export function Story(props) {
 
 	const { postsid, topic, createdAt, postedBy, postImage, id, body, title, important, subTitle, link, commentCount } = props.post;
 	const { loading } = props.UI;
-	document.title = `${title === undefined ? 'Story' : title} | News | My Political Hub`;
+	// document.title = `${title === undefined ? 'Story' : title} | News | My Political Hub`;
 
 	const theme = useTheme();
 	const classes = useStyles(props);
@@ -93,19 +94,6 @@ export function Story(props) {
 				<title>
 					{props.post.title}
 				</title>
-				<meta property="og:url" content={`https://news.mypoliticalhub.com/${router.asPath}`} />
-				<meta property="og:type" content="website" />
-				{/* <meta property="fb:app_id" content="your fb app id" /> */}
-				<meta
-					property="og:title"
-					content={props.post.title}
-				/>
-				<meta name="twitter:card" content="summary" />
-				<meta
-					property="og:description"
-					content={(props.post.subtitle || props.post.body).substring(0,190) + "..."}
-				/>
-				<meta property="og:image" content={props.post.postImage} />
 			</Head>
 			<Container maxWidth='lg'>
 				<Grid className={classes.headerCont} container>

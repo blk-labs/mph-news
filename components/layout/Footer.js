@@ -83,23 +83,23 @@ export default function Footer(props) {
 						<Grid item xs={6} md={4}>
 							<ul className="listFooter">
 								<li>
-									<Typography variant="caption"><Link href='/' className={classes.linkClass}>Home</Link></Typography>
+									<Typography variant="caption"><Link href='/' className={classes.linkClass}><a>Home</a></Link></Typography>
 								</li>
 								<li>
-									<Typography variant="caption"><Link href='/about' className={classes.linkClass}>About</Link></Typography>
+									<Typography variant="caption"><Link href='/about' className={classes.linkClass}><a>About</a></Link></Typography>
 								</li>
 								<li>
-									<Typography variant="caption"><Link href='/contact' className={classes.linkClass}>Contact</Link></Typography>
+									<Typography variant="caption"><Link href='/contact' className={classes.linkClass}><a>Contact</a></Link></Typography>
 								</li>
 							</ul>
 						</Grid>
 						<Grid item xs={6} md={4}>
 							<ul className="listFooter">
 								<li>
-									<Typography variant="caption"><Link href='/disclaimer' className={classes.linkClass}>Disclaimer</Link></Typography>
+									<Typography variant="caption"><Link href='/disclaimer' className={classes.linkClass}><a>Disclaimer</a></Link></Typography>
 						 		</li>
 								<li>
-									<Typography variant="caption"><Link href='/privacy' className={classes.linkClass}>Privacy Policy</Link></Typography>
+									<Typography variant="caption"><Link href='/privacy' className={classes.linkClass}><a>Privacy Policy</a></Link></Typography>
 								</li>
 							</ul>
 						</Grid>

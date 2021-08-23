@@ -61,10 +61,10 @@ export default function CustomNews(props) {
 							recommend.map((data, i) => (
 								<Grid xs={6} md={3} className={classes.gridClass} key={i}>
 									<Link className={classes.linkClass} href={`/story/${data.id}`}>
-										<div>
+										<a>
 											<img src={data.postImage} className={classes.imgClass} alt="recommended" />
 											<Typography variant="subtitle2"><strong>{data.title}</strong></Typography>
-										</div>
+										</a>
 									</Link>
 								</Grid>
 							))
@@ -79,10 +79,10 @@ export default function CustomNews(props) {
 							liked.map((data, i) => (
 								<Grid xs={6} md={3} className={classes.gridClass} key={i}>
 									<Link className={classes.linkClass} href={`/story/${data.id}`}>
-										<div>
+										<a>
 											<img src={data.postImage} className={classes.imgClass} alt="recommended" />
 											<Typography variant="subtitle2"><strong>{data.title}</strong></Typography>
-										</div>
+										</a>
 									</Link>
 								</Grid>
 							))

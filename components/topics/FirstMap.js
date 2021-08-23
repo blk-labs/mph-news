@@ -49,11 +49,11 @@ export default function FirstMap(props) {
 		<Grid container>
 			<Grid item>
 				<Link key={postsId} className={classes.linkClass} href={`/story/${id}`}>
-					<div>
+					<a>
 						<img src={postImage} alt={`${title} image`} className={classes.topImg} />
 						<Typography variant="h4" className={classes.titleText}>{title}</Typography>
 						<Typography style={{ textTransform: 'uppercase' }} variant="caption">{dayjs(createdAt).fromNow()}</Typography>
-					</div>
+					</a>
 				</Link>
 			</Grid>
 		</Grid>

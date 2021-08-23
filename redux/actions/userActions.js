@@ -1,4 +1,4 @@
-import { SET_USER, SET_ERRORS, UPLOAD, LOADING_UI, CLEAR_ERRORS, SET_UNAUTHENTICATED, LOADING_USER } from  '../types';
+import { SET_USER, SET_ERRORS, UPLOAD, LOADING_UI, CLEAR_ERRORS, SET_UNAUTHENTICATED, LOADING_USER, SET_AUTHENTICATED } from  '../types';
 import axios from 'axios';
 
 export const loginUser = (userData, history) => (dispatch) => {
@@ -51,6 +51,12 @@ export const getUserData = () => (dispatch) => {
 	})
 	.catch((err) => console.log(err));
 }
+
+export const isAuth = (token) => (dispatch) => {
+	dispatch({ type: SET_AUTHENTICATED });
+	axios.defaults.headers.common['Authorization'] = token;
+	dispatch(getUserData());
+} 
 
 export const postImage = (formData) => (dispatch) => {
 	axios.post('/post/postImage', formData)

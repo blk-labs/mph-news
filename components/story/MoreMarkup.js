@@ -70,13 +70,13 @@ ${link}
 							props.topics.map((data, i) => (
 								<Grid key={i} item xs={12} lg={6}>
 									<Link style={{ display: 'flex' }} className={classes.linkClass} target="_blank" href={`/story/${data.id}`}>
-										<div>
+										<a>
 											<img src={data.postImage} className={classes.mainImg} alt={`${data.topics} image`} />
 											<div style={{ display: 'flex', flexDirection: 'column', marginRight: '.5rem' }}>
 												<Typography style={{ textTransform: 'capitalize' }} variant="subtitle2">{data.title}</Typography>
 												<Typography style={{ margin: '1rem 0 2rem', textTransform: 'uppercase' }} variant="caption">{dayjs(data.createdAt).fromNow()}</Typography>
 											</div>
-										</div>
+										</a>
 									</Link>
 								</Grid>
 							)).splice(0, 4)

@@ -94,7 +94,7 @@ export default function LatestNews(props) {
 						{
 							news.splice(0, 5).map((data, i) => (
 								<Link key={i} className={classes.linkClass} href={`/story/${data.id}`}>
-									<div>
+									<a>
 										<Grid container className={classes.newsCont}>
 											{matches ? (
 												<Grid style={{ paddingRight: '.5rem' }} item md={5}>
@@ -109,7 +109,7 @@ export default function LatestNews(props) {
 												{!matches ? <h2 style={{ fontSize: '1.85rem', padding: '0 1rem', fontFamily: 'Helvetica Compressed' }}>{data.title}</h2> : null}
 											</Grid>
 										</Grid>
-									</div>
+									</a>
 								</Link>
 							)
 							)}
@@ -117,13 +117,13 @@ export default function LatestNews(props) {
 				) : (
 					news.filter((data, i) => i === 0).map((data, i) => (
 						<Link key={i} className={classes.linkClass} href={`/story/${data.id}`}>
-							<div>
+							<a>
 								<Grid style={{ marginTop: '.5rem', overflow: 'hidden' }} item xs={12} md={7}>
 									<img src={data.postImage} alt="news" className={classes.imgClass} />
 									<h2 style={{ letterSpacing: '1.25px', fontSize: '1.85rem', padding: '0 1rem', fontFamily: 'Helvetica Compressed' }}>{data.title}</h2>
 									<hr className={classes.smHr} />
 								</Grid>
-							</div>
+							</a>
 						</Link>
 					))
 				)
@@ -134,12 +134,12 @@ export default function LatestNews(props) {
 						{
 							news.filter((data, i) => i > 0).slice(0, 4).map((data, i) => (
 								<Link key={i} className={classes.linkClass} href={`/story/${data.id}`}>
-									<div>
+									<a>
 										<Grid className={classes.smGrid}>
 											<img src={data.postImage} alt="news" className={classes.smImg} />
 											<Typography variant="caption">{data.title}</Typography>
 										</Grid>
-									</div>
+									</a>
 								</Link>
 							))
 						}

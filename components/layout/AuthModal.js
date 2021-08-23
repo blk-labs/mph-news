@@ -131,7 +131,7 @@ export const AuthModal = (props) => {
               >
                 <Fade in={open}><SignupModal /></Fade>
               </Modal>
-      				<Link className={classes.buttonClass} style={{ marginLeft: 'auto' }} href="/reset-password">Forgot your passowrd?</Link>
+      				<Link className={classes.buttonClass} style={{ marginLeft: 'auto' }} href="/reset-password"><a>Forgot your passowrd?</a></Link>
       			</span>
           </form>
     	</div>

@@ -35,22 +35,24 @@ const useStyles = makeStyles((theme) => createStyles({
 export default function SideMap(props) {
 
 	dayjs.extend(relativeTime);
-  const theme = useTheme();
-  const classes = useStyles(props);
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+	const theme = useTheme();
+	const classes = useStyles(props);
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
 
-  const { postsId, postImage, id, createdAt, title } = props.topic;
+	const { postsId, postImage, id, createdAt, title } = props.topic;
 
 	return (
 		<div>
 			<Link key={postsId} className={classes.linkClass} href={`/story/${id}`}>
-				<Grid className={classes.recentCont} key={postsId} container>
-					<img src={postImage} alt="recent-img" className={classes.recentImg} />
-					<div className={classes.body}>
-						<Typography variant="body1">{title}</Typography>
-						<Typography style={{ marginTop: 'auto', textTransform: 'uppercase' }} variant="caption">{dayjs(createdAt).fromNow()}</Typography>
-					</div>
-				</Grid>
+				<a>
+					<Grid className={classes.recentCont} key={postsId} container>
+						<img src={postImage} alt="recent-img" className={classes.recentImg} />
+						<div className={classes.body}>
+							<Typography variant="body1">{title}</Typography>
+							<Typography style={{ marginTop: 'auto', textTransform: 'uppercase' }} variant="caption">{dayjs(createdAt).fromNow()}</Typography>
+						</div>
+					</Grid>
+				</a>
 			</Link>
 		</div>
 	);

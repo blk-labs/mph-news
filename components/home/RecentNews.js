@@ -80,7 +80,7 @@ export default function RecentNews(props) {
 				{
 					news.map((data, i) => (
 						<Link key={i} className={classes.linkClass} href={`/story/${data.id}`}>
-							<div>
+							<a>
 								<Grid className={classes.recentCont} container>
 									<img src={data.postImage} alt="recent-img" className={classes.recentImg} />
 									<div className={classes.body}>
@@ -89,7 +89,7 @@ export default function RecentNews(props) {
 									</div>
 								</Grid>
 								{news.length !== i + 1 ? <hr className={classes.newsHr} /> : null}
-							</div>
+							</a>
 						</Link>
 					))
 				}

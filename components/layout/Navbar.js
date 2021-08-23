@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme) => createStyles({
 	},
 	homeIcon: {
 		color: theme.palette.secondary.light,
-		padding: '.3rem .5rem',
+		padding: '.3rem .2rem',
 		marginRight: '1rem',
-		borderBottom: `4px solid ${theme.palette.secondary.light}`
+		borderBottom: `2px solid ${theme.palette.secondary.light}`
 	},
 	hubClass: {
 		height: '30px',
@@ -197,9 +197,9 @@ export function Navbar(props) {
 			<Container className={classes.navCont}>
 				{!matches ? <MobileNav /> : null}
 				<Link href="/">
-					<div className={classes.logoComp}>
+					<a className={classes.logoComp}>
 						<img src={matches ? logoFull.src : logo.src} className={matches ? classes.logoClass : classes.logoFull} alt="MPH-logo" />
-					</div>
+					</a>
 				</Link>
 				<div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
 					{matches ?
@@ -217,25 +217,27 @@ export function Navbar(props) {
 			</Container>
 			<AppBar className={sticky ? classes.stickyClass : ""} position="sticky">
 				<div className={classes.menuCont}>
-					<Container style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-						{!matches ? <Link style={{ height: 0 }} href="/"><Home className={classes.homeIcon} /></Link> : null}
+					<Container style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }} className="flex flex-row items-center justify-between py-1">
+						{!matches ? <Link style={{ height: 0 }} href="/"><a><Home className={classes.homeIcon} fontSize="large" /></a></Link> : null}
 						{matches ? (
 							titles.map((str, i) => {
 								const chars = str.title.charAt(0);
 								const words = str.title.split(chars);
 								return (
 									<Link key={i} href={str.title === 'National Assembly' ? `/documents` : `/topics/${str.title.toLowerCase()}`} className={`${classes.titleCont} ${classes.linkClass}`}>
-										<span className={`${classes.titleCont} ${classes.linkClass}`}>
+										<a className={`${classes.titleCont} ${classes.linkClass}`}>
 											<Typography variant="h6" style={{ fontWeight: 'bold' }}>{chars}</Typography>
 											<Typography variant="body2" style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{words[1]}</Typography>
-										</span>
+										</a>
 									</Link>
 								)
 							})
 						) : (
 							titles.map((str, i) => (
 								<Link key={i} href={str.title === 'National Assembly' ? `/documents` : `/topics/${str.title.toLowerCase()}`} className={`${classes.titleCont} ${classes.linkClass}`}>
-									<Typography variant="body2" style={{ width: 'max-content', color: 'lightgray', textTransform: 'uppercase' }}>{str.title}</Typography>
+									<a className="px-3 py-1">
+										<Typography variant="body2" style={{ width: 'max-content', color: 'lightgray', textTransform: 'uppercase' }}>{str.title}</Typography>
+									</a>
 								</Link>
 							)
 							))

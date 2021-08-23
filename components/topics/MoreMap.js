@@ -72,14 +72,14 @@ export default function TopicMap(props) {
 			{
 				postsToShow.map((data, i) => (
 					<Link className={classes.linkClass} href={`/story/${data.id}`} key={i}>
-						<div key={i} className={classes.mapCont}>
+						<a key={i} className={classes.mapCont}>
 							<img src={data.postImage} alt={`${data.topic} img`} className={classes.imgClass} />
 							<div style={{ marginLeft: '1rem' }}>
 								<Typography variant="h5" className={classes.titleClass}>{data.title}</Typography>
 								{matches ? <Typography variant="body2" style={{ margin: '.5rem 0' }}>{data.body.substring(0, 200)}...</Typography> : null}
 								<Typography variant="caption">{data.time}</Typography>
 							</div>
-						</div>
+						</a>
 					</Link>
 				))
 			}

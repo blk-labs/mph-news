@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 
+import jwtDecode from 'jwt-decode'
+import axios from 'axios'
+
 // Redux
 import { connect } from 'react-redux';
 import { getTopic, getAllPosts, getDocuments } from '../redux/actions/dataActions';
+import { isAuth } from '../redux/actions/userActions';
 
 // Material
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
@@ -22,6 +26,7 @@ import Alert from '@material-ui/lab/Alert';
 
 // Comps
 import AddStory from '../components/admin/AddStory'
+import Loading from '../components/layout/Loading'
 import DeleteStory from '../components/admin/DeleteStory'
 import AddDocument from '../components/admin/AddDocument'
 import DeleteDocument from '../components/admin/DeleteDocument'
@@ -31,9 +36,9 @@ import logo from '../public/images/logo.png'
 
 const useStyles = makeStyles((theme) => createStyles({
 	...theme.spreadThis,
-  formControl: {
-  	marginTop: '2.5rem',
-  },
+	formControl: {
+		marginTop: '2.5rem',
+	},
 	navCont: {
 		marginBottom: '5rem'
 	},
@@ -63,35 +68,35 @@ const useStyles = makeStyles((theme) => createStyles({
 
 export function Admin(props) {
 
-  const [select, setSelect] = useState('');
-  const [add, setAdd] = useState(false);
-  const [remove, setRemove] = useState(false);
-  const [content, setContent] = useState([]);
+	const [select, setSelect] = useState('');
+	const [add, setAdd] = useState(false);
+	const [remove, setRemove] = useState(false);
+	const [content, setContent] = useState([]);
 
-  const { docs, topic } = props.data;
-  const { loading } = props.UI;
+	const { docs, topic } = props.data;
+	// const { loading } = props.UI;
 
-  const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(false);
 
-  const handleSuccess = () => {
-  	setSelect('');
-    setOpen(true);
-  };
+	const handleSuccess = () => {
+		setSelect('');
+		setOpen(true);
+	};
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
+	const handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+		setOpen(false);
+	};
 
-  const handleChange = (event) => {
-    setSelect(event.target.value);
-    getContent(event.target.value);
-  };
+	const handleChange = (event) => {
+		setSelect(event.target.value);
+		getContent(event.target.value);
+	};
 
-  const getContent = (cont) => {
-  	if (cont === 'story' || cont === 'editors') {
+	const getContent = (cont) => {
+		if (cont === 'story' || cont === 'editors') {
 			props.getAllPosts()
 			setAdd(false);
 			setRemove(false);
@@ -107,127 +112,162 @@ export function Admin(props) {
 			setRemove(false);
 			setContent(props.data.docs);
 		}
-  }
-
-  const addContent = () => {
-  	setAdd(true);
-  	setRemove(false)
-  }
-
-  const removeContent = () => {
-  	setAdd(false);
-  	setRemove(true)
-  }
-
-  let router = useRouter();
-
-  const theme = useTheme();
-  const classes = useStyles(props);
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
-
-	if (props.user.authenticated === false) {
-		router.push('/')
-	} else if (props.user.credentials.moderator === false) {
-		router.push('/')
-	} else {		
-	  let nav = document.getElementById('navBar');
-	  if (nav !== null) {
-	  	nav.style.display = 'none'
-	  }
 	}
+
+	const addContent = () => {
+		setAdd(true);
+		setRemove(false)
+	}
+
+	const removeContent = () => {
+		setAdd(false);
+		setRemove(true)
+	}
+
+	let router = useRouter();
+
+	const theme = useTheme();
+	const classes = useStyles(props);
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
+
+	const [loading, setLoading] = useState(true);
+
+
+
+	useEffect(() => {
+		const token = localStorage.FBIdToken;
+		if (token) {
+			const decodedToken = jwtDecode(token);
+			if (decodedToken.exp * 1000 < Date.now()) {
+				props.logoutUser();
+				router.push('/')
+			} else {
+				props.isAuth(decodedToken)
+				let nav = document.getElementById('navBar');
+				if (nav !== null) {
+					nav.style.display = 'none'
+				}
+			}
+		} else {
+			router.push('/')
+		}
+	}, [])
+
+	// useEffect(() => {
+	// 	console.log(`props.user: ${props.user.authenticated}`);
+	// 	// if (props.user.authenticated === false) {
+	// 	// 	router.push('/')
+	// 	// } else if (props.user.credentials.moderator === false) {
+	// 	// 	router.push('/')
+	// 	// } else {
+	// 	// 	let nav = document.getElementById('navBar');
+	// 	// 	if (nav !== null) {
+	// 	// 		nav.style.display = 'none'
+	// 	// 	}
+	// 	// }
+	// }, [props.user])
 
 	return (
 		<div>
-	    <Container className={classes.navCont}>
-	    	<Link href='/' className={classes.logoComp}>
-	    		<img src={matches ? logoFull : logo} className={matches ? classes.logoClass : classes.logoFull} alt="MPH-logo" />
-	    	</Link>
-    	</Container>
-    	<Container className={classes.adminCont}>
-    		<Typography style={{ fontWeight: 'bold' }} variant="h5">Admin Panel</Typography>
-    		<Grid justify="space-between" container>
-    			<Grid xs={12} sm={6} lg={3} className={classes.formControl}>
-    				<Typography>Select a Content Type</Typography>
-			      <FormControl style={{ minWidth: 120 }}>
-			        <Select
-			          id="demo-simple-select-outlined"
-			          value={select}
-			          color="secondary"
-			          onChange={handleChange}
-			          label="Content"
-			        >
-			        	<MenuItem value=""><em>None</em></MenuItem>
-			          <MenuItem value='story'>Story</MenuItem>
-			          <MenuItem value='video'>Video</MenuItem>
-			          <MenuItem value='documents'>Documents</MenuItem>
-			          <MenuItem value='editors'>Editors Pick</MenuItem>
-			        </Select>
-			      </FormControl>
-    			</Grid>
-    			{
-    				select !== "" &&
-	    			<Grid  xs={12} sm={6} lg={3} className={classes.buttonCont}>
-	    				<Button
-	    					size={matches ? 'small' : 'large'}
-	    					onClick={addContent}
-	    					style={{ width: 'fit-content', textTransform: 'capitalize' }}
-	    					variant="contained"
-	    					color="secondary"
-    					>Add New {select}</Button>
-    					{
-    						select !== 'editors' &&
-		    				<Button
-		    					size={matches ? 'small' : 'large'}
-		    					onClick={removeContent}
-		    					style={{ width: 'fit-content', textTransform: 'capitalize' }}
-		    					variant="outlined"
-		    					className={classes.btnCont}
-		    				>{select === "story" ? "Edit" : "Delete"} {select}</Button>
-    					}
-	    			</Grid>
-    			}
+			{
+				!props.user.authenticated ? (<Loading />)
+					: (
+						<div>
+							<Container className={classes.navCont}>
+								<Link href='/' className={classes.logoComp}>
+									<a>
+										<img src={matches ? logoFull.src : logo.src} className={matches ? classes.logoClass : classes.logoFull} alt="MPH-logo" />
+									</a>
+								</Link>
+							</Container>
+							<Container className={classes.adminCont}>
+								<Typography style={{ fontWeight: 'bold' }} variant="h5">Admin Panel</Typography>
+								<Grid justify="space-between" container>
+									<Grid xs={12} sm={6} lg={3} className={classes.formControl}>
+										<Typography>Select a Content Type</Typography>
+										<FormControl style={{ minWidth: 120 }}>
+											<Select
+												id="demo-simple-select-outlined"
+												value={select}
+												color="secondary"
+												onChange={handleChange}
+												label="Content"
+											>
+												<MenuItem value=""><em>None</em></MenuItem>
+												<MenuItem value='story'>Story</MenuItem>
+												<MenuItem value='video'>Video</MenuItem>
+												<MenuItem value='documents'>Documents</MenuItem>
+												<MenuItem value='editors'>Editors Pick</MenuItem>
+											</Select>
+										</FormControl>
+									</Grid>
+									{
+										select !== "" &&
+										<Grid xs={12} sm={6} lg={3} className={classes.buttonCont}>
+											<Button
+												size={matches ? 'small' : 'large'}
+												onClick={addContent}
+												style={{ width: 'fit-content', textTransform: 'capitalize' }}
+												variant="contained"
+												color="secondary"
+											>Add New {select}</Button>
+											{
+												select !== 'editors' &&
+												<Button
+													size={matches ? 'small' : 'large'}
+													onClick={removeContent}
+													style={{ width: 'fit-content', textTransform: 'capitalize' }}
+													variant="outlined"
+													className={classes.btnCont}
+												>{select === "story" ? "Edit" : "Delete"} {select}</Button>
+											}
+										</Grid>
+									}
 
-    			<Grid xs={12} lg={6} className={classes.mainCont}>
-						<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-						  <Alert onClose={handleClose} severity="success">
-						    Successful!
-						  </Alert>
-						</Snackbar>
-    				{
-    					select === 'story' ? (
-    						add === true ? <AddStory handleSuccess={handleSuccess} /> : (
-    							remove === true ? <DeleteStory handleSuccess={handleSuccess} posts={props.data.posts} /> : null
-	  							)
-	  						) : (
-  						select === 'video' ? (
-  							add === true ? <AddStory video={true} handleSuccess={handleSuccess} /> : (
-  								remove === true ? <DeleteStory video={true} posts={props.data.posts} /> : null
-									)
-								) : (
-							select === 'documents' ? (
-								add === true ? <AddDocument handleSuccess={handleSuccess} /> : (
-									remove === true ? <DeleteDocument docs={props.data.docs} /> : null
-									)
-								) : (
-							select === 'editors' ? (
-								add === true ? <EditorsPick posts={props.data.posts} handleSuccess={handleSuccess} /> : null
-									) : null
-								)
-							)
-						)}
-    			</Grid>
-    		</Grid>
-    	</Container>
+									<Grid xs={12} lg={6} className={classes.mainCont}>
+										<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+											<Alert onClose={handleClose} severity="success">
+												Successful!
+											</Alert>
+										</Snackbar>
+										{
+											select === 'story' ? (
+												add === true ? <AddStory handleSuccess={handleSuccess} /> : (
+													remove === true ? <DeleteStory handleSuccess={handleSuccess} posts={props.data.posts} /> : null
+												)
+											) : (
+												select === 'video' ? (
+													add === true ? <AddStory video={true} handleSuccess={handleSuccess} /> : (
+														remove === true ? <DeleteStory video={true} posts={props.data.posts} /> : null
+													)
+												) : (
+													select === 'documents' ? (
+														add === true ? <AddDocument handleSuccess={handleSuccess} /> : (
+															remove === true ? <DeleteDocument docs={props.data.docs} /> : null
+														)
+													) : (
+														select === 'editors' ? (
+															add === true ? <EditorsPick posts={props.data.posts} handleSuccess={handleSuccess} /> : null
+														) : null
+													)
+												)
+											)}
+									</Grid>
+								</Grid>
+							</Container>
+						</div>
+					)
+			}
 		</div>
 	)
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  data: state.data,
-  UI: state.UI
+	user: state.user,
+	data: state.data,
+	UI: state.UI
 });
 
-const mapDispatchToProps = { getTopic, getAllPosts, getDocuments };
+const mapDispatchToProps = { getTopic, getAllPosts, getDocuments, isAuth };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin);

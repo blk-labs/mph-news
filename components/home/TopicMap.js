@@ -70,33 +70,35 @@ export default function TopicMap(props) {
 			{
 				news.filter((data, i) => i === 0).map((data, i) => (
 					<Link key={i} className={classes.linkClass} href={`/story/${data.id}`}>
-						<div>
-						<Grid className={classes.mainCont} key={i}>
-							<img src={data.postImage} className={classes.mainImg} alt={`${props.topic} image`} />
-							<Typography style={{ fontSize: '110%', fontWeight: 'bold', textTransform: 'capitalize' }} variant="subtitle1">{data.title}</Typography>
-							<Typography style={{ margin: '1rem 0 2rem', textTransform: 'uppercase' }} variant="caption">{dayjs(data.createdAt).fromNow()}</Typography>
-						</Grid>
-						</div>
+						<a>
+							<Grid className={classes.mainCont} key={i}>
+								<img src={data.postImage} className={classes.mainImg} alt={`${props.topic} image`} />
+								<Typography style={{ fontSize: '110%', fontWeight: 'bold', textTransform: 'capitalize' }} variant="subtitle1">{data.title}</Typography>
+								<Typography style={{ margin: '1rem 0 2rem', textTransform: 'uppercase' }} variant="caption">{dayjs(data.createdAt).fromNow()}</Typography>
+							</Grid>
+						</a>
 					</Link>
 				))
 			}
 			{
 				news.filter((data, i) => i > 0).map((data, i) => (
 					<Link key={i} className={classes.linkClass} href={`/story/${data.id}`}>
-						<div>
+						<a>
 							{props.pass.length !== i + 1 ? <hr style={{ borderColor: 'rgba(0,0,0,.25)', borderBottom: 0 }} /> : null}
 							<Grid className={classes.groupCont} key={i}>
 								<img src={data.postImage} className={classes.groupImg} alt={`${props.topic} image`} />
 								<Typography variant="body2">{data.title}</Typography>
 							</Grid>
-						</div>
+						</a>
 					</Link>
 				))
 			}
 			<Link style={{ textDecoration: 'none' }} href={`/topics/${props.topic}`}>
-				<Button className={classes.btnClass} variant="outlined">
-					more {props.topic}
-				</Button>
+				<a>
+					<Button className={classes.btnClass} variant="outlined">
+						more {props.topic}
+					</Button>
+				</a>
 			</Link>
 		</Grid>
 	);

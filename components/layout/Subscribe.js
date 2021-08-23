@@ -69,7 +69,7 @@ export default function Subscribe(props) {
 		  	/>
 				<hr className={`${classes.hrTop} ${classes.hrSub}`} />
 				<Typography variant='h5' style={{ marginBottom: '1rem' }} className={classes.titleCont}><em>Want To Reach Out?</em></Typography>
-				<Typography variant='body1'>Do you have info to share with our team?<br /><Link className={classes.linkClass} style={{ textDecoration: 'underline' }} href='/contact'>Here&apos;s</Link> how you can reach us.</Typography>
+				<Typography variant='body1'>Do you have info to share with our team?<br /><Link className={classes.linkClass} style={{ textDecoration: 'underline' }} href='/contact'><a>Here&apos;s</a></Link> how you can reach us.</Typography>
 			</span>
 			}
 		</Grid>

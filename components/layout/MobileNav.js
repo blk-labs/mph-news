@@ -122,15 +122,13 @@ export function MobileNav(props) {
 				<div style={{ textTransform: 'uppercase' }}>
 					{
 						titles.map((tit, i) => (
-							<span className={classes.linkClass}>
-							<Link href={tit.link == 'documents' ? `/documents` : `/topics/${tit.link}`} onClick={toggleDrawer()}  key={i}>
-								<a >
+							<Link href={tit.link == 'documents' ? `/documents` : `/topics/${tit.link}`} onClick={toggleDrawer()} key={i}>
+								<a className={classes.linkClass}>
 									<span className={classes.titleClass}>
 										<Typography variant='h6'>{tit.start}</Typography> <p><strong>{tit.end}</strong></p>
 									</span>
 								</a>
 							</Link>
-							</span>
 						))
 					}
 				</div>

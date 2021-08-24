@@ -31,57 +31,58 @@ const useStyles = makeStyles((theme) => createStyles({
 
 export function Home(props) {
 
-  useEffect(() => {
+	useEffect(() => {
 
-	  let nav = document.getElementById('navBar');
-	  if (nav !== null) {
-	  	nav.style.display = 'block'
-	  }
+		let nav = document.getElementById('navBar');
+		if (nav !== null) {
+			nav.style.display = 'block'
+		}
 
-  	props.getAllPosts();
+		props.getAllPosts();
 		document.title = 'MPH News | My Political Hub';
 		console.log(props)
-  }, []);
+	}, []);
 
-  const { loading } = props.data;
+	const { loading } = props.data;
 
-  const theme = useTheme();
-  const classes = useStyles(props);
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+	const theme = useTheme();
+	const classes = useStyles(props);
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
 
+	console.log("loading: ", loading);
 	return (
 		<span>
-		{
-			loading ? (
-				<div className={classes.loader}>
-					<Loading />
-				</div>
+			{
+				loading ? (
+					<div className={classes.loader}>
+						<Loading />
+					</div>
 				) : (
-				<span>
-					<Container style={ !matches ? { padding: 0 } : null } maxWidth="lg">
-						<Grid container>
-							<LatestNews news={props.data.posts} />
-							<RecentNews news={props.data.posts} />
-							<hr className={`${classes.hrTop} ${classes.hrHome}`} />
-							<TopicGrid news={props.data.posts} />
-							<hr className={`${classes.hrTop} ${classes.hrHome}`} />
-							<PopularPoliticians />
-							<hr className={`${classes.hrTop} ${classes.hrHome}`} />
-							<CustomNews news={props.data.posts} />
-						</Grid>
-				  </Container>
-				  <VideoNews news={props.data.posts} />
-			  </span>
-			)
-		}
-		  <Footer />
-	  </span>
+					<span>
+						<Container style={!matches ? { padding: 0 } : null} maxWidth="lg">
+							<Grid container>
+								<LatestNews news={props.data.posts} />
+								<RecentNews news={props.data.posts} />
+								<hr className={`${classes.hrTop} ${classes.hrHome}`} />
+								<TopicGrid news={props.data.posts} />
+								<hr className={`${classes.hrTop} ${classes.hrHome}`} />
+								<PopularPoliticians />
+								<hr className={`${classes.hrTop} ${classes.hrHome}`} />
+								<CustomNews news={props.data.posts} />
+							</Grid>
+						</Container>
+						<VideoNews news={props.data.posts} />
+					</span>
+				)
+			}
+			<Footer />
+		</span>
 	);
 }
 
 const mapStateToProps = state => ({
-  data: state.data,
-  UI: state.UI
+	data: state.data,
+	UI: state.UI
 });
 
 const mapDispatchToProps = { getAllPosts, clearErrors };

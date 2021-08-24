@@ -49,6 +49,8 @@ export function Home(props) {
   const classes = useStyles(props);
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
+  console.log("loading: ", loading);
+
 	return (
 		<span>
 		{

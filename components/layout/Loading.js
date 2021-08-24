@@ -22,9 +22,9 @@ export default class Loading extends React.Component {
 
 	render() {
 		return (
-			<div className="loader h-full w-screen top-0 bottom-0 left-0 right-0 flex justify-center items-center" >
+			<div className="loader h-full w-screen top-0 bottom-0 left-0 right-0 flex justify-center items-start py-16" >
 				{/* <BorderLinearProgress style={{ display: 'flex', margin: 'auto' }} /> */}
-				<CircularProgress size={45} thickness={3.5} className="py-16" color="secondary" style={{ display: 'flex', marginLeft: 'auto', marginRight: 'auto', padding: '100px 0' }}/>
+				<CircularProgress size={45} thickness={3.5} color="secondary" />
 			</div>
 		);
 	}

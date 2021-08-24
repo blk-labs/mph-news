@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/userActions';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import { LinearProgress } from "@material-ui/core"
 
 // Icons
 import { Search, Apps, Home } from '@material-ui/icons';
@@ -25,6 +26,7 @@ import AuthModal from './AuthModal'
 import logoFull from '../../public/images/logoFullColor.png'
 import logo from '../../public/images/logo.png'
 import hub from '../../public/images/hub.png'
+
 
 const useStyles = makeStyles((theme) => createStyles({
 	...theme.spreadThis,
@@ -118,9 +120,11 @@ const titles = [
 ]
 
 export function Navbar(props) {
+	const router = useRouter()
 
 	const [sticky, setSticky] = useState();
 	const [open, setOpen] = useState(false);
+	const [navLoading, setNavLoading] = useState(false);
 
 	const handleOpen = () => {
 		setOpen(true);
@@ -144,7 +148,31 @@ export function Navbar(props) {
 
 	useEffect(() => {
 		window.addEventListener("scroll", toggleSticky);
-	}, []);
+		return () => {
+			
+		window.removeEventListener("scroll", toggleSticky);
+		}
+	}, [])
+
+	useEffect(() => {
+		const handleNavStart = (url) => {
+			console.log(`Loading: ${url}`)
+			setNavLoading(true);
+		}
+		const handleNavStop = () => {
+			setNavLoading(false);
+		}
+
+		router.events.on('routeChangeStart', handleNavStart)
+		router.events.on('routeChangeComplete', handleNavStop)
+		router.events.on('routeChangeError', handleNavStop)
+	
+		return () => {
+		  router.events.off('routeChangeStart', handleNavStart)
+		  router.events.off('routeChangeComplete', handleNavStop)
+		  router.events.off('routeChangeError', handleNavStop)
+		}
+	}, [router]);
 
 	const theme = useTheme();
 	const classes = useStyles(props);
@@ -245,6 +273,7 @@ export function Navbar(props) {
 					</Container>
 				</div>
 			</AppBar>
+			{navLoading ? (<LinearProgress />) : <div />}
 		</div>
 	);
 }

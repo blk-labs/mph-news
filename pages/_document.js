@@ -38,6 +38,10 @@ class MyDocument extends Document {
                     <Head />
                 )}
                 <body>
+                    <noscript>
+                        <img height="1" width="1" style={{display: "none"}}
+                            src="https://www.facebook.com/tr?id=847932856093921&ev=PageView&noscript=1"
+                        /></noscript>
                     <Main />
                     <NextScript />
                 </body>

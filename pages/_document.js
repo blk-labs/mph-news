@@ -33,13 +33,16 @@ class MyDocument extends Document {
                         <meta property="og:image" content={this.props.post.postImage} />
                         <meta name="twitter:title" content={this.props.post.title} />
                         <meta name="twitter:description" content={(this.props.post.subtitle || this.props.post.body).substring(0, 190) + "..."} />
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-H1RJ9WJGML"></script>
                     </Head>
                 ) : (
-                    <Head />
+                    <Head>
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-H1RJ9WJGML"></script>
+                    </Head>
                 )}
                 <body>
                     <noscript>
-                        <img height="1" width="1" style={{display: "none"}}
+                        <img height="1" width="1" style={{ display: "none" }}
                             src="https://www.facebook.com/tr?id=847932856093921&ev=PageView&noscript=1"
                         /></noscript>
                     <Main />

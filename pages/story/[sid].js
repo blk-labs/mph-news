@@ -96,11 +96,11 @@ export function Story(props) {
 				</title>
 			</Head>
 			<Container maxWidth='lg'>
-				<Grid className={classes.headerCont} container>
-					<Grid style={{ position: 'relative' }} item xs={12} lg={8}>
+				<div className={classes.headerCont} container>
+					<div style={{ position: 'relative' }} >
 						{loading ? <Loading /> : <StoryMap story={props.post} />}
-					</Grid>
-					<Grid item xs={12} lg={4}>
+					</div>
+					<div>
 						{matches ? (
 							<span>
 								{readMarkup}
@@ -108,22 +108,13 @@ export function Story(props) {
 							</span>
 						) : null
 						}
-					</Grid>
+					</div>
 					{matches ? (topic !== undefined ? <MoreMarkup topic={topic} title={title} link={router.asPath} topics={props.topic} /> : null) : null}
-				</Grid>
+				</div>
 			</Container>
 
 			{loading ? null : (!matches ? <BodyMark story={props.post} /> : null)}
-
-			{!matches ? (
-				<span>
-					{readMarkup}
-					<Comments story={props.post} />
-				</span>
-			) : null
-			}
-
-			{!matches ? (topic !== undefined ? <MoreMarkup topic={topic} title={title} link={router.asPath} topics={props.topic} /> : null) : null}
+			
 			<Footer />
 		</div>
 	);

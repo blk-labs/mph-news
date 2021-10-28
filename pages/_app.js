@@ -1,27 +1,28 @@
-import '../styles/globals.css'
-import 'tailwindcss/tailwind.css'
-import { Provider } from "react-redux"
-import { useStore } from "../redux/store"
+import '../styles/globals.css';
+import 'tailwindcss/tailwind.css';
+import { Provider } from 'react-redux';
+import { useStore } from '../redux/store';
 import { useEffect } from 'react';
-import jwtDecode from 'jwt-decode'
-import axios from 'axios'
-import Navbar from "../components/layout/Navbar"
-import Script from "next/script"
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
+import Navbar from '../components/layout/Navbar';
+import Script from 'next/script';
 
 // Redux
 import { SET_AUTHENTICATED } from '../redux/types';
 import { logoutUser, getUserData } from '../redux/actions/userActions';
 
 // Material UI
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { createTheme } from '@material-ui/core/styles';
-import appTheme from '../util/theme'
+import appTheme from '../util/theme';
 import PropTypes from 'prop-types';
 import withWidth from '@material-ui/core/withWidth';
 
 const theme = createTheme(appTheme);
 
-axios.defaults.baseURL = 'https://us-central1-poli-news-77c19.cloudfunctions.net/api';
+axios.defaults.baseURL =
+  'https://us-central1-poli-news-77c19.cloudfunctions.net/api';
 
 function App({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
@@ -38,11 +39,11 @@ function App({ Component, pageProps }) {
         store.dispatch(getUserData());
       }
     }
-  }, [])
+  }, []);
 
   return (
     <>
-      <Script id="facebook pixel" strategy="afterInteractive">
+      <Script id='facebook pixel' strategy='afterInteractive'>
         {`!function(f,b,e,v,n,t,s)
                             {if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
                                 n.callMethod.apply(n, arguments) : n.queue.push(arguments)};
@@ -68,11 +69,11 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
         </Provider>
       </MuiThemeProvider>
     </>
-  )
+  );
 }
 
 App.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired
-}
+  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
+};
 
 export default withWidth()(App);

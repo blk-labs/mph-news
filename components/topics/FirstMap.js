@@ -9,53 +9,92 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-const useStyles = makeStyles((theme) => createStyles({
-	...theme.spreadThis,
-	topImg: {
-		width: '100%',
-		height: '400px',
-		objectFit: 'cover',
-		[theme.breakpoints.down('sm')]: {
-			width: '75%',
-			margin: 'auto',
-			display: 'flex',
-			height: '300px',
-		},
-		[theme.breakpoints.down('xs')]: {
-			width: '100%',
-			height: '200px',
-		},
-	},
-	titleText: {
-		margin: '1rem 0',
-		textTransform: 'capitalize',
-		fontFamily: '"Helvetica Compressed"',
-		[theme.breakpoints.down('sm')]: {
-			fontSize: '175%'
-		}
-	},
-}))
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    ...theme.spreadThis,
+    topImg: {
+      width: '100%',
+      height: '617px',
+      objectFit: 'cover',
+      [theme.breakpoints.down('sm')]: {
+        width: '75%',
+        margin: 'auto',
+        display: 'flex',
+        height: '300px',
+      },
+      [theme.breakpoints.down('xs')]: {
+        width: '100%',
+        height: '200px',
+      },
+    },
+    titleText: {
+      fontWeight: 900,
+      fontSize: 36,
+      textTransform: 'initial',
+      fontFamily: '"Playfair Display"',
+      lineHeight: 1.1,
+      paddingTop: 25,
+      letterSpacing: -1,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '175%',
+      },
+    },
+    subnews: {
+      color: 'black',
+      fontSize: 15,
+      margin: '10px 0',
+      letterSpacing: 0,
+      fontWeight: 300,
+    },
+  })
+);
 
 export default function FirstMap(props) {
+  dayjs.extend(relativeTime);
+  const theme = useTheme();
+  const classes = useStyles(props);
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
 
-	dayjs.extend(relativeTime);
-	const theme = useTheme();
-	const classes = useStyles(props);
-	const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const { postsId, postedBy, postImage, id, createdAt, title, body } =
+    props.topic;
 
-	const { postsId, postImage, id, createdAt, title } = props.topic;
+  return (
+    <Grid container>
+      <Grid item>
+        <Link key={postsId} className={classes.linkClass} href={`/story/${id}`}>
+          <a>
+            <img
+              src={postImage}
+              alt={`${title} image`}
+              className={classes.topImg}
+            />
+            <Typography variant='h4' className={classes.titleText}>
+              {title}
+            </Typography>
+            <Typography className={classes.subnews}>
+              {body.substring(0, 150)}...
+            </Typography>
+            <Typography
+              style={{
+                textTransform: 'capitalize',
+                marginRight: 40,
+                fontSize: 15,
 
-	return (
-		<Grid container>
-			<Grid item>
-				<Link key={postsId} className={classes.linkClass} href={`/story/${id}`}>
-					<a>
-						<img src={postImage} alt={`${title} image`} className={classes.topImg} />
-						<Typography variant="h4" className={classes.titleText}>{title}</Typography>
-						<Typography style={{ textTransform: 'uppercase' }} variant="caption">{dayjs(createdAt).fromNow()}</Typography>
-					</a>
-				</Link>
-			</Grid>
-		</Grid>
-	);
+                color: '#6B3FA0',
+              }}
+              variant='caption'
+            >
+              {postedBy}
+            </Typography>
+            <Typography
+              style={{ textTransform: 'capitalize', fontSize: 15 }}
+              variant='caption'
+            >
+              {dayjs(createdAt).fromNow()}
+            </Typography>
+          </a>
+        </Link>
+      </Grid>
+    </Grid>
+  );
 }

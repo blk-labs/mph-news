@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/userActions';
 
 // Material
-import { makeStyles, createStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
@@ -14,272 +14,412 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { LinearProgress } from "@material-ui/core"
+import { LinearProgress } from '@material-ui/core';
 
 // Icons
-import { Search, Apps, Home } from '@material-ui/icons';
+import {
+  Search,
+  Apps,
+  Home,
+  Facebook,
+  Twitter,
+  YouTube,
+  Instagram,
+} from '@material-ui/icons';
 
 //Comps
-import MobileNav from './MobileNav'
-import SearchModal from './Search'
-import AuthModal from './AuthModal'
-import logoFull from '../../public/images/logoFullColor.png'
-import logo from '../../public/images/logo.png'
-import hub from '../../public/images/hub.png'
+import MobileNav from './MobileNav';
+import SearchModal from './Search';
+import AuthModal from './AuthModal';
+import logoFull from '../../public/images/logoFullColor2.png';
+import userImg from '../../public/images/userImg.png';
+import logo from '../../public/images/logo.png';
+import hub from '../../public/images/hub.png';
 
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    ...theme.spreadThis,
+    topClass: {
+      textAlign: 'right',
+    },
+    navCont: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: '.5rem',
+      alignItems: 'center',
+      [theme.breakpoints.down('sm')]: {
+        marginTop: '1rem',
+      },
+    },
+    homeIcon: {
+      color: theme.palette.secondary.light,
+      padding: '.3rem .2rem',
+      marginRight: '1rem',
+      borderBottom: `2px solid ${theme.palette.secondary.light}`,
+    },
+    hubClass: {
+      height: '20px',
+      width: 'auto',
+      marginRight: '.25rem',
+    },
+    logoComp: {
+      margin: 'auto',
+      [theme.breakpoints.down('sm')]: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+      },
+    },
 
-const useStyles = makeStyles((theme) => createStyles({
-	...theme.spreadThis,
-	topClass: {
-		textAlign: 'right'
-	},
-	navCont: {
-		display: 'flex',
-		marginBottom: '.5rem',
-		alignItems: 'center',
-		[theme.breakpoints.down('sm')]: {
-			marginTop: '1rem'
-		}
-	},
-	homeIcon: {
-		color: theme.palette.secondary.light,
-		padding: '.3rem .2rem',
-		marginRight: '1rem',
-		borderBottom: `2px solid ${theme.palette.secondary.light}`
-	},
-	hubClass: {
-		height: '30px',
-		width: 'auto',
-		marginRight: '.25rem'
-	},
-	logoComp: {
-		[theme.breakpoints.down('sm')]: {
-			width: '100%',
-			display: 'flex',
-			justifyContent: 'center',
-		}
-	},
-	logoFull: {
-		height: 'auto',
-		width: 50,
-		marginBottom: '.5rem'
-	},
-	logoClass: {
-		height: 'auto',
-		width: 150,
-		marginBottom: '.5rem'
-	},
-	searchCont: {
-		cursor: 'pointer',
-		marginLeft: '1rem',
-		borderRadius: '50%',
-		width: '2.5rem',
-		height: '2.5rem',
-		backgroundColor: 'lightgray',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		[theme.breakpoints.down('sm')]: {
-			width: '2rem',
-			height: '2rem',
-		}
-	},
-	menuCont: {
-		backgroundColor: theme.palette.primary.dark,
-		color: 'white',
-		position: 'sticky',
-		overflowX: 'auto',
-		overflowY: 'hidden'
-	},
-	titleCont: {
-		display: 'flex',
-		alignItems: 'baseline',
-		padding: '.5rem 1rem',
-		'&:hover': {
-			color: theme.palette.secondary.light
-		}
-	},
-	stickyClass: {
-		position: 'fixed'
-	},
-	modal: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-	}
-}));
+    logoFull: {
+      height: 'auto',
+      width: 50,
+      marginBottom: '.5rem',
+    },
+    logoClass: {
+      height: 'auto',
+      width: 150,
+      marginBottom: '.5rem',
+    },
+    searchCont: {
+      cursor: 'pointer',
+      // width: '2.5rem',
+      display: 'flex',
+      marginLeft: 'auto',
+
+      [theme.breakpoints.down('sm')]: {
+        width: '2rem',
+        height: '2rem',
+      },
+    },
+    menuCont: {
+      backgroundColor: 'white',
+      color: 'black',
+      position: 'sticky',
+      overflowX: 'auto',
+      overflowY: 'hidden',
+      display: 'flex',
+    },
+    titleCont: {
+      display: 'flex',
+      alignItems: 'baseline',
+      fontSize: 15,
+      padding: '.5rem 1rem .5rem 0',
+      '&:hover': {
+        color: theme.palette.secondary.light,
+      },
+    },
+    stickyClass: {
+      position: 'fixed',
+    },
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  })
+);
 
 const titles = [
-	{ title: 'Nigeria' },
-	{ title: 'International' },
-	{ title: 'Security' },
-	{ title: 'Health' },
-	{ title: 'Business' },
-	{ title: 'Other' },
-	{ title: 'National Assembly' },
-]
+  { title: 'Nigeria' },
+  { title: 'International' },
+  { title: 'Security' },
+  { title: 'Health' },
+  { title: 'Business' },
+  { title: 'Other' },
+  { title: 'National Assembly' },
+];
 
 export function Navbar(props) {
-	const router = useRouter()
+  const router = useRouter();
 
-	const [sticky, setSticky] = useState();
-	const [open, setOpen] = useState(false);
-	const [navLoading, setNavLoading] = useState(false);
+  const [sticky, setSticky] = useState();
+  const [open, setOpen] = useState(false);
+  const [navLoading, setNavLoading] = useState(false);
 
-	const handleOpen = () => {
-		setOpen(true);
-	};
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
-	const handleClose = () => {
-		setOpen(false);
-	};
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-	const toggleSticky = () => {
-		if (window.scrollY > 150) {
-			setSticky(true);
-		} else {
-			setSticky(false)
-		}
-	};
+  const toggleSticky = () => {
+    if (window.scrollY > 150) {
+      setSticky(true);
+    } else {
+      setSticky(false);
+    }
+  };
 
-	const handleLogout = (evt) => {
-		props.logoutUser()
-	}
+  const handleLogout = (evt) => {
+    props.logoutUser();
+  };
 
-	useEffect(() => {
-		window.addEventListener("scroll", toggleSticky);
-		return () => {
-			
-		window.removeEventListener("scroll", toggleSticky);
-		}
-	}, [])
+  useEffect(() => {
+    window.addEventListener('scroll', toggleSticky);
+    return () => {
+      window.removeEventListener('scroll', toggleSticky);
+    };
+  }, []);
 
-	useEffect(() => {
-		const handleNavStart = (url) => {
-			console.log(`Loading: ${url}`)
-			setNavLoading(true);
-		}
-		const handleNavStop = () => {
-			setNavLoading(false);
-		}
+  useEffect(() => {
+    const handleNavStart = (url) => {
+      console.log(`Loading: ${url}`);
+      setNavLoading(true);
+    };
+    const handleNavStop = () => {
+      setNavLoading(false);
+    };
 
-		router.events.on('routeChangeStart', handleNavStart)
-		router.events.on('routeChangeComplete', handleNavStop)
-		router.events.on('routeChangeError', handleNavStop)
-	
-		return () => {
-		  router.events.off('routeChangeStart', handleNavStart)
-		  router.events.off('routeChangeComplete', handleNavStop)
-		  router.events.off('routeChangeError', handleNavStop)
-		}
-	}, [router]);
+    router.events.on('routeChangeStart', handleNavStart);
+    router.events.on('routeChangeComplete', handleNavStop);
+    router.events.on('routeChangeError', handleNavStop);
 
-	const theme = useTheme();
-	const classes = useStyles(props);
-	const matches = useMediaQuery(theme.breakpoints.up('md'));
+    return () => {
+      router.events.off('routeChangeStart', handleNavStart);
+      router.events.off('routeChangeComplete', handleNavStop);
+      router.events.off('routeChangeError', handleNavStop);
+    };
+  }, [router]);
 
-	return (
-		<div id="navBar">
-			{
-				matches ? (
-					<span>
-						<Container maxWidth="lg">
-							<div className={classes.topClass}>
-								<Button color='default' style={{ textTransform: 'capitalize', padding: 0 }}>
-									<Typography variant="caption" style={{ fontWeight: 'bold' }}>Join our newsletter</Typography>
-								</Button>
-								<span> | </span>
-								{
-									props.user.authenticated ? (
-										<Button color='default' style={{ textTransform: 'capitalize', padding: 0 }} onClick={handleLogout}>
-											<Typography variant="caption" style={{ fontWeight: 'bold' }}>Logout</Typography>
-										</Button>
-									) : (
-										<span>
-											<Button color='default' style={{ textTransform: 'capitalize', padding: 0 }} onClick={handleOpen}>
-												<Typography variant="caption" style={{ fontWeight: 'bold' }}>Login or Register</Typography>
-											</Button>
-											<Modal
-												aria-labelledby="transition-modal-title"
-												aria-describedby="transition-modal-description"
-												className={classes.modal}
-												open={open}
-												onClose={handleClose}
-												closeAfterTransition
-												BackdropComponent={Backdrop}
-												BackdropProps={{
-													timeout: 500,
-												}}
-											>
-												<Fade in={open}><AuthModal handleClose={handleClose} /></Fade>
-											</Modal>
-										</span>
-									)
-								}
-							</div>
-						</Container>
-						<hr className={classes.hrTop} />
-					</span>
-				) : null
-			}
-			<Container className={classes.navCont}>
-				{!matches ? <MobileNav /> : null}
-				<Link href="/">
-					<a className={classes.logoComp}>
-						<img src={matches ? logoFull.src : logo.src} className={matches ? classes.logoClass : classes.logoFull} alt="MPH-logo" />
-					</a>
-				</Link>
-				<div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
-					{matches ?
-						<a href="https://mypoliticalhub.com/profile" style={{ textDecoration: 'none' }} target="_blank" rel="noreferrer">
-							<div style={{ display: 'flex' }}>
-								<img src={hub.src} alt="" className={classes.hubClass} />
-								<Typography style={{ color: theme.palette.primary.main, fontWeight: 'bold', marginRight: '.5rem' }} variant="h5">hub</Typography>
-							</div>
-						</a>
-						: null}
-					<div className={classes.searchCont}>
-						<SearchModal />
-					</div>
-				</div>
-			</Container>
-			<AppBar className={sticky ? classes.stickyClass : ""} position="sticky">
-				<div className={classes.menuCont}>
-					<Container style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }} className="flex flex-row items-center justify-between py-1">
-						{!matches ? <Link style={{ height: 0 }} href="/"><a><Home className={classes.homeIcon} fontSize="large" /></a></Link> : null}
-						{matches ? (
-							titles.map((str, i) => {
-								const chars = str.title.charAt(0);
-								const words = str.title.split(chars);
-								return (
-									<Link key={i} href={str.title === 'National Assembly' ? `/documents` : `/topics/${str.title.toLowerCase()}`} className={`${classes.titleCont} ${classes.linkClass}`}>
-										<a className={`${classes.titleCont} ${classes.linkClass}`}>
-											<Typography variant="h6" style={{ fontWeight: 'bold' }}>{chars}</Typography>
-											<Typography variant="body2" style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{words[1]}</Typography>
-										</a>
-									</Link>
-								)
-							})
-						) : (
-							titles.map((str, i) => (
-								<Link key={i} href={str.title === 'National Assembly' ? `/documents` : `/topics/${str.title.toLowerCase()}`} className={`${classes.titleCont} ${classes.linkClass}`}>
-									<a className="px-3 py-1">
-										<Typography variant="body2" style={{ width: 'max-content', color: 'lightgray', textTransform: 'uppercase' }}>{str.title}</Typography>
-									</a>
-								</Link>
-							)
-							))
-						}
-					</Container>
-				</div>
-			</AppBar>
-			{navLoading ? (<LinearProgress />) : <div />}
-		</div>
-	);
+  const theme = useTheme();
+  const classes = useStyles(props);
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+
+  return (
+    <div id='navBar'>
+      {matches ? (
+        <span>
+          <Container maxWidth='lg'>
+            <div className={classes.topClass}>
+              <Button
+                color='default'
+                style={{ textTransform: 'capitalize', padding: 0 }}
+              >
+                <Typography variant='caption' style={{ fontWeight: 'bold' }}>
+                  Join our newsletter
+                </Typography>
+              </Button>
+              <span> | </span>
+              {props.user.authenticated ? (
+                <Button
+                  color='default'
+                  style={{ textTransform: 'capitalize', padding: 0 }}
+                  onClick={handleLogout}
+                >
+                  <Typography variant='caption' style={{ fontWeight: 'bold' }}>
+                    Logout
+                  </Typography>
+                </Button>
+              ) : (
+                <span>
+                  <Button
+                    color='default'
+                    style={{ textTransform: 'capitalize', padding: 0 }}
+                    onClick={handleOpen}
+                  >
+                    <Typography
+                      variant='caption'
+                      style={{ fontWeight: 'bold' }}
+                    >
+                      Login or Register
+                    </Typography>
+                  </Button>
+                  <Modal
+                    aria-labelledby='transition-modal-title'
+                    aria-describedby='transition-modal-description'
+                    className={classes.modal}
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                      timeout: 500,
+                    }}
+                  >
+                    <Fade in={open}>
+                      <AuthModal handleClose={handleClose} />
+                    </Fade>
+                  </Modal>
+                </span>
+              )}
+            </div>
+          </Container>
+          <hr className={classes.hrTop} />
+        </span>
+      ) : null}
+      <Container className={classes.navCont}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div className={classes.iconClass}>
+            <a
+              target='_blank'
+              rel='noreferrer'
+              className={classes.linkClass}
+              style={{ marginRight: '20px' }}
+              href='https://web.facebook.com/My-Political-Hub-106231897488181/'
+            >
+              <Facebook fontSize='small' />
+            </a>
+          </div>
+          <div className={classes.iconClass}>
+            <a
+              target='_blank'
+              rel='noreferrer'
+              className={classes.linkClass}
+              style={{ marginRight: '20px' }}
+              href='https://www.twitter.com/my_politicalhub'
+            >
+              <Twitter fontSize='small' />
+            </a>
+          </div>
+          <div className={classes.iconClass}>
+            <a
+              target='_blank'
+              rel='noreferrer'
+              className={classes.linkClass}
+              style={{ marginRight: '20px' }}
+              href='https://www.youtube.com/channel/UCwnOgB3veQgUkuB0QCBX55w'
+            >
+              <YouTube fontSize='small' />
+            </a>
+          </div>
+          <div className={classes.iconClass}>
+            <a
+              target='_blank'
+              rel='noreferrer'
+              className={classes.linkClass}
+              href='https://www.instagram.com/my_politicalhub'
+            >
+              <Instagram fontSize='small' />
+            </a>
+          </div>
+        </div>
+        {!matches ? <MobileNav /> : null}
+        <Link href='/'>
+          <a className={classes.logoComp}>
+            <img
+              src={matches ? logoFull.src : logo.src}
+              className={matches ? classes.logoClass : classes.logoFull}
+              alt='MPH-logo'
+            />
+          </a>
+        </Link>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {matches ? (
+            <a
+              href='https://mypoliticalhub.com/profile'
+              style={{ textDecoration: 'none' }}
+              target='_blank'
+              rel='noreferrer'
+            >
+              <div style={{ display: 'flex' }}>
+                <img src={userImg.src} alt='' className={classes.hubClass} />
+                <Typography
+                  style={{
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    margin: 'auto',
+                    textTransform: 'uppercase',
+                  }}
+                  variant='p'
+                >
+                  Account
+                </Typography>
+              </div>
+            </a>
+          ) : null}
+        </div>
+      </Container>
+      <AppBar
+        className={sticky ? classes.stickyClass : ''}
+        position='sticky'
+        elevation={0}
+      >
+        <div className={classes.menuCont}>
+          <Container
+            style={{
+              display: 'flex',
+              width: '100%',
+              // justifyContent: 'space-between',
+            }}
+            className='flex flex-row items-center py-1'
+          >
+            {!matches ? (
+              <Link style={{ height: 0 }} href='/'>
+                <a>
+                  <Home className={classes.homeIcon} fontSize='large' />
+                </a>
+              </Link>
+            ) : null}
+            {matches
+              ? titles.map((str, i) => {
+                  const chars = str.title.charAt(0);
+                  const words = str.title.split(chars);
+                  return (
+                    <Link
+                      key={i}
+                      href={
+                        str.title === 'National Assembly'
+                          ? `/documents`
+                          : `/topics/${str.title.toLowerCase()}`
+                      }
+                      className={`${classes.titleCont} ${classes.linkClass}`}
+                    >
+                      <a
+                        className={`${classes.titleCont} ${classes.linkClass}`}
+                      >
+                        <Typography variant='body2'>{chars}</Typography>
+                        <Typography
+                          variant='body2'
+                          style={{
+                            textTransform: 'lowercase',
+                          }}
+                        >
+                          {words[1]}
+                        </Typography>
+                      </a>
+                    </Link>
+                  );
+                })
+              : titles.map((str, i) => (
+                  <Link
+                    key={i}
+                    href={
+                      str.title === 'National Assembly'
+                        ? `/documents`
+                        : `/topics/${str.title.toLowerCase()}`
+                    }
+                    className={`${classes.titleCont} ${classes.linkClass}`}
+                  >
+                    <a className='px-3 py-1'>
+                      <Typography
+                        variant='body2'
+                        style={{
+                          width: 'max-content',
+                          color: 'lightgray',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        {str.title}
+                      </Typography>
+                    </a>
+                  </Link>
+                ))}
+            <div className={classes.searchCont}>
+              <SearchModal />
+            </div>
+          </Container>
+        </div>
+      </AppBar>
+      {navLoading ? <LinearProgress /> : <div />}
+    </div>
+  );
 }
 
-const mapStateToProps = state => ({
-	user: state.user
+const mapStateToProps = (state) => ({
+  user: state.user,
 });
 
 const mapDispatchToProps = { logoutUser };

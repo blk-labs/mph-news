@@ -20,16 +20,22 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       flexDirection: 'column',
       marginRight: '1.5rem',
+      [theme.breakpoints.down('xs')]: {
+        marginRight: '0',
+      },
     },
     subCont: {
       display: 'flex',
       flexDirection: 'column',
       maxWidth: '100%',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
     },
     newsCont: {
       display: 'flex',
-      [theme.breakpoints.down('md')]: {
-        flexWrap: 'wrap',
+      [theme.breakpoints.down('xs')]: {
+        display: 'inherit',
       },
     },
     mainImg: {
@@ -37,12 +43,12 @@ const useStyles = makeStyles((theme) =>
       maxWidth: 683,
       height: '558px',
       [theme.breakpoints.down('md')]: {
-        height: '250px',
-        width: '100%',
+        minWidth: 683,
+        maxWidth: 683,
       },
-      [theme.breakpoints.down('sm')]: {
-        width: '100%',
-        height: '250px',
+      [theme.breakpoints.down('xs')]: {
+        minWidth: '100%',
+        height: '100%',
       },
     },
     subImg: {
@@ -52,7 +58,7 @@ const useStyles = makeStyles((theme) =>
         height: '250px',
         width: '100%',
       },
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('xs')]: {
         width: '100%',
         height: '250px',
       },
@@ -68,6 +74,9 @@ const useStyles = makeStyles((theme) =>
     ContDetails: {
       alignSelf: 'flex-end',
       margin: '0 20px',
+      [theme.breakpoints.down('xs')]: {
+        margin: 0,
+      },
     },
     groupImg: {
       minWidth: 260,
@@ -75,6 +84,11 @@ const useStyles = makeStyles((theme) =>
       height: 250,
       objectFit: 'cover',
       marginRight: '.5rem',
+      [theme.breakpoints.down('xs')]: {
+        minWidth: 160,
+        maxWidth: 160,
+        height: 126,
+      },
     },
     newsTitle: {
       fontWeight: 900,
@@ -84,13 +98,20 @@ const useStyles = makeStyles((theme) =>
       lineHeight: 1.1,
       paddingTop: 25,
       letterSpacing: -1,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 24,
+      },
     },
     subnews: {
       color: 'black',
       fontSize: 15,
       margin: '10px 0',
       letterSpacing: 0,
+      fontFamily: '"Helvetica Light"',
       fontWeight: 300,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 13,
+      },
     },
     bottomNews: {
       fontWeight: 900,
@@ -100,22 +121,50 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'initial',
       letterSpacing: -0.2,
       fontFamily: '"Playfair Display"',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 15,
+      },
     },
     bottomDetails: {
       margin: '10px 0 0',
       fontSize: 15,
       letterSpacing: 0,
       fontWeight: 300,
+      fontFamily: '"Helvetica Light"',
       textTransform: 'initial',
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
     },
     newsGroup: {
       marginBottom: 40,
       padding: '0 .5rem',
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column',
+      },
     },
     btnClass: {
       width: '100%',
       textAlign: 'center',
       margin: '3rem auto 5rem',
+    },
+    createBy: {
+      fontSize: 15,
+      color: '#6B3FA0',
+      marginRight: 20,
+      fontFamily: '"Helvetica Bold"',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+        color: '#000',
+      },
+    },
+    createAt: {
+      textTransform: 'capitalize',
+      fontFamily: '"Helvetica"',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+        marginTop: 0,
+      },
     },
   })
 );
@@ -153,7 +202,7 @@ export default function TopicMap(props) {
               href={`/story/${data.id}`}
             >
               <a>
-                <Grid item xs={12} md={8} className={classes.mainCont} key={i}>
+                <Grid item xs={12} md={12} className={classes.mainCont} key={i}>
                   <div className={classes.mainImg}>
                     <img
                       src={data.postImage}
@@ -176,28 +225,20 @@ export default function TopicMap(props) {
                       marginBottom: 30,
                     }}
                   >
-                    <Typography
-                      style={{
-                        textTransform: 'capitalize',
-                        marginRight: 40,
-                        marginBotttom: 40,
-                        fontSize: 15,
-                        color: '#6B3FA0',
-                      }}
-                      variant='caption'
-                    >
-                      {data.postedBy}
-                    </Typography>
-                    <Typography
-                      variant='caption'
-                      style={{
-                        fontSize: 15,
-                        margin: '0 0 1rem',
-                      }}
-                      variant='caption'
-                    >
-                      {dayjs(data.createdAt).fromNow()}
-                    </Typography>
+                    <div className='flex sm:justify-inherit items-center capitalize mt-2'>
+                      <Typography
+                        className={classes.createBy}
+                        variant='caption'
+                      >
+                        {data.postedBy}
+                      </Typography>
+                      <Typography
+                        className={classes.createAt}
+                        variant='caption'
+                      >
+                        {dayjs(data.createdAt).fromNow()}
+                      </Typography>
+                    </div>
                   </div>
                 </Grid>
               </a>
@@ -212,7 +253,7 @@ export default function TopicMap(props) {
               href={`/story/${data.id}`}
             >
               <a>
-                <Grid item xs={12} md={6} className={classes.subCont} key={i}>
+                <Grid item xs={12} md={4} className={classes.subCont} key={i}>
                   <img
                     src={data.postImage}
                     className={classes.subImg}
@@ -232,7 +273,7 @@ export default function TopicMap(props) {
                     <Typography
                       style={{
                         textTransform: 'capitalize',
-                        marginRight: 40,
+                        marginRight: 20,
                         marginBotttom: 40,
                         fontSize: 15,
                         color: '#6B3FA0',
@@ -267,7 +308,7 @@ export default function TopicMap(props) {
               className={classes.linkClass}
               href={`/story/${data.id}`}
             >
-              <Grid xs={6} lg={6}>
+              <Grid xs={12} lg={6}>
                 <a>
                   {props.pass.length !== i + 1 ? (
                     <hr
@@ -297,14 +338,14 @@ export default function TopicMap(props) {
                       >
                         {data.subTitle}
                       </Typography>
-                      <Typography
-                        style={{
-                          margin: '1rem 0 2rem',
-                        }}
-                        variant='caption'
-                      >
-                        {dayjs(data.createdAt).fromNow()}
-                      </Typography>
+                      <div className='capitalize mt-2'>
+                        <Typography
+                          className={classes.createAt}
+                          variant='caption'
+                        >
+                          {dayjs(data.createdAt).fromNow()}
+                        </Typography>
+                      </div>
                     </div>
                   </div>
                 </a>

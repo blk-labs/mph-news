@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) =>
       marginTop: '2rem',
       objectFit: 'cover',
       width: '100%',
-      [theme.breakpoints.down('sm')]: {
-        height: '300px',
+      [theme.breakpoints.down('xs')]: {
+        height: '400px',
       },
     },
     headerCont: {
@@ -33,23 +33,53 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'initial',
       fontFamily: '"Playfair Display"',
       lineHeight: 1.1,
-
       letterSpacing: -1,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 24,
+      },
     },
     headerCont: {
       display: 'flex',
-      marginTop: '5rem',
+      marginTop: '3rem',
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column-reverse',
+      },
     },
     socialCont: {
       marginRight: '5rem',
+      [theme.breakpoints.down('xs')]: {
+        marginRight: '0',
+        display: 'flex',
+        justifyContent: 'space-between',
+      },
     },
     bodyText: {
       fontSize: 18,
       fontWeight: 400,
       whiteSpace: 'pre-line',
       margin: '1rem auto 5rem',
+      fontFamily: '"Helvetica"',
+
       [theme.breakpoints.down('md')]: {
         marginBottom: '5rem',
+      },
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 15,
+      },
+    },
+    createBy: {
+      fontSize: 15,
+      color: '#6B3FA0',
+      marginRight: 20,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 12,
+      },
+    },
+    createAt: {
+      textTransform: 'capitalize',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 12,
+        marginTop: 0,
       },
     },
   })
@@ -80,102 +110,76 @@ export default function StoryMap(props) {
       >
         {topic}
       </Typography>
-      {matches ? (
-        <span>
-          <img className={classes.imgCont} src={postImage} />
-        </span>
-      ) : null}
+      <span>
+        <img className={classes.imgCont} src={postImage} />
+      </span>
       <div className={classes.headerCont}>
-          <div className={classes.socialCont}>
-            <div
-              style={{
-                border: '0.5px solid #eee',
-                padding: '5px  20px',
-                width: 'fit-content',
-                marginBottom: '10px',
-              }}
-            >
-              <EmailIcon
-                style={{ fill: '#262F56' }}
-                subject={props.title}
-                body='Check out http://mypoliticalhub.com'
-                link={`${link}`}
-              />
-            </div>
-            <div
-              style={{
-                border: '0.5px solid #eee',
-                padding: '5px  20px',
-                width: 'fit-content',
-                marginBottom: '10px',
-              }}
-            >
-              <Facebook style={{ fill: '#3B5998' }} link={`${link}`} />
-            </div>
-            <div
-              style={{
-                border: '0.5px solid #eee',
-                padding: '5px  20px',
-                width: 'fit-content',
-                marginBottom: '10px',
-              }}
-            >
-              <Twitter
-                style={{ fill: '#55ACEE' }}
-                message={props.title}
-                link={`${link}@my_politicalhub`}
-              />
-            </div>
-            <div
-              style={{
-                border: '0.5px solid #eee',
-                padding: '5px  20px',
-                width: 'fit-content',
-                marginBottom: '10px',
-              }}
-            >
-              <WhatsAppIcon
-                style={{ fill: '#25D366' }}
-                message={props.title}
-                link={`${link}`}
-              />
-            </div>
+        <div className={classes.socialCont}>
+          <div
+            style={{
+              border: '0.5px solid #eee',
+              padding: '5px  20px',
+              width: 'fit-content',
+              marginBottom: '10px',
+            }}
+          >
+            <EmailIcon
+              style={{ fill: '#262F56' }}
+              subject={props.title}
+              body='Check out http://mypoliticalhub.com'
+              link={`${link}`}
+            />
+          </div>
+          <div
+            style={{
+              border: '0.5px solid #eee',
+              padding: '5px  20px',
+              width: 'fit-content',
+              marginBottom: '10px',
+            }}
+          >
+            <Facebook style={{ fill: '#3B5998' }} link={`${link}`} />
+          </div>
+          <div
+            style={{
+              border: '0.5px solid #eee',
+              padding: '5px  20px',
+              width: 'fit-content',
+              marginBottom: '10px',
+            }}
+          >
+            <Twitter
+              style={{ fill: '#55ACEE' }}
+              message={props.title}
+              link={`${link}@my_politicalhub`}
+            />
+          </div>
+          <div
+            style={{
+              border: '0.5px solid #eee',
+              padding: '5px  20px',
+              width: 'fit-content',
+              marginBottom: '10px',
+            }}
+          >
+            <WhatsAppIcon
+              style={{ fill: '#25D366' }}
+              message={props.title}
+              link={`${link}`}
+            />
+          </div>
         </div>
         <div style={{ position: 'relative' }}>
           <Typography className={classes.newsTitle}>{title}</Typography>
-          <div
-            style={{
-              display: 'flex',
-              margin: '15px 0 40px',
-            }}
-          >
-            <Typography
-              variant='body1'
-              style={{
-                fontSize: 15,
-                textTransform: 'capitalize',
-              }}
-            >
-              By
-              <span
-                style={{
-                  marginRight: 40,
-                  marginLeft: 5,
-                  marginBotttom: 40,
-                  color: '#6B3FA0',
-                }}
-              >
-                {postedBy}
-              </span>
+          <div className='flex sm:justify-inherit capitalize my-4'>
+            <Typography className={classes.createBy} variant='caption'>
+              <span style={{ color: 'black' }}>By</span> {postedBy}
             </Typography>
-            <Typography
-              variant='caption'
-              style={{ margin: 'auto 0' }}
-            >
-              {dayjs(createdAt).format('h:mm a, dddd DD-MMM-YYYY')}
+            <Typography className={classes.createAt} variant='caption'>
+              {dayjs(createdAt).fromNow()}
             </Typography>
           </div>
-          <Typography variant='subtitle2' className={classes.bodyText}>
+          <Typography variant='p' className={classes.bodyText}>
             {body}
           </Typography>
         </div>

@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paperCont: {
     boxShadow: 'none',
-    padding: '1rem',
   },
   commentSort: {
     marginLeft: 'auto',
@@ -77,7 +76,7 @@ export function Comments(props) {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <Grid xs={11} md={8} lg={9} className={classes.gridCont}>
+    <Grid xs={12} md={12} lg={12} className={classes.gridCont}>
       <Paper className={classes.paperCont}>
         <span style={{ display: 'flex', alignItems: 'baseline' }}>
           <Typography

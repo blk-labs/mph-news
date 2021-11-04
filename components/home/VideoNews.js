@@ -17,18 +17,21 @@ const useStyles = makeStyles((theme) =>
     ...theme.spreadThis,
     videoCont: {
       color: 'white',
+      cursor: 'pointer',
       margin: '2.5rem auto 5rem',
       padding: '2rem 0 3rem',
     },
     videoClass: {
       width: '-webkit-fill-available',
+      width: '-moz-available',
       height: '660px',
       border: 0,
 
       [theme.breakpoints.down('md')]: {
         paddingLeft: '0',
+        width: '100%',
       },
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('xs')]: {
         paddingLeft: '0',
         height: '300px',
       },
@@ -37,17 +40,18 @@ const useStyles = makeStyles((theme) =>
       width: '100%',
       height: '200px',
       border: 0,
-      [theme.breakpoints.down('sm')]: {
-        height: '150px',
-      },
       [theme.breakpoints.down('xs')]: {
-        height: '100px',
+        height: '200px',
       },
     },
     upTitle: {
       position: 'absolute',
       bottom: '100px',
       marginLeft: 50,
+      [theme.breakpoints.down('xs')]: {
+        bottom: '60px',
+        marginLeft: 15,
+      },
     },
     linkTitle: {
       fontFamily: '"Playfair Display"',
@@ -55,17 +59,30 @@ const useStyles = makeStyles((theme) =>
       fontSize: 36,
       lineHeight: 1.1,
       letterSpacing: -1,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 24,
+      },
     },
     btmTitle: {
       color: 'black',
-      padding: '1rem 0',
+      padding: '1rem 0 0',
       lineHeight: 1.1,
       fontSize: 22,
       fontWeight: 'bold',
       textTransform: 'capitalize',
       fontFamily: '"Playfair Display"',
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '80%!important',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: '15px',
+        padding: '1rem 0 0.3rem',
+      },
+    },
+    createAt: {
+      textTransform: 'capitalize',
+      color: 'black',
+      fontFamily: '"Helvetica"',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+        marginTop: 0,
       },
     },
   })
@@ -111,7 +128,7 @@ export default function VideoNews(props) {
             {news
               .filter((data, i) => i > 0)
               .map((data, i) => (
-                <Grid className={classes.btmCont} key={i} item xs={6} sm={3}>
+                <Grid className={classes.btmCont} key={i} item xs={12} sm={3}>
                   <iframe
                     className={classes.videoBottom}
                     src={`${data.link}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
@@ -119,12 +136,11 @@ export default function VideoNews(props) {
                   <Typography className={classes.btmTitle} variant='h6'>
                     {data.title}
                   </Typography>
-                  <Typography
-                    variant='caption'
-                    style={{ textTransform: 'capitalize', color: 'black' }}
-                  >
-                    {dayjs(data.createdAt).fromNow()}
-                  </Typography>
+                  <div className='capitalize'>
+                    <Typography className={classes.createAt} variant='caption'>
+                      {dayjs(data.createdAt).fromNow()}
+                    </Typography>
+                  </div>
                 </Grid>
               ))}
           </Grid>

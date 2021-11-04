@@ -19,28 +19,19 @@ const useStyles = makeStyles((theme) =>
       color: '#5BA66E',
       fontFamily: '"Playfair Display"',
       margin: '3rem 0 0.5rem',
+      [theme.breakpoints.down('md')]: {
+        fontSize: 24,
+        margin: '0rem 0 0.5rem',
+      },
     },
     gridCont: {
       display: 'flex',
       backgroundColor: 'white',
-      [theme.breakpoints.up('md')]: {},
-      [theme.breakpoints.up('lg')]: {},
-    },
-    fadeText: {
-      color: 'rgba(0,0,0,.1)',
-      textTransform: 'uppercase',
-      [theme.breakpoints.up('lg')]: {
-        position: 'absolute',
-        zIndex: -1,
-        top: '-10vh',
-      },
-      [theme.breakpoints.down('sm')]: {
-        top: '-15vh',
-      },
-      [theme.breakpoints.down('xs')]: {
-        top: '-4.5vh',
+      [theme.breakpoints.down('md')]: {
+        flexDirection: 'column',
       },
     },
+
     recentCont: {
       width: 500,
       textTransform: 'capitalize',
@@ -56,13 +47,18 @@ const useStyles = makeStyles((theme) =>
       minWidth: '280px',
       height: '200px',
       maxWidth: '280px',
+      [theme.breakpoints.down('xs')]: {
+        marginRight: '.5rem',
+        minWidth: '160px',
+        height: '126px',
+        maxWidth: '160px',
+      },
     },
     topic: {
       color: '#fff',
       fontWeight: 400,
       fontSize: 12,
       textTransform: 'capitalize',
-      // border: '1.5px solid #B7EB8F',
       width: 'fit-content',
       padding: '5px',
       backgroundColor: '#545454',
@@ -75,6 +71,9 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'initial',
       letterSpacing: -0.2,
       fontFamily: '"Playfair Display"',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 15,
+      },
     },
     subnews: {
       margin: '10px 0 0',
@@ -82,6 +81,28 @@ const useStyles = makeStyles((theme) =>
       letterSpacing: 0,
       fontWeight: 300,
       textTransform: 'initial',
+      fontFamily: '"Helvetica Light"',
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
+    },
+    createBy: {
+      fontSize: 15,
+      color: '#6B3FA0',
+      fontFamily: '"Helvetica Bold"',
+      marginRight: 20,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+        color: '#000',
+      },
+    },
+    createAt: {
+      fontFamily: '"Helvetica"',
+      textTransform: 'capitalize',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+        marginTop: 0,
+      },
     },
     body: {
       display: 'flex',
@@ -106,11 +127,7 @@ export default function RecentNews(props) {
         Trending Topics
       </Typography>
       <Grid className={classes.gridCont}>
-        <div
-          style={{
-            marginRight: 20,
-          }}
-        >
+        <div className='mr-0 lg:mr-4'>
           {news.map((data, i) => (
             <Link
               key={i}
@@ -134,12 +151,20 @@ export default function RecentNews(props) {
                     <Typography className={classes.subnews}>
                       {data.subTitle}
                     </Typography>
-                    <Typography
-                      style={{ marginTop: '20px', textTransform: 'uppercase' }}
-                      variant='caption'
-                    >
-                      {dayjs(data.createdAt).fromNow()}
-                    </Typography>
+                    <div className='flex justify-inherit items-center capitalize mt-2'>
+                      <Typography
+                        className={classes.createBy}
+                        variant='caption'
+                      >
+                        {data.postedBy}
+                      </Typography>
+                      <Typography
+                        className={classes.createAt}
+                        variant='caption'
+                      >
+                        {dayjs(data.createdAt).fromNow()}
+                      </Typography>
+                    </div>
                   </div>
                 </Grid>
                 {news.length !== i + 1 ? (

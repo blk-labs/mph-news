@@ -27,20 +27,27 @@ const useStyles = makeStyles((theme) =>
       paddingTop: '5%',
     },
     footerLogo: {
-      width: 200,
+      maxWidth: 200,
+      minWidth: 200,
       height: 'auto',
+      [theme.breakpoints.down('sm')]: {
+        maxWidth: 105,
+        minWidth: 105,
+      },
     },
     listFooter: {
       display: 'flex',
     },
     listCont: {
-      // paddingTop: '2rem',
+      [theme.breakpoints.down('sm')]: {
+        // margin: 0,
+      },
     },
     paddingSM: {
       display: 'flex',
       flexDirection: 'column',
       [theme.breakpoints.down('sm')]: {
-        paddingTop: '2rem',
+        fontSize: 15,
       },
     },
 
@@ -57,6 +64,48 @@ const useStyles = makeStyles((theme) =>
     fooDetails: {
       display: 'flex',
       justifyContent: 'space-between',
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column',
+      },
+    },
+    fooCont: {
+      display: 'contents',
+      [theme.breakpoints.down('xs')]: {
+        justifyContent: 'space-between',
+        display: 'flex',
+        marginTop: '1rem',
+      },
+    },
+    socialIcons: {
+      marginTop: '1rem',
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
+    },
+    mobileIcons: {
+      marginTop: '1rem',
+      display: 'none',
+      [theme.breakpoints.down('xs')]: {
+        display: 'flex',
+        justifyContent: 'space-evenly',
+      },
+    },
+    menu: {
+      fontFamily: '"Helvetica"',
+      fontSize: 15,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 12,
+      },
+    },
+    address: {
+      fontFamily: '"Helvetica"',
+      fontSize: 15,
+      lineHeight: 2,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 12,
+      },
     },
   })
 );
@@ -78,52 +127,48 @@ export default function Footer(props) {
               className={classes.footerLogo}
             />
           </div>
-          <div className={classes.listCont}>
-            <div>
-              <ul className='listFooter'>
-                <li>
-                  <Typography variant='caption'>
-                    <Link href='/' className={classes.linkClass}>
-                      <a>Home</a>
-                    </Link>
-                  </Typography>
-                </li>
-                <li>
-                  <Typography variant='caption'>
-                    <Link href='/about' className={classes.linkClass}>
-                      <a>About</a>
-                    </Link>
-                  </Typography>
-                </li>
-                <li>
-                  <Typography variant='caption'>
-                    <Link href='/contact' className={classes.linkClass}>
-                      <a>Contact</a>
-                    </Link>
-                  </Typography>
-                </li>
-                <li>
-                  <Typography variant='caption'>
-                    <Link href='/disclaimer' className={classes.linkClass}>
-                      <a>Disclaimer</a>
-                    </Link>
-                  </Typography>
-                </li>
-                <li>
-                  <Typography variant='caption'>
-                    <Link href='/privacy' className={classes.linkClass}>
-                      <a>Privacy Policy</a>
-                    </Link>
-                  </Typography>
-                </li>
-              </ul>
-              <div
-                style={{
-                  marginTop: '1rem',
-                  display: 'flex',
-                  justifyContent: 'space-evenly',
-                }}
-              >
+          <div className={classes.fooCont}>
+            <div className={classes.listCont}>
+              <div>
+                <ul className='listFooter'>
+                  <li>
+                    <Typography variant='caption'>
+                      <Link href='/'>
+                        <a className={classes.menu}>Home</a>
+                      </Link>
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant='caption'>
+                      <Link href='/about'>
+                        <a className={classes.menu}>About</a>
+                      </Link>
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant='caption'>
+                      <Link href='/contact'>
+                        <a className={classes.menu}>Contact</a>
+                      </Link>
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant='caption'>
+                      <Link href='/disclaimer'>
+                        <a className={classes.menu}>Disclaimer</a>
+                      </Link>
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant='caption'>
+                      <Link href='/privacy'>
+                        <a className={classes.menu}>Privacy Policy</a>
+                      </Link>
+                    </Typography>
+                  </li>
+                </ul>
+              </div>
+              <div className={classes.socialIcons}>
                 <div className={classes.iconClass}>
                   <a
                     target='_blank'
@@ -158,7 +203,6 @@ export default function Footer(props) {
                   <a
                     target='_blank'
                     rel='noreferrer'
-                    
                     className={classes.linkClass}
                     href='https://www.instagram.com/my_politicalhub'
                   >
@@ -167,17 +211,58 @@ export default function Footer(props) {
                 </div>
               </div>
             </div>
+
+            <div className={classes.paddingSM}>
+              <Typography variant='caption' className={classes.address}>
+                Plot 177 R.B. Dikko Rd, Garki, Abuja
+                <br />
+                (+234) 814 565 5270
+                <br />
+                info@mypoliticalhub.com
+              </Typography>
+            </div>
           </div>
-          <div className={classes.paddingSM}>
-            <Typography variant='caption'>
-              Plot 177 R.B. Dikko Rd, Garki, Abuja
-            </Typography>
-            <Typography style={{ paddingTop: '.5rem' }} variant='caption'>
-              (+234) 814 565 5270
-            </Typography>
-            <Typography style={{ paddingTop: '.5rem' }} variant='caption'>
-              info@mypoliticalhub.com
-            </Typography>
+          <div className={classes.mobileIcons}>
+            <div className={classes.iconClass}>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                className={classes.linkClass}
+                href='https://web.facebook.com/My-Political-Hub-106231897488181/'
+              >
+                <Facebook />
+              </a>
+            </div>
+            <div className={classes.iconClass}>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                className={classes.linkClass}
+                href='https://www.twitter.com/my_politicalhub'
+              >
+                <Twitter />
+              </a>
+            </div>
+            <div className={classes.iconClass}>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                className={classes.linkClass}
+                href='https://www.youtube.com/channel/UCwnOgB3veQgUkuB0QCBX55w'
+              >
+                <YouTube />
+              </a>
+            </div>
+            <div className={classes.iconClass}>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                className={classes.linkClass}
+                href='https://www.instagram.com/my_politicalhub'
+              >
+                <Instagram />
+              </a>
+            </div>
           </div>
         </div>
       </Container>

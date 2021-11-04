@@ -19,7 +19,11 @@ import SearchModal from './SearchModal';
 const useStyles = makeStyles((theme) =>
   createStyles({
     ...theme.spreadThis,
-    iconClass: {},
+    iconClass: {
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 24,
+      },
+    },
     modal: {
       display: 'flex',
       alignItems: 'center',

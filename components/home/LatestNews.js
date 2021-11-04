@@ -17,20 +17,8 @@ const useStyles = makeStyles((theme) =>
     gridCont: {
       marginTop: '30px',
       position: 'relative',
-      //   display: 'flex',
-      //   flexDirection:'row',
-      [theme.breakpoints.up('md')]: {
-        // marginTop: '10.5vh',
-      },
     },
 
-    newsCont: {
-      // marginTop: '.5rem',
-
-      [theme.breakpoints.up('sm')]: {
-        // marginRight: '1rem',
-      },
-    },
     imgClass: {
       width: '100vw',
       height: '700px',
@@ -39,12 +27,17 @@ const useStyles = makeStyles((theme) =>
         height: '300px',
         display: 'block',
         margin: 'auto',
+        objectFit: 'initial',
       },
     },
     newsTitle: {
       width: 500,
       marginLeft: 95,
       marginBottom: 5,
+      [theme.breakpoints.down('sm')]: {
+        margin: '0 20px',
+        width: '100px',
+      },
     },
     newsSubTitle: {},
     title: {
@@ -67,15 +60,13 @@ const useStyles = makeStyles((theme) =>
     },
 
     smGrid: {
-      margin: 'auto 1rem',
-      minWidth: 225,
+      marginBottom: '1rem',
       display: 'flex',
-      overflow: 'auto',
       flexDirection: 'column',
     },
     smImg: {
-      width: 'auto',
-      height: 125,
+      width: '177px',
+      height: '112px',
       objectFit: 'cover',
     },
   })
@@ -89,18 +80,10 @@ export default function LatestNews(props) {
   const classes = useStyles(props);
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const matchesLG = useMediaQuery(theme.breakpoints.up('lg'));
-  // const { loading } = props.data;
-
-  const lText = (
-    <span className={classes.fadeText}>
-      {/* <Typography style={{ fontFamily: '"Open Sans"', fontWeight: 'bold' }} variant={matchesLG ? 'h3' : 'h4'}><span style={{ fontSize: '120%' }}>B</span>reaking <span style={{ fontSize: '120%' }}>N</span>ews</Typography> */}
-    </span>
-  );
 
   return (
     <>
       <Grid item xs={12} md={0} className={classes.gridCont}>
-        {matches ? lText : null}
         {matches ? (
           <Carousel
             autoPlay={7500}
@@ -141,6 +124,7 @@ export default function LatestNews(props) {
                               padding: 5,
                               padding: 5,
                               margin: '10px 85px',
+                              fontFamily: '"Helvetica Light"',
                             }}
                           >
                             {data.subTitle}
@@ -181,22 +165,41 @@ export default function LatestNews(props) {
                 href={`/story/${data.id}`}
               >
                 <a>
-                  <div style={{ marginTop: '.5rem', overflow: 'hidden' }}>
+                  <div
+                    className='relative'
+                    style={{
+                      marginTop: '.5rem',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <div className={classes.newsTitle}>
+                      <Typography
+                        variant='body1'
+                        style={{
+                          marginBottom: '.5rem',
+                          color: '#fff',
+                          backgroundColor: 'black',
+                          display: 'inline',
+                          whiteSpace: 'pre-wrap',
+                          lineHeight: '45px',
+                          padding: 5,
+                          paddingLeft: 0,
+                          boxShadow: '-10px 0 0 black',
+                          webkitBoxShadow: '-10px 0 0 black',
+                          fontFamily: '"Playfair Display"',
+                          fontSize: 26,
+                          fontWeight: 900,
+                        }}
+                        className='absolute bottom-0 text-white'
+                      >
+                        {data.title}
+                      </Typography>
+                    </div>
                     <img
                       src={data.postImage}
                       alt='news'
                       className={classes.imgClass}
                     />
-                    <h2
-                      style={{
-                        letterSpacing: '1.25px',
-                        fontSize: '1.85rem',
-                        padding: '0 1rem',
-                        fontFamily: 'Helvetica Compressed',
-                      }}
-                    >
-                      {data.title}
-                    </h2>
                     <hr className={classes.smHr} />
                   </div>
                 </a>
@@ -211,7 +214,9 @@ export default function LatestNews(props) {
               width: '100%',
               overflow: 'auto',
               paddingTop: '1.1rem',
-              marginBottom: '5rem',
+              marginBottom: '2rem',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between',
             }}
           >
             {news
@@ -230,7 +235,30 @@ export default function LatestNews(props) {
                         alt='news'
                         className={classes.smImg}
                       />
-                      <Typography variant='caption'>{data.title}</Typography>
+                      <Typography
+                        variant='caption'
+                        style={{
+                          fontSize: 15,
+                          width: '177px',
+                          fontWeight: 900,
+                          lineHeight: '20px',
+                          margin: '.5rem 0 0',
+                          fontFamily: '"Playfair Display"',
+                        }}
+                      >
+                        {data.title}
+                      </Typography>
+                      <Typography
+                        variant='caption'
+                        style={{
+                          fontSize: 15,
+                          fontFamily: '"Helvetica"',
+                          margin: '.5rem 0 0',
+                        }}
+                        variant='caption'
+                      >
+                        {dayjs(data.createdAt).fromNow()}
+                      </Typography>
                     </div>
                   </a>
                 </Link>

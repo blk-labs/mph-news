@@ -32,6 +32,27 @@ const useStyles = makeStyles((theme) =>
         paddingTop: '5%',
       },
     },
+    topicTitle: {
+      fontFamily: '"Playfair Display"',
+      fontWeight: 900,
+      fontSize: 36,
+      color: '#5BA66E',
+      textTransform: 'capitalize',
+      marginBottom: 10,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 24,
+      },
+    },
+    topicInfo: {
+      fontWeight: 400,
+      marginBottom: 50,
+      fontSize: 18,
+      width: 600,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 13,
+        width: '100%',
+      },
+    },
     gridBtm: {
       marginTop: '3rem',
       [theme.breakpoints.up('lg')]: {
@@ -91,29 +112,14 @@ export function Topics(props) {
         </Container>
       ) : (
         <Container className={classes.topicCont} maxWidth='lg'>
-          <Typography
-            variant='body1'
-            style={{
-              fontFamily: '"Playfair Display"',
-              fontWeight: 900,
-              fontSize: 36,
-              color: '#5BA66E',
-              textTransform: 'capitalize',
-              marginBottom: 10,
-            }}
-          >
+          <Typography variant='body1' className={classes.topicTitle}>
             {title}
           </Typography>
-          <Typography
-            style={{
-              fontWeight: 400,
-              marginBottom: 50,
-              fontSize: 18,
-              width:600,
-            }}
+          <Typography           
+            className={classes.topicInfo}
           >
             Get the latest travel news and hot celeb gossip with exclusive
-            stories and pictures to discover more !
+            stories and pictures to discover more!
           </Typography>
           <Grid container>
             <Grid item xs={12} md={8}>
@@ -136,7 +142,8 @@ export function Topics(props) {
               </div>
             </Grid>
           </Grid>
-          <Grid container>
+          <Grid container
+          className='mt-4'>
             <Grid item xs={12} md={8}>
               <MoreMap posts={moreFilter.splice(4, 4)} title={title} />
             </Grid>

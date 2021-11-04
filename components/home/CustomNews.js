@@ -4,11 +4,9 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Material
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 // Comps
 import Subscribe from '../layout/Subscribe';
@@ -16,6 +14,11 @@ import Subscribe from '../layout/Subscribe';
 const useStyles = makeStyles((theme) =>
   createStyles({
     ...theme.spreadThis,
+    CustomNews: {
+      [theme.breakpoints.down('md')]: {
+        display: 'none',
+      },
+    },
     titleCont: {
       fontWeight: 900,
       textTransform: 'initial',
@@ -29,6 +32,7 @@ const useStyles = makeStyles((theme) =>
       color: '#a8a8a8',
       textTransform: 'capitalize',
       fontSize: 12,
+      fontFamily: '"Helvetica"',
       fontWeight: 400,
     },
     imgClass: {
@@ -50,8 +54,6 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       flexDirection: 'row',
       marginBottom: '45px',
-      [theme.breakpoints.up('md')]: {},
-      [theme.breakpoints.down('sm')]: {},
     },
   })
 );
@@ -77,8 +79,9 @@ export default function CustomNews(props) {
         padding: '45px 20px',
         right: '0',
         left: '60%',
-        height: 580,
+        height: 560,
       }}
+      className={classes.CustomNews}
     >
       {liked.map((data, i) => (
         <div className={classes.gridClass} key={i}>
@@ -96,7 +99,7 @@ export default function CustomNews(props) {
                 <Typography className={classes.titleCont}>
                   {data.title}
                 </Typography>
-              </div>             
+              </div>
             </a>
           </Link>
         </div>

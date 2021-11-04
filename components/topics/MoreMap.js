@@ -26,22 +26,29 @@ const useStyles = makeStyles((theme) =>
       width: 'fit-content',
       padding: '5px',
       backgroundColor: '#F6FFED',
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
     },
     imgClass: {
       height: 200,
       maxWidth: 280,
       minWidth: 280,
       objectFit: 'cover',
+      marginRight: 10,
       [theme.breakpoints.down('xs')]: {
-        height: 100,
-        maxWidth: 100,
-        minWidth: 100,
+        height: 270,
+        maxWidth: '100%',
+        minWidth: '100%',
       },
     },
     mapCont: {
       marginTop: '2rem',
       display: 'flex',
       alignItems: 'start',
+      [theme.breakpoints.down('xs')]: {
+        display: 'block',
+      },
     },
     titleClass: {
       fontWeight: 900,
@@ -52,8 +59,7 @@ const useStyles = makeStyles((theme) =>
       letterSpacing: -0.2,
       fontFamily: '"Playfair Display"',
       [theme.breakpoints.down('xs')]: {
-        fontSize: '120%',
-        marginBottom: '1rem',
+        fontSize: '24px',
       },
     },
     bottomDetails: {
@@ -62,6 +68,34 @@ const useStyles = makeStyles((theme) =>
       letterSpacing: 0,
       fontWeight: 300,
       textTransform: 'initial',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: '13px',
+      },
+    },
+    contRead: {
+      display: 'none',
+      [theme.breakpoints.down('xs')]: {
+        display: 'initial',
+        fontWeight: 500,
+        margin: '10px 0 20px 0',
+        borderBottom: '1px solid black',
+      },
+    },
+    createBy: {
+      fontSize: 15,
+      color: '#6B3FA0',
+      marginRight: 20,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+        color: '#000',
+      },
+    },
+    createAt: {
+      textTransform: 'capitalize',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+        marginTop: 0,
+      },
     },
   })
 );
@@ -94,9 +128,9 @@ export default function TopicMap(props) {
 
   return (
     <div className={classes.topicCont}>
-      <Typography style={{ fontWeight: 'bold' }} variant='h5'>
+      {/* <Typography className='hidden lg:block font-bold' variant='h5'>
         More Stories
-      </Typography>
+      </Typography> */}
       {postsToShow.map((data, i) => (
         <Link className={classes.linkClass} href={`/story/${data.id}`} key={i}>
           <a key={i} className={classes.mapCont}>
@@ -105,40 +139,31 @@ export default function TopicMap(props) {
               alt={`${data.topic} img`}
               className={classes.imgClass}
             />
-            <div style={{ marginLeft: '1rem' }}>
+            <div className='lg:ml-1 ml-0'>
               <Typography variant='h5' className={classes.topic}>
                 {data.topic}
               </Typography>
               <Typography variant='h5' className={classes.titleClass}>
                 JUST IN: {data.title}
               </Typography>
-              {matches ? (
-                <Typography
-                  variant='body2'
-                  style={{ margin: '.5rem 0' }}
-                  className={classes.bottomDetails}
-                >
-                  {data.body.substring(0, 150)}...
+              <Typography
+                variant='body2'
+                style={{ margin: '.5rem 0' }}
+                className={classes.bottomDetails}
+              >
+                {data.body.substring(0, 150)}...
+              </Typography>
+              <Typography variant='caption' className={classes.contRead}>
+                Continue reading
+              </Typography>
+              <div className='md:flex md:items-center sm:justify-inherit capitalize mt-2 hidden'>
+                <Typography className={classes.createBy} variant='caption'>
+                  {data.postedBy}
                 </Typography>
-              ) : null}
-              <Typography
-                style={{
-                  textTransform: 'capitalize',
-                  marginRight: 40,
-                  fontSize: 15,
-
-                  color: '#6B3FA0',
-                }}
-                variant='caption'
-              >
-                {data.postedBy}
-              </Typography>
-              <Typography
-                style={{ textTransform: 'capitalize', fontSize: 15 }}
-                variant='caption'
-              >
-                {dayjs(data.createdAt).fromNow()}
-              </Typography>
+                <Typography className={classes.createAt} variant='caption'>
+                  {dayjs(data.createdAt).fromNow()}
+                </Typography>
+              </div>
             </div>
           </a>
         </Link>
@@ -150,14 +175,14 @@ export default function TopicMap(props) {
       >
         More {props.title} stories
       </Button>
-      <Stack spacing={2}>
+      {/* <Stack spacing={2}>
         <Pagination
           count={5}
           variant='outlined'
           shape='rounded'
           onClick={handleShowMorePosts}
         />
-      </Stack>
+      </Stack> */}
     </div>
   );
 }

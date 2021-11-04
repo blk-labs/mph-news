@@ -65,16 +65,18 @@ const useStyles = makeStyles((theme) =>
     logoComp: {
       margin: 'auto',
       [theme.breakpoints.down('sm')]: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
+      margin: 'unset',
+        marginRight: 'auto',
       },
     },
 
     logoFull: {
       height: 'auto',
-      width: 50,
+      width: 150,
       marginBottom: '.5rem',
+      [theme.breakpoints.down('sm')]: {
+        width: '105px',
+      },
     },
     logoClass: {
       height: 'auto',
@@ -99,6 +101,9 @@ const useStyles = makeStyles((theme) =>
       overflowX: 'auto',
       overflowY: 'hidden',
       display: 'flex',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
     },
     titleCont: {
       display: 'flex',
@@ -251,7 +256,10 @@ export function Navbar(props) {
         </span>
       ) : null}
       <Container className={classes.navCont}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div
+          className='hidden md:block md:flex'
+          style={{ alignItems: 'center' }}
+        >
           <div className={classes.iconClass}>
             <a
               target='_blank'
@@ -296,16 +304,22 @@ export function Navbar(props) {
             </a>
           </div>
         </div>
-        {!matches ? <MobileNav /> : null}
         <Link href='/'>
           <a className={classes.logoComp}>
             <img
-              src={matches ? logoFull.src : logo.src}
+              src={matches ? logoFull.src : logoFull.src}
               className={matches ? classes.logoClass : classes.logoFull}
               alt='MPH-logo'
             />
           </a>
         </Link>
+        {!matches ? (
+          <div className='flex'>
+            <SearchModal />
+            <MobileNav />
+            <hr/>
+          </div>
+        ) : null}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {matches ? (
             <a
@@ -342,17 +356,9 @@ export function Navbar(props) {
             style={{
               display: 'flex',
               width: '100%',
-              // justifyContent: 'space-between',
             }}
             className='flex flex-row items-center py-1'
           >
-            {!matches ? (
-              <Link style={{ height: 0 }} href='/'>
-                <a>
-                  <Home className={classes.homeIcon} fontSize='large' />
-                </a>
-              </Link>
-            ) : null}
             {matches
               ? titles.map((str, i) => {
                   const chars = str.title.charAt(0);
@@ -393,13 +399,12 @@ export function Navbar(props) {
                     }
                     className={`${classes.titleCont} ${classes.linkClass}`}
                   >
-                    <a className='px-3 py-1'>
+                    <a className='pr-3 py-1'>
                       <Typography
                         variant='body2'
                         style={{
                           width: 'max-content',
-                          color: 'lightgray',
-                          textTransform: 'uppercase',
+                          textTransform: 'capitalize',
                         }}
                       >
                         {str.title}

@@ -28,27 +28,24 @@ const useStyles = makeStyles((theme) =>
       justifyContent: 'space-between',
       fontSize: 17,
       fontWeight: 800,
-      [theme.breakpoints.down('sm')]: {},
-      [theme.breakpoints.down('xs')]: {},
+      [theme.breakpoints.down('sm')]: {
+        overflow: 'auto',
+      },
     },
     gridClass: {
       margin: '0',
-      [theme.breakpoints.up('md')]: {
-        maxWidth: '22.5%',
-      },
-      [theme.breakpoints.down('sm')]: {
-        maxWidth: '45%',
-      },
     },
     number: {
       fontSize: 20,
       fontWeight: 900,
       color: '#6B3FA0',
+
       marginRight: 10,
     },
     timeUpload: {
       color: '#a8a8a8',
       textTransform: 'lowercase',
+      fontFamily: '"Helvetica"',
       marginLeft: 5,
       fontSize: 14,
       fontWeight: 400,
@@ -77,7 +74,7 @@ export default function CustomNews(props) {
           <div className={classes.gridClass} key={i}>
             <Link className={classes.linkClass} href={`/story/${data.id}`}>
               <a>
-                <div style={{ display: 'flex' }}>
+                <div className='flex lg:w-72 w-80'>
                   <Typography variant='h1' className={classes.number}>
                     0{i + 1}
                   </Typography>

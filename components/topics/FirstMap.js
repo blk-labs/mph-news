@@ -16,15 +16,12 @@ const useStyles = makeStyles((theme) =>
       width: '100%',
       height: '617px',
       objectFit: 'cover',
-      [theme.breakpoints.down('sm')]: {
-        width: '75%',
+      [theme.breakpoints.down('xs')]: {
+        minWidth: '100%',
+        maxWidth: '100%',
         margin: 'auto',
         display: 'flex',
-        height: '300px',
-      },
-      [theme.breakpoints.down('xs')]: {
-        width: '100%',
-        height: '200px',
+        height: '270px',
       },
     },
     titleText: {
@@ -36,7 +33,7 @@ const useStyles = makeStyles((theme) =>
       paddingTop: 25,
       letterSpacing: -1,
       [theme.breakpoints.down('sm')]: {
-        fontSize: '175%',
+        fontSize: '24px',
       },
     },
     subnews: {
@@ -45,6 +42,34 @@ const useStyles = makeStyles((theme) =>
       margin: '10px 0',
       letterSpacing: 0,
       fontWeight: 300,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '13px',
+      },
+    },
+    contRead: {
+      display: 'none',
+      [theme.breakpoints.down('sm')]: {
+        display: 'initial',
+        fontWeight: 500,
+        margin: '10px 0',
+        borderBottom: '1px solid black',
+      },
+    },
+    createBy: {
+      fontSize: 15,
+      color: '#6B3FA0',
+      marginRight: 20,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 12,
+        color: '#000',
+      },
+    },
+    createAt: {
+      textTransform: 'capitalize',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 12,
+        marginTop: 0,
+      },
     },
   })
 );
@@ -73,25 +98,19 @@ export default function FirstMap(props) {
             </Typography>
             <Typography className={classes.subnews}>
               {body.substring(0, 150)}...
+              <br />
             </Typography>
-            <Typography
-              style={{
-                textTransform: 'capitalize',
-                marginRight: 40,
-                fontSize: 15,
-
-                color: '#6B3FA0',
-              }}
-              variant='caption'
-            >
-              {postedBy}
+            <Typography variant='caption' className={classes.contRead}>
+              Continue reading
             </Typography>
-            <Typography
-              style={{ textTransform: 'capitalize', fontSize: 15 }}
-              variant='caption'
-            >
-              {dayjs(createdAt).fromNow()}
-            </Typography>
+            <div className='md:flex md:items-center sm:justify-inherit capitalize mt-2 hidden'>
+              <Typography className={classes.createBy} variant='caption'>
+                {postedBy}
+              </Typography>
+              <Typography className={classes.createAt} variant='caption'>
+                {dayjs(createdAt).fromNow()}
+              </Typography>
+            </div>
           </a>
         </Link>
       </Grid>

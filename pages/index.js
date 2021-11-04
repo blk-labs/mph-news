@@ -59,17 +59,13 @@ export function Home(props) {
         </div>
       ) : (
         <span>
-          <Container style={!matches ? { padding: 0 } : null} maxWidth='lg'>
+          <Container maxWidth='lg'>
             <EditorsPick news={props.data.posts} />
             <Grid container>
-              <LatestNews
-                news={props.data.posts}
-              />
+              <LatestNews news={props.data.posts} />
               <CustomNews news={props.data.posts} />
-
               <RecentNews news={props.data.posts} />
               <TopicGrid news={props.data.posts} />
-              <hr className={`${classes.hrTop} ${classes.hrHome}`} />
             </Grid>
           </Container>
           <VideoNews news={props.data.posts} />

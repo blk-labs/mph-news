@@ -376,11 +376,19 @@ export function Navbar(props) {
                       <a
                         className={`${classes.titleCont} ${classes.linkClass}`}
                       >
-                        <Typography variant='body2'>{chars}</Typography>
+                        <Typography
+                          variant='body2'
+                          style={{
+                            fontFamily: '"Helvetica"',
+                          }}
+                        >
+                          {chars}
+                        </Typography>
                         <Typography
                           variant='body2'
                           style={{
                             textTransform: 'lowercase',
+                            fontFamily: '"Helvetica"',
                           }}
                         >
                           {words[1]}

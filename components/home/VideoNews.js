@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme) =>
       padding: '2rem 0 3rem',
     },
     videoClass: {
-      width: '-webkit-fill-available',
-      width: '-moz-available',
+      width: '100%',
       height: '660px',
       border: 0,
 

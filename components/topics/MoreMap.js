@@ -85,12 +85,15 @@ const useStyles = makeStyles((theme) =>
       fontSize: 15,
       color: '#6B3FA0',
       marginRight: 20,
+      fontFamily: '"Helvetica"',
+
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
         color: '#000',
       },
     },
     createAt: {
+      fontFamily: '"Helvetica"',
       textTransform: 'capitalize',
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
@@ -156,7 +159,7 @@ export default function TopicMap(props) {
               <Typography variant='caption' className={classes.contRead}>
                 Continue reading
               </Typography>
-              <div className='md:flex md:items-center sm:justify-inherit capitalize mt-2 hidden'>
+              <div className='md:flex md:items-baseline sm:justify-inherit capitalize mt-2 hidden'>
                 <Typography className={classes.createBy} variant='caption'>
                   {data.postedBy}
                 </Typography>

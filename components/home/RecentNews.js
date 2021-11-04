@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) =>
     createBy: {
       fontSize: 15,
       color: '#6B3FA0',
-      fontFamily: '"Helvetica Bold"',
+      fontFamily: '"Helvetica"',
       marginRight: 20,
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
@@ -151,7 +151,7 @@ export default function RecentNews(props) {
                     <Typography className={classes.subnews}>
                       {data.subTitle}
                     </Typography>
-                    <div className='flex justify-inherit items-center capitalize mt-2'>
+                    <div className='flex justify-inherit items-baseline capitalize mt-2'>
                       <Typography
                         className={classes.createBy}
                         variant='caption'

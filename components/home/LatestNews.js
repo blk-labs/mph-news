@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) =>
       height: '700px',
       objectFit: 'cover',
       [theme.breakpoints.down('sm')]: {
-        height: '300px',
+        height: '100%',
         display: 'block',
         margin: 'auto',
         objectFit: 'initial',
@@ -39,7 +39,12 @@ const useStyles = makeStyles((theme) =>
         width: '100px',
       },
     },
-    newsSubTitle: {},
+    resNewsTitle: {
+      position: 'absolute',
+      margin: 20,
+      bottom: 0,
+      [theme.breakpoints.down('sm')]: {},
+    },
     title: {
       marginBottom: '.5rem',
       color: '#fff',
@@ -58,7 +63,26 @@ const useStyles = makeStyles((theme) =>
         letterSpacing: '.5px',
       },
     },
-
+    resTitle: {
+      marginBottom: '.5rem',
+      color: '#fff',
+      backgroundColor: 'black',
+      display: 'inline',
+      whiteSpace: 'pre-wrap',
+      lineHeight: '45px',
+      padding: 5,
+      paddingLeft: 0,
+      boxShadow: '-10px 0 0 black',
+      webkitBoxShadow: '-10px 0 0 black',
+      fontFamily: '"Playfair Display"',
+      fontWeight: 900,
+      fontSize: 36,
+      [theme.breakpoints.down('sm')]: {
+        letterSpacing: '.5px',
+        fontSize: 24,
+        lineHeight: '35px',
+      },
+    },
     smGrid: {
       marginBottom: '1rem',
       display: 'flex',
@@ -172,25 +196,10 @@ export default function LatestNews(props) {
                       overflow: 'hidden',
                     }}
                   >
-                    <div className={classes.newsTitle}>
+                    <div className={classes.resNewsTitle}>
                       <Typography
                         variant='body1'
-                        style={{
-                          marginBottom: '.5rem',
-                          color: '#fff',
-                          backgroundColor: 'black',
-                          display: 'inline',
-                          whiteSpace: 'pre-wrap',
-                          lineHeight: '45px',
-                          padding: 5,
-                          paddingLeft: 0,
-                          boxShadow: '-10px 0 0 black',
-                          webkitBoxShadow: '-10px 0 0 black',
-                          fontFamily: '"Playfair Display"',
-                          fontSize: 26,
-                          fontWeight: 900,
-                        }}
-                        className='absolute bottom-0 text-white'
+                        className={classes.resTitle}                        
                       >
                         {data.title}
                       </Typography>

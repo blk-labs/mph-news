@@ -25,12 +25,9 @@ const useStyles = makeStyles((theme) =>
     },
     editors: {
       display: 'flex',
-      justifyContent: 'space-between',
       fontSize: 17,
       fontWeight: 800,
-      [theme.breakpoints.down('sm')]: {
-        overflow: 'auto',
-      },
+      overflow: 'auto',
     },
     gridClass: {
       margin: '0',
@@ -49,6 +46,10 @@ const useStyles = makeStyles((theme) =>
       marginLeft: 5,
       fontSize: 14,
       fontWeight: 400,
+    },
+    edtorsNews: {
+      display: 'flex',
+      width: '300px',
     },
   })
 );
@@ -74,13 +75,21 @@ export default function CustomNews(props) {
           <div className={classes.gridClass} key={i}>
             <Link className={classes.linkClass} href={`/story/${data.id}`}>
               <a>
-                <div className='flex lg:w-72 w-80'>
+                <div className={classes.edtorsNews}>
                   <Typography variant='h1' className={classes.number}>
                     0{i + 1}
                   </Typography>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Typography variant='subtitle2'>
-                      <strong>{data.title}</strong>
+                    <Typography
+                      variant='subtitle2'
+                      style={{
+                        width: '',
+                        paddingRight: '20px',
+                        fontFamily: '"Helvetica Bold"',
+                        // fontWeight: 900
+                      }}
+                    >
+                      {data.title}
                     </Typography>
                     <div>
                       <AccessTimeIcon style={{ fontSize: '13px' }} />

@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) =>
     createBy: {
       fontSize: 15,
       color: '#6B3FA0',
+      fontFamily: '"Helvetica"',
       marginRight: 20,
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
@@ -71,6 +72,7 @@ const useStyles = makeStyles((theme) =>
       },
     },
     createAt: {
+      fontFamily: '"Helvetica"',
       textTransform: 'capitalize',
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
@@ -107,17 +109,17 @@ export default function SideMap(props) {
               <Typography variant='body2' className={classes.bottomNews}>
                 {title}
               </Typography>
-                <Typography
-                  variant='body2'
-                  className={classes.subnews}
-                  style={{ margin: '.5rem 0' }}
-                >
-                  {body.substring(0, 150)}...
-                </Typography>
+              <Typography
+                variant='body2'
+                className={classes.subnews}
+                style={{ margin: '.5rem 0' }}
+              >
+                {body.substring(0, 150)}...
+              </Typography>
               <Typography variant='caption' className={classes.contRead}>
                 Continue reading
               </Typography>
-              <div className='md:flex md:items-center sm:justify-inherit capitalize mt-2 hidden'>
+              <div className='md:flex md:items-baseline sm:justify-inherit capitalize mt-2 hidden'>
                 <Typography className={classes.createBy} variant='caption'>
                   {postedBy}
                 </Typography>

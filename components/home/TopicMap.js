@@ -152,7 +152,7 @@ const useStyles = makeStyles((theme) =>
       fontSize: 15,
       color: '#6B3FA0',
       marginRight: 20,
-      fontFamily: '"Helvetica Bold"',
+      fontFamily: '"Helvetica"',
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
         color: '#000',
@@ -277,6 +277,7 @@ export default function TopicMap(props) {
                         marginBotttom: 40,
                         fontSize: 15,
                         color: '#6B3FA0',
+                        fontFamily: '"Helvetica"',
                       }}
                       variant='caption'
                     >
@@ -287,6 +288,7 @@ export default function TopicMap(props) {
                       style={{
                         margin: '0 0 1rem',
                         fontSize: 15,
+                        fontFamily: '"Helvetica"',
                       }}
                       variant='caption'
                     >

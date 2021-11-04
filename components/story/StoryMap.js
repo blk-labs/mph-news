@@ -70,12 +70,14 @@ const useStyles = makeStyles((theme) =>
     createBy: {
       fontSize: 15,
       color: '#6B3FA0',
+      fontFamily: '"Helvetica"',
       marginRight: 20,
       [theme.breakpoints.down('sm')]: {
         fontSize: 12,
       },
     },
     createAt: {
+      fontFamily: '"Helvetica"',
       textTransform: 'capitalize',
       [theme.breakpoints.down('sm')]: {
         fontSize: 12,
@@ -171,7 +173,7 @@ export default function StoryMap(props) {
         </div>
         <div style={{ position: 'relative' }}>
           <Typography className={classes.newsTitle}>{title}</Typography>
-          <div className='flex sm:justify-inherit capitalize my-4'>
+          <div className='flex items-baseline sm:justify-inherit capitalize my-4'>
             <Typography className={classes.createBy} variant='caption'>
               <span style={{ color: 'black' }}>By</span> {postedBy}
             </Typography>

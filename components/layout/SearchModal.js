@@ -11,7 +11,6 @@ import { getAllPosts } from '../../redux/actions/dataActions';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 // Icons
@@ -29,25 +28,24 @@ const useStyles = makeStyles((theme) =>
       padding: '5%',
       overflowY: 'scroll',
       [theme.breakpoints.down('sm')]: {
-        padding: '10%',
+        padding: '5%',
+        width: '95%',
       },
     },
     inputCont: {
       display: 'flex',
-      alignItems: 'center',
     },
     iconCont: {
       cursor: 'pointer',
       minWidth: '3rem',
-      minHeight: '3rem',
+      minHeight: '2.6rem',
       backgroundColor: 'transparent',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      border: '2px solid #D9D9D9',
+      border: '1px solid #D9D9D9',
       [theme.breakpoints.down('sm')]: {
-        minWidth: '2rem',
-        minHeight: '2rem',
+        minWidth: '2.5rem',
       },
     },
     iconClass: {
@@ -76,8 +74,9 @@ const useStyles = makeStyles((theme) =>
       objectFit: 'cover',
       border: '.5px solid rgba(0,0,0,.05)',
       [theme.breakpoints.down('sm')]: {
-        width: 75,
-        height: 75,
+        maxWidth: 138,
+        minWidth: 138,
+        height: 126,
       },
     },
     newsTitle: {
@@ -88,19 +87,41 @@ const useStyles = makeStyles((theme) =>
       lineHeight: 1.1,
       padding: '10px 0',
       letterSpacing: -1,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 15,
+      },
     },
     gridBody: {
       marginLeft: '3rem',
       marginTop: 'auto',
       [theme.breakpoints.down('sm')]: {
-        marginLeft: 0,
-        marginBottom: '1rem',
+        marginLeft: '.5rem',
+      },
+    },
+    createBy: {
+      fontSize: 15,
+      color: '#6B3FA0',
+      marginRight: 20,
+      fontFamily: '"Helvetica"',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+        color: '#000',
+        marginRight: 10,
+      },
+    },
+    createAt: {
+      textTransform: 'capitalize',
+      fontFamily: '"Helvetica"',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+        marginTop: 0,
       },
     },
   })
 );
 
 export function SearchModal(props) {
+
   dayjs.extend(relativeTime);
 
   const [search, setSearch] = useState('');
@@ -123,20 +144,19 @@ export function SearchModal(props) {
   useEffect(() => {
     props.getAllPosts();
   }, []);
-
+ 
   return (
     <div className={classes.searchCont}>
       <div>
         <div className={classes.inputCont}>
           <TextField
             id='search'
-            label='Search for news, video...'
+            placeholder='Search for news, video...'
             fullWidth
             value={search}
-            color='#000'
             onChange={(e) => setSearch(e.target.value)}
             InputProps={{ disableUnderline: true }}
-            style={{ border: '2px solid #D9D9D9' }}
+            style={{ border: '1px solid #D9D9D9', height: '42px' }}
           />
           <div className={classes.iconCont}>
             <SearchIcon
@@ -152,7 +172,7 @@ export function SearchModal(props) {
           <Typography
             variant='body1'
             style={{
-              margin: '2rem 0',
+              margin: '1rem 0',
               textAlign: 'right',
               color: '#6B3FA0',
               fontSize: 16,
@@ -186,27 +206,11 @@ export function SearchModal(props) {
                   <Typography variant='body1' className={classes.newsTitle}>
                     {post.title}
                   </Typography>
-                  <div>
-                    <Typography
-                      style={{
-                        textTransform: 'capitalize',
-                        marginRight: 40,
-                        marginBotttom: 40,
-                        fontSize: 15,
-                        color: '#6B3FA0',
-                      }}
-                      variant='caption'
-                    >
+                  <div className='flex sm:justify-inherit items-center capitalize mt-2'>
+                    <Typography className={classes.createBy} variant='caption'>
                       {post.postedBy}
                     </Typography>
-                    <Typography
-                      variant='caption'
-                      style={{
-                        margin: '0 0 1rem',
-                        fontSize: 15,
-                      }}
-                      variant='caption'
-                    >
+                    <Typography className={classes.createAt} variant='caption'>
                       {dayjs(post.createdAt).fromNow()}
                     </Typography>
                   </div>

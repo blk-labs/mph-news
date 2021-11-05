@@ -22,22 +22,35 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'capitalized',
       fontFamily: '"Playfair Display"',
       margin: '2rem 0',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 24,
+        margin: '2rem 0 1rem',
+      },
     },
     editors: {
       display: 'flex',
-      fontSize: 17,
-      fontWeight: 800,
       overflow: 'auto',
+    },
+    title: {
+      paddingRight: '20px',
+      fontSize: 17,
+      fontFamily: '"Helvetica Bold"',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+      },
     },
     gridClass: {
       margin: '0',
     },
     number: {
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: 900,
       color: '#6B3FA0',
-
+      fontFamily: '"Helvetica Bold"',
       marginRight: 10,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 14,
+      },
     },
     timeUpload: {
       color: '#a8a8a8',
@@ -46,6 +59,9 @@ const useStyles = makeStyles((theme) =>
       marginLeft: 5,
       fontSize: 14,
       fontWeight: 400,
+      [theme.breakpoints.down('xs')]: {
+        fontSize: 12,
+      },
     },
     edtorsNews: {
       display: 'flex',
@@ -82,12 +98,7 @@ export default function CustomNews(props) {
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <Typography
                       variant='subtitle2'
-                      style={{
-                        width: '',
-                        paddingRight: '20px',
-                        fontFamily: '"Helvetica Bold"',
-                        // fontWeight: 900
-                      }}
+                      className={classes.title}
                     >
                       {data.title}
                     </Typography>

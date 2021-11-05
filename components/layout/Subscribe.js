@@ -2,14 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 // Material
-import Grid from '@material-ui/core/Grid';
+
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
@@ -23,12 +19,11 @@ const useStyles = makeStyles((theme) =>
       textAlign: 'center',
       display: 'flex',
       flexDirection: 'column',
-      height: 403,
+      height: 360,
       backgroundColor: 'black',
       [theme.breakpoints.down('md')]: {
         margin: 0,
-      marginBottom: '4rem',
-
+        margin: '4rem 0',
       },
     },
     titleCont: {
@@ -37,7 +32,7 @@ const useStyles = makeStyles((theme) =>
       textAlign: 'left',
       textTransform: 'uppercase',
       fontFamily: '"Helvetica Bold"',
-      margin: '1.3rem 0 1rem',
+      margin: '.5rem 0 1rem',
       [theme.breakpoints.down('sm')]: {
         fontSize: 20,
       },
@@ -71,6 +66,7 @@ const useStyles = makeStyles((theme) =>
       height: '46px',
       fontSize: 15,
       color: 'white',
+      float: 'left',
       backgroundColor: '#69409e',
       [theme.breakpoints.down('sm')]: {
         height: 44,

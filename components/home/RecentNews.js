@@ -35,8 +35,7 @@ const useStyles = makeStyles((theme) =>
     recentCont: {
       width: 500,
       textTransform: 'capitalize',
-      marginTop: '.5rem',
-      marginBottom: '1.5rem',
+      margin: '1rem 0',
       display: 'flex',
       width: '100%',
       flexWrap: 'inherit',
@@ -168,7 +167,7 @@ export default function RecentNews(props) {
                   </div>
                 </Grid>
                 {news.length !== i + 1 ? (
-                  <hr className={classes.newsHr} />
+                  <hr />
                 ) : null}
               </a>
             </Link>

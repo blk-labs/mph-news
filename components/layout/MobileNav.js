@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) =>
     },
     list: {
       width: '100vw',
-      marginTop: '1.5rem',
+      marginTop: '1rem',
     },
     navTop: {
       display: 'flex',
-      padding: '0 1rem',
+      padding: '0 16px',
       alignItems: 'center',
       justifyContent: 'space-between',
     },
@@ -137,7 +137,7 @@ export function MobileNav(props) {
             src={navClose.src}
             alt=''
             onClick={toggleDrawer()}
-            style={{ cursor: 'pointer', width: 24, marginLeft: 10 }}
+            style={{ cursor: 'pointer', width: 24, marginLeft: 16 }}
           />
         </div>
       </span>

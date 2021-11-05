@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) =>
     logoComp: {
       margin: 'auto',
       [theme.breakpoints.down('sm')]: {
-      margin: 'unset',
+        margin: 'unset',
         marginRight: 'auto',
       },
     },
@@ -73,7 +73,6 @@ const useStyles = makeStyles((theme) =>
     logoFull: {
       height: 'auto',
       width: 150,
-      marginBottom: '.5rem',
       [theme.breakpoints.down('sm')]: {
         width: '105px',
       },
@@ -317,7 +316,7 @@ export function Navbar(props) {
           <div className='flex'>
             <SearchModal />
             <MobileNav />
-            <hr/>
+            <hr />
           </div>
         ) : null}
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -344,6 +343,7 @@ export function Navbar(props) {
               </div>
             </a>
           ) : null}
+
         </div>
       </Container>
       <AppBar

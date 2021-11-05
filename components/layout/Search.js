@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     ...theme.spreadThis,
     iconClass: {
+      cursor: 'pointer',
       [theme.breakpoints.down('sm')]: {
         fontSize: 24,
       },

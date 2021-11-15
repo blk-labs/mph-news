@@ -12,6 +12,7 @@ import Switch from '@material-ui/core/Switch';
 import Select from '@material-ui/core/Select';
 import Popover from '@material-ui/core/Popover';
 import FormControl from '@material-ui/core/FormControl';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -20,6 +21,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import CheckIcon from '@material-ui/icons/CheckCircle';
 import PhotoCamera from '@material-ui/icons/PhotoCameraOutlined';
+import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
@@ -29,7 +31,6 @@ const useStyles = makeStyles((theme) =>
     formCont: {
       display: 'flex',
       flexDirection: 'column',
-      marginTop: '1rem',
     },
     optionClass: {
       display: 'flex',
@@ -41,10 +42,30 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       alignItems: 'center',
     },
+    list: {
+      padding: 0,
+    },
+    selectRoot: {
+      [theme.breakpoints.down('sm')]: {
+        // width: '90px',
+      },
+    },
+    uploadImg: {
+      '&:hover, &.MuiIconButton-root': { borderRadius: '0' },
+    },
     btnClass: {
-      backgroundColor: 'rgba(0,0,0,.10)',
-      padding: '.5rem',
-      borderRadius: '50%',
+      height: 32,
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 146,
+      border: '1px solid #D9D9D9',
+      display: 'flex',
+    },
+    clickUp: {
+      fontFamily: '"Helvetica"',
+      fontSize: 14,
+      marginLeft: 5,
+      color: '#000',
     },
     popover: {
       padding: '.5rem .75rem',
@@ -128,12 +149,18 @@ export function AddStory(props) {
 
   return (
     <div>
-      <Typography variant='caption'>Please enter news post details</Typography>
       <form className={classes.formCont} onSubmit={handleSubmit}>
         {!props.video && (
-          <Grid container>
-            <Grid xs={6} sm={4} className={classes.optionClass}>
-              <Typography variant='body1' style={{ marginRight: '.5rem' }}>
+          <Grid container style={{ justifyContent: 'space-between' }}>
+            <Grid xs={6} sm={4} lg={4} className={classes.optionClass}>
+              <Typography
+                variant='body1'
+                style={{
+                  marginRight: '.5rem',
+                  fontFamily: '"Helvetica"',
+                  fontSize: 15,
+                }}
+              >
                 Important
               </Typography>
               <Switch
@@ -144,42 +171,124 @@ export function AddStory(props) {
                 inputProps={{ 'aria-label': 'primary checkbox' }}
               />
             </Grid>
-            <Grid xs={6} sm={4} className={classes.optionClass}>
-              <Typography variant='body1' style={{ marginRight: '1rem' }}>
-                Topic
-              </Typography>
-              <Select
-                labelId='Topic'
-                id='topic'
-                error={errors}
-                value={topic}
-                onChange={handleTopic}
-                style={{ minWidth: 125 }}
-                color='secondary'
-              >
-                <MenuItem value=''>
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value='nigeria'>Nigeria</MenuItem>
-                <MenuItem value='international'>International</MenuItem>
-                <MenuItem value='security'>Security</MenuItem>
-                <MenuItem value='health'>Health</MenuItem>
-                <MenuItem value='business'>Business</MenuItem>
-                <MenuItem value='other'>Other</MenuItem>
-              </Select>
+            <Grid xs={6} sm={4} sm={8} className={classes.optionClass}>
+              <div style={{ width: '100%' }}>
+                <Typography
+                  variant='body1'
+                  style={{
+                    marginBottom: '0.5rem',
+                    fontFamily: '"Helvetica"',
+                    fontSize: 15,
+                  }}
+                >
+                  Select a Topic
+                </Typography>
+                <Select
+                  labelId='Topic'
+                  id='topic'
+                  error={errors}
+                  value={topic}
+                  onChange={handleTopic}
+                  style={{ minWidth: '100%' }}
+                  disableUnderline
+                  color='secondary'
+                  MenuProps={{ classes: { list: classes.list } }}
+                  classes={{
+                    root: classes.selectRoot,
+                    icon: classes.icon,
+                  }}
+                  style={{
+                    border: '1px solid #D9D9D9',
+                    padding: '3px 0 3px 5px',
+                    minWidth: '100%',
+                  }}
+                >
+                  <MenuItem value=''>
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem
+                    value='nigeria'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                      fontSize: 15,
+                    }}
+                  >
+                    Nigeria
+                  </MenuItem>
+                  <MenuItem
+                    value='international'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                      fontSize: 15,
+                    }}
+                  >
+                    International
+                  </MenuItem>
+                  <MenuItem
+                    value='security'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                      fontSize: 15,
+                    }}
+                  >
+                    Security
+                  </MenuItem>
+                  <MenuItem
+                    value='health'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                      fontSize: 15,
+                    }}
+                  >
+                    Health
+                  </MenuItem>
+                  <MenuItem
+                    value='business'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                      fontSize: 15,
+                    }}
+                  >
+                    Business
+                  </MenuItem>
+                  <MenuItem
+                    value='other'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                      fontSize: 15,
+                    }}
+                  >
+                    Other
+                  </MenuItem>
+                </Select>
+              </div>
             </Grid>
           </Grid>
         )}
+        <Typography
+          variant='body1'
+          style={{
+            margin: '1rem 0 0.5rem',
+            fontFamily: '"Helvetica"',
+            fontSize: 15,
+          }}
+        >
+          Topic
+        </Typography>
         <TextField
           color='secondary'
-          label='Title'
           error={errors}
           fullWidth
           value={title}
           onChange={(e) => setTtile(e.target.value)}
+          InputProps={{ disableUnderline: true }}
           margin='normal'
-          InputLabelProps={{
-            shrink: true,
+          style={{
+            fontFamily: '"Helvetica"',
+            fontSize: 15,
+            border: '1px solid #D9D9D9',
+            padding: '4px 12px',
+            marginTop: '0',
           }}
         />
         {important && (
@@ -196,64 +305,131 @@ export function AddStory(props) {
             }}
           />
         )}
-        <TextField
-          label='Body'
+        <Typography
+          variant='body1'
+          style={{
+            margin: '1rem 0 0.5rem',
+            fontFamily: '"Helvetica"',
+            fontSize: 15,
+          }}
+        >
+          Body
+        </Typography>
+        <TextareaAutosize
+          aria-label='minimum height'
+          maxRows={3}
+          minRows={3}
           multiline
-          rows={4}
           error={errors}
           color='secondary'
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          InputLabelProps={{
-            shrink: true,
+          style={{
+            fontFamily: '"Helvetica"',
+            fontSize: 15,
+            border: '1px solid #D9D9D9',
+            padding: '8px 16px',
           }}
         />
+        <Typography
+          variant='body1'
+          style={{
+            margin: '1.5rem 0 0.5rem',
+            fontFamily: '"Helvetica"',
+            fontSize: 15,
+          }}
+        >
+          Link
+        </Typography>
         <TextField
           id='standard-full-width'
           color='secondary'
-          label='Link'
           error={errors}
           fullWidth
           value={link}
           onChange={(e) => setLink(e.target.value)}
           margin='normal'
-          InputLabelProps={{
-            shrink: true,
+          InputProps={{ disableUnderline: true }}
+          style={{
+            fontFamily: '"Helvetica"',
+            fontSize: 15,
+            border: '1px solid #D9D9D9',
+            padding: '4px 12px',
+            marginTop: '0',
           }}
         />
-        {!props.video && (
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          {!props.video && (
+            <span className={classes.userCont}>
+              <Typography
+                style={{
+                  marginRight: '.25rem',
+                  fontFamily: '"Helvetica"',
+                  fontSize: 14,
+                }}
+                variant='caption'
+              >
+                Upload Picture
+              </Typography>
+              <input
+                type='file'
+                id='imageInput'
+                hidden='hidden'
+                onChange={handleImgChange}
+              />
+              <Tooltip
+                title='Edit profile picture'
+                placement='top'
+                className={classes.uploadImg}
+              >
+                <IconButton onClick={handleAdd}>
+                  <div className={classes.btnClass}>
+                    <FileUploadOutlinedIcon fontSize='small' />
+                    <Typography className={classes.clickUp}>
+                      Click to Upload
+                    </Typography>
+                  </div>
+                </IconButton>
+              </Tooltip>
+              {image && <CheckIcon color='secondary' />}
+            </span>
+          )}
           <span className={classes.userCont}>
-            <Typography style={{ marginRight: '.25rem' }} variant='caption'>
-              Add Picture
+            <Typography
+              style={{
+                marginRight: '.25rem',
+                fontSize: 15,
+                fontFamily: '"Helvetica"',
+              }}
+              variant='caption'
+            >
+              User name:
             </Typography>
-            <input
-              type='file'
-              id='imageInput'
-              hidden='hidden'
-              onChange={handleImgChange}
-            />
-            <Tooltip title='Edit profile picture' placement='top'>
-              <IconButton onClick={handleAdd}>
-                <PhotoCamera className={classes.btnClass} />
-              </IconButton>
-            </Tooltip>
-            {image && <CheckIcon color='secondary' />}
+            <Typography
+              variant='p'
+              style={{
+                color: '#6B3FA0',
+                fontSize: 15,
+                textTransform: 'capitalize',
+                fontFamily: '"Helvetica"',
+              }}
+            >
+              {props.user.credentials.fName} {props.user.credentials.lName}
+            </Typography>
           </span>
-        )}
-        <span className={classes.userCont}>
-          <Typography style={{ marginRight: '.25rem' }} variant='caption'>
-            User Name:
-          </Typography>
-          <Typography variant='button'>
-            {props.user.credentials.fName} {props.user.credentials.lName}
-          </Typography>
-        </span>
+        </div>
         <Button
           disabled={loading}
           variant='contained'
           color='secondary'
           type='submit'
-          style={{ margin: '1rem 0', width: 'fit-content' }}
+          style={{
+            marginLeft: 'auto',
+            width: '100px',
+            height: 46,
+            backgroundColor: '#36C2F3',
+            boxShadow: 'none',
+          }}
         >
           Post
         </Button>

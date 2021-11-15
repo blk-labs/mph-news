@@ -14,24 +14,6 @@ export default function TopicGrid(props) {
       <TopicMap topic='nigeria' pass={posts('nigeria')} />
       <TopicMap topic='international' pass={posts('international')} />
       <TopicMap topic='security' pass={posts('security')} />
-      <TopicMap topic='health' pass={posts('health')} />
-
-      <Grid className='advertSpace' item sm={12}>
-        <Typography
-          variant='h5'
-          style={{
-            cursor: 'pointer',
-            margin: 'auto',
-            width: 'fit-content',
-            letterSpacing: '1px',
-            fontWeight: 900,
-            fontFamily: '"Helvetica Bold"',
-            textTransform: 'uppercase',
-          }}
-        >
-          interested in Buying this space?
-        </Typography>
-      </Grid>
     </Grid>
   );
 }

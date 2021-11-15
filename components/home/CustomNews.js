@@ -4,7 +4,9 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Material
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 
@@ -53,7 +55,6 @@ const useStyles = makeStyles((theme) =>
     gridClass: {
       display: 'flex',
       flexDirection: 'row',
-      marginBottom: '45px',
     },
   })
 );
@@ -61,16 +62,18 @@ const useStyles = makeStyles((theme) =>
 export default function CustomNews(props) {
   const news = props.news.filter((n) => n.topic !== 'video');
   const recommend = news.filter((n) => n.editors_pick === true).slice(0, 4);
+
   const liked = news
     .sort((a, b) => b.commentCount - a.commentCount)
     .slice(0, 4);
   dayjs.extend(relativeTime);
-
+  // const isLast = events.length - 1 === i;
   const theme = useTheme();
   const classes = useStyles(props);
 
   return (
-    <div
+    <Container
+      maxWidth='lg'
       style={{
         position: 'absolute',
         backgroundColor: '#fff',
@@ -78,32 +81,58 @@ export default function CustomNews(props) {
         margin: '7% 0',
         padding: '45px 20px',
         right: '0',
-        left: '60%',
+        left: '67%',
         height: 560,
       }}
       className={classes.CustomNews}
     >
       {liked.map((data, i) => (
-        <div className={classes.gridClass} key={i}>
-          <Link className={classes.linkClass} href={`/story/${data.id}`}>
-            <a style={{ display: 'inherit' }}>
-              <img
-                src={data.postImage}
-                className={classes.imgClass}
-                alt='recommended'
-              />
-              <div className={classes.dettails}>
-                <Typography variant='button' className={classes.timeUpload}>
-                  {dayjs(data.createdAt).fromNow()}
-                </Typography>
-                <Typography className={classes.titleCont}>
-                  {data.title}
-                </Typography>
-              </div>
-            </a>
-          </Link>
+        <div className='recent'>
+          <div className={classes.gridClass} key={i}>
+            <Link className={classes.linkClass} href={`/story/${data.id}`}>
+              <a
+                style={{
+                  display: 'inherit',             
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: 'flex',
+                    }}
+                  >
+                    <img
+                      src={data.postImage}
+                      className={classes.imgClass}
+                      alt='recommended'
+                    />
+                    <div className={classes.dettails}>
+                      <Typography
+                        variant='button'
+                        className={classes.timeUpload}
+                      >
+                        {dayjs(data.createdAt).fromNow()}
+                      </Typography>
+                      <Typography className={classes.titleCont}>
+                        {data.title}
+                      </Typography>
+                    </div>
+                  </div>
+                  <hr
+                    style={{
+                      borderColor: 'rgba(0,0,0,.15)',
+                      borderBottom: 0,
+                      margin: '25px 0',
+                      borderTopWidth: 0.5,
+                      
+                    }}
+                  />
+                </div>
+              </a>
+            </Link>
+          </div>
         </div>
       ))}
-    </div>
+    </Container>
   );
 }

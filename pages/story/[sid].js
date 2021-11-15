@@ -17,7 +17,7 @@ import Grid from '@material-ui/core/Grid';
 // Comps
 import Comments from '../../components/story/Comments';
 import BodyMark from '../../components/story/BodyMark';
-import MoreMarkup from '../../components/story/MoreMarkup';
+import RecentTopic from '../../components/story/RecentTopic';
 import StoryMap from '../../components/story/StoryMap';
 import Loading from '../../components/layout/Loading';
 import Footer from '../../components/layout/Footer';
@@ -80,28 +80,12 @@ export function Story(props) {
     link,
     commentCount,
   } = props.post;
-  const { loading } = props.UI;
+  const { loading } = props.data;
   // document.title = `${title === undefined ? 'Story' : title} | News | My Political Hub`;
 
   const theme = useTheme();
   const classes = useStyles(props);
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-
-  const readMarkup = (
-    <div className={`${classes.linkCont}`}>
-      <p style={{ margin: 0 }}>
-        <i>
-          Read the full article{' '}
-          <a target='_blank' rel='noreferrer' href={link || ''}>
-            HERE!
-          </a>
-        </i>
-      </p>
-      <p style={{ margin: 0, marginTop: 'auto' }}>
-        <i>What do you think? Type in the comments section below.</i>
-      </p>
-    </div>
-  );
 
   return (
     <div>
@@ -114,32 +98,21 @@ export function Story(props) {
       <Head>
         <title>{props.post.title}</title>
       </Head>
-      <Container maxWidth='lg'>
+      <div maxWidth='lg'>
         <div className={classes.headerCont} container>
           <div style={{ position: 'relative' }}>
             {loading ? <Loading /> : <StoryMap story={props.post} />}
           </div>
           <div>
             <span>
-              {readMarkup}
               <Comments story={props.post} />
             </span>
           </div>
-          {matches ? (
-            topic !== undefined ? (
-              <MoreMarkup
-                topic={topic}
-                title={title}
-                link={router.asPath}
-                topics={props.topic}
-              />
-            ) : null
-          ) : null}
+          <RecentTopic       
+            news={props.data.posts}
+          />
         </div>
-      </Container>
-
-      {/* {loading ? null : (!matches ? <BodyMark story={props.post} /> : null)} */}
-
+      </div>
       <Footer />
     </div>
   );

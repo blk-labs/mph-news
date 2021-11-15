@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => createStyles({
 	postCont: {
 		display: 'flex',
 		flexDirection: 'column',
-		margin: '1rem auto'
+		marginLeft: 'auto'
 	},
 	buttonClass: {
 		padding: '.5rem',
@@ -49,26 +49,38 @@ export default function EditorsPick(props) {
   }
 
 	return (
-		<div>
-			{
-				posts.map((post, i) => (
-					<div key={i}>
-						<Grid container>
-							<Grid xs={11} className={classes.postCont}>
-								<Typography style={{ textTransform: 'capitalize' }} variant="subtitle1">{post.title}</Typography>
-								<Typography variant="subtitle2">{post.subtitle}</Typography>
-								<Typography variant="button">topic: {post.topic}</Typography>
-								<Typography variant="caption">Posted By: {post.postedBy}</Typography>
-								<Typography variant="caption">Posted On: {dayjs(post.createdAt).format('h:mm a, dddd DD-MMM-YYYY')}</Typography>
-							</Grid>
-							<Grid xs={1} className={classes.postCont}>
-								<BookmarkBorderIcon onClick={() => handleSelect(post.postsid)} className={classes.buttonClass} color='secondary' />
-							</Grid>
-						</Grid>
-						<hr />
-					</div>
-				))
-			}
-		</div>
-	);
+    <div>
+      {posts.map((post, i) => (
+        <div key={i}>
+          <Grid container style={{ flexDirection: 'column' }}>
+            <Grid xs={1} className={classes.postCont}>
+              <BookmarkBorderIcon
+                onClick={() => handleSelect(post.postsid)}
+                className={classes.buttonClass}
+                color='secondary'
+              />
+            </Grid>
+            <Grid xs={11} className={classes.postCont}>
+              <Typography
+                style={{ textTransform: 'capitalize' }}
+                variant='subtitle1'
+              >
+                {post.title}
+              </Typography>
+              <Typography variant='subtitle2'>{post.subtitle}</Typography>
+              <Typography variant='button'>topic: {post.topic}</Typography>
+              <Typography variant='caption'>
+                Posted By: {post.postedBy}
+              </Typography>
+              <Typography variant='caption'>
+                Posted On:{' '}
+                {dayjs(post.createdAt).format('h:mm a, dddd DD-MMM-YYYY')}
+              </Typography>
+            </Grid>
+          </Grid>
+          <hr />
+        </div>
+      ))}
+    </div>
+  );
 }

@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) =>
     gridCont: {
       backgroundColor: 'black',
       color: 'white',
-      paddingTop: '5%',
+      padding: '3% 0',
     },
     footerLogo: {
       maxWidth: 200,
@@ -265,18 +265,7 @@ export default function Footer(props) {
             </div>
           </div>
         </div>
-      </Container>
-      <div className={classes.footerLine}>
-        <hr className={classes.hrFooter} />
-        <Container
-          maxWidth='lg'
-          style={{ paddingBottom: '1rem', color: 'gray' }}
-        >
-          <Typography variant='caption'>
-            Copyright © 2020 My Political Hub. All rights reserved.
-          </Typography>
-        </Container>
-      </div>
+      </Container>      
     </div>
   );
 }

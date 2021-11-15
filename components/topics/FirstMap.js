@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) =>
     createBy: {
       fontSize: 15,
       color: '#6B3FA0',
+      fontWeight: 600,
       marginRight: 20,
       fontFamily: '"Helvetica"',
 
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) =>
       },
     },
     createAt: {
+      fontSize: 15,
       fontFamily: '"Helvetica"',
       textTransform: 'capitalize',
       [theme.breakpoints.down('sm')]: {

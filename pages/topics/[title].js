@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) =>
     topicInfo: {
       fontWeight: 400,
       marginBottom: 50,
+      fontFamily: '"Helvetica"',
       fontSize: 18,
       width: 600,
       [theme.breakpoints.down('sm')]: {
@@ -115,9 +116,7 @@ export function Topics(props) {
           <Typography variant='body1' className={classes.topicTitle}>
             {title}
           </Typography>
-          <Typography           
-            className={classes.topicInfo}
-          >
+          <Typography className={classes.topicInfo}>
             Get the latest travel news and hot celeb gossip with exclusive
             stories and pictures to discover more!
           </Typography>
@@ -142,8 +141,7 @@ export function Topics(props) {
               </div>
             </Grid>
           </Grid>
-          <Grid container
-          className='mt-4'>
+          <Grid container item container spacing={5} className='mt-4'>
             <Grid item xs={12} md={8}>
               <MoreMap posts={moreFilter.splice(4, 4)} title={title} />
             </Grid>

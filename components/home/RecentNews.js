@@ -18,14 +18,26 @@ const useStyles = makeStyles((theme) =>
       fontSize: 36,
       color: '#5BA66E',
       fontFamily: '"Playfair Display"',
-      margin: '3rem 0 0.5rem',
+      margin: '3rem 0 1.5rem',
       [theme.breakpoints.down('md')]: {
         fontSize: 24,
-        margin: '0rem 0 0.5rem',
+      },
+      [theme.breakpoints.down('sm')]: {
+        margin: '0rem 0 1.5rem',
+      },
+    },
+    leftColumn: {
+      [theme.breakpoints.down('sm')]: {
+        margin: 0,
+        '& > .MuiGrid-item': {
+          padding: 0,
+        },
       },
     },
     gridCont: {
-      display: 'flex',
+      // display: 'flex',
+      marginTop: '1rem',
+      marginBottom: '1rem',
       backgroundColor: 'white',
       [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
@@ -41,7 +53,7 @@ const useStyles = makeStyles((theme) =>
       flexWrap: 'inherit',
     },
     recentImg: {
-      marginRight: '1.5rem',
+      marginRight: '1rem',
       objectFit: 'cover',
       minWidth: '280px',
       height: '200px',
@@ -86,20 +98,20 @@ const useStyles = makeStyles((theme) =>
       },
     },
     createBy: {
-      fontSize: 15,
+      fontSize: 11,
       color: '#6B3FA0',
       fontFamily: '"Helvetica"',
+      fontWeight: 600,
       marginRight: 20,
       [theme.breakpoints.down('xs')]: {
-        fontSize: 12,
         color: '#000',
       },
     },
     createAt: {
       fontFamily: '"Helvetica"',
+      fontSize: 11,
       textTransform: 'capitalize',
       [theme.breakpoints.down('xs')]: {
-        fontSize: 12,
         marginTop: 0,
       },
     },
@@ -118,21 +130,25 @@ export default function RecentNews(props) {
 
   const theme = useTheme();
   const classes = useStyles(props);
-  const matchesLG = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
     <div>
       <Typography variant='h5' className={classes.titleCont}>
         Trending Topics
       </Typography>
-      <Grid className={classes.gridCont}>
-        <div className='mr-0 lg:mr-4'>
+      <Grid
+        container
+        item
+        container
+        // spacing={2}
+        classes={{
+          root: classes.leftColumn,
+        }}
+        className={classes.gridCont}
+      >
+        <Grid xs={12} lg={8} className='lg:pr-6 sm:pr-0'>
           {news.map((data, i) => (
-            <Link
-              key={i}
-              className={classes.linkClass}
-              href={`/story/${data.id}`}
-            >
+            <Link key={i} href={`/story/${data.id}`}>
               <a>
                 <Grid className={classes.recentCont}>
                   <img
@@ -166,16 +182,14 @@ export default function RecentNews(props) {
                     </div>
                   </div>
                 </Grid>
-                {news.length !== i + 1 ? (
-                  <hr />
-                ) : null}
+                {news.length !== i + 1 ? <hr /> : null}
               </a>
             </Link>
           ))}
-        </div>
-        <div>
+        </Grid>
+        <Grid xs={12} lg={4}>
           <Subscribe />
-        </div>
+        </Grid>
       </Grid>
     </div>
   );

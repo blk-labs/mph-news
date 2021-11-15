@@ -73,11 +73,11 @@ export default function MoreMarkup(props) {
               margin: '2rem 0',
             }}
           >
-            Recent News
+            Recent News {props.topic !== undefined && props.topic}
           </Typography>
           <Grid container>
-            {props.topics !== undefined &&
-              props.topics
+            {props.topic !== undefined &&
+              props.topic
                 .map((data, i) => (
                   <Grid key={i} item xs={12} lg={6}>
                     <Link

@@ -11,6 +11,11 @@
   font-family: 'Helvetica Bold';
   src: url('../util/fonts/HelveticaNowDisplay-Bold.ttf');
 }
+@font-face {
+  font-family: 'Helvetica Black Bold';
+  src: url('../util/fonts/HelveticaNowDisplay-ExtBlk.ttf');
+}
+
 
 @font-face {
   font-family: 'Helvetica Light';
@@ -244,4 +249,8 @@ input[type=checkbox]:checked:disabled+label:before {
   transform: scale(1);
   background-color: #bfb;
   border-color: #bfb;
+}
+
+.recent:last-child hr {
+  display: none;
 }

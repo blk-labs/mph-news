@@ -61,13 +61,15 @@ export function Home(props) {
         <span>
           <Container maxWidth='lg'>
             <EditorsPick news={props.data.posts} />
-            <Grid container>
-              <LatestNews news={props.data.posts} />
-              <CustomNews news={props.data.posts} />
+          </Container>
+          <Grid container>
+            <LatestNews news={props.data.posts} />
+            <CustomNews news={props.data.posts} />
+            <Container maxWidth='lg'>
               <RecentNews news={props.data.posts} />
               <TopicGrid news={props.data.posts} />
-            </Grid>
-          </Container>
+            </Container>
+          </Grid>
           <VideoNews news={props.data.posts} />
         </span>
       )}

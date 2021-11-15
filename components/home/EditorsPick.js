@@ -30,11 +30,16 @@ const useStyles = makeStyles((theme) =>
     editors: {
       display: 'flex',
       overflow: 'auto',
+      justifyContent: 'space-between'
     },
     title: {
       paddingRight: '20px',
       fontSize: 17,
       fontFamily: '"Helvetica Bold"',
+      display: '-webkit-box',
+      WebkitLineClamp: 2,
+      WebkitBoxOrient: 'vertical',
+      overflow: 'hidden',
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
       },
@@ -46,7 +51,7 @@ const useStyles = makeStyles((theme) =>
       fontSize: 18,
       fontWeight: 900,
       color: '#6B3FA0',
-      fontFamily: '"Helvetica Bold"',
+      fontFamily: '"Helvetica Black Bold"',
       marginRight: 10,
       [theme.breakpoints.down('xs')]: {
         fontSize: 14,
@@ -96,10 +101,7 @@ export default function CustomNews(props) {
                     0{i + 1}
                   </Typography>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Typography
-                      variant='subtitle2'
-                      className={classes.title}
-                    >
+                    <Typography variant='subtitle2' className={classes.title}>
                       {data.title}
                     </Typography>
                     <div>

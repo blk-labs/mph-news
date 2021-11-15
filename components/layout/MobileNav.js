@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'baseline',
+      fontFamily: '"Helvetica"',
       marginBottom: 20,
     },
     authClass: {
@@ -153,10 +154,21 @@ export function MobileNav(props) {
             >
               <a className={classes.linkClass}>
                 <span className={classes.titleClass}>
-                  <Typography variant='p' className=''>
+                  <Typography
+                    variant='p'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                    }}
+                  >
                     {tit.start}
                   </Typography>
-                  <p>{tit.end}</p>
+                  <p
+                    style={{
+                      fontFamily: '"Helvetica"',
+                    }}
+                  >
+                    {tit.end}
+                  </p>
                 </span>
               </a>
             </Link>

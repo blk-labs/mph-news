@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Container from '@material-ui/core/Container';
 
 // Components
 import CommentMap from './CommentMap';
@@ -31,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
   },
   paperCont: {
     boxShadow: 'none',
+    width: '70%',
+    margin: 'auto'
   },
   commentSort: {
     marginLeft: 'auto',
@@ -76,87 +79,91 @@ export function Comments(props) {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <Grid xs={12} md={12} lg={12} className={classes.gridCont}>
-      <Paper className={classes.paperCont}>
-        <span style={{ display: 'flex', alignItems: 'baseline' }}>
-          <Typography
-            variant='overline'
-            style={{ textTransform: 'capitalize', fontSize: 15 }}
-          >
-            {commentCount} comments
-          </Typography>
-        </span>
-
-        <span style={{ display: 'flex' }}>
-          {props.user.authenticated ? (
-            <Typography variant='caption'>
-              {props.user.credentials.fName} {props.user.credentials.lName}
+    <Container maxWidth='lg' className={classes.headerCont}>
+      <Grid xs={12} md={12} lg={12} className={classes.gridCont}>
+        <Paper className={classes.paperCont}>
+          <span style={{ display: 'flex', alignItems: 'baseline' }}>
+            <Typography
+              variant='overline'
+              style={{ textTransform: 'capitalize', fontSize: 15 }}
+            >
+              {commentCount} comments
             </Typography>
-          ) : null}
-        </span>
-        <div className='my-2'>
-          <TextField
-            style={{
-              width: '100%',
-              height: '165px',
-              border: '1px solid #D9D9D9',
-              fontSize: 6,
-            }}
-            id='outlined-textarea'
-            placeholder='Enter your Comment'
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            multiline
-            rows={7}
-            InputProps={{
-              classes: {
-                input: classes.resize,
-              },
-              disableUnderline: true,
-            }}
-            className={classes.textField}
-          />
-        </div>
-        {!props.user.authenticated ? (
-          <Button variant='contained' className={classes.button} disabled>
-            Login To Post
-          </Button>
-        ) : (
-          <Button
-            variant='contained'
-            color='secondary'
-            disabled={comment.length < 3}
-            className={classes.button}
-            onClick={handleSubmit}
-          >
-            Post
-          </Button>
-        )}
-        <Grid
-          className='commentGrid'
-          style={{
-            textAlign: loading ? 'center' : 'left',
-            overflowY: loading ? 'hidden' : 'auto',
-          }}
-        >
-          {loading ? (
-            <CircularProgress color='secondary' />
+          </span>
+
+          <span style={{ display: 'flex' }}>
+            {props.user.authenticated ? (
+              <Typography variant='caption'>
+                {props.user.credentials.fName} {props.user.credentials.lName}
+              </Typography>
+            ) : null}
+          </span>
+          <div className='my-2'>
+            <TextField
+              style={{
+                width: '100%',
+                height: '165px',
+                border: '1px solid #D9D9D9',
+                fontSize: 6,
+              }}
+              id='outlined-textarea'
+              placeholder='Enter your Comment'
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              multiline
+              rows={7}
+              InputProps={{
+                classes: {
+                  input: classes.resize,
+                },
+                disableUnderline: true,
+              }}
+              className={classes.textField}
+            />
+          </div>
+          {!props.user.authenticated ? (
+            <Button variant='contained' className={classes.button} disabled>
+              Login To Post
+            </Button>
           ) : (
-            commentCount !== undefined &&
-            (commentCount === 0 ? (
-              <h5>No comments!</h5>
-            ) : (
-              comments.map((com, i) => (
-                <span key={i}>
-                  <CommentMap comments={com} />
-                  {i < commentCount - 1 && <hr className={classes.commentHr} />}
-                </span>
-              ))
-            ))
+            <Button
+              variant='contained'
+              color='secondary'
+              disabled={comment.length < 3}
+              className={classes.button}
+              onClick={handleSubmit}
+            >
+              Post
+            </Button>
           )}
-        </Grid>
-      </Paper>
-    </Grid>
+          <Grid
+            className='commentGrid'
+            style={{
+              textAlign: loading ? 'center' : 'left',
+              overflowY: loading ? 'hidden' : 'auto',
+            }}
+          >
+            {loading ? (
+              <CircularProgress color='secondary' />
+            ) : (
+              commentCount !== undefined &&
+              (commentCount === 0 ? (
+                <h5>No comments!</h5>
+              ) : (
+                comments.map((com, i) => (
+                  <span key={i}>
+                    <CommentMap comments={com} />
+                    {i < commentCount - 1 && (
+                      <hr className={classes.commentHr} />
+                    )}
+                  </span>
+                ))
+              ))
+            )}
+          </Grid>
+        </Paper>
+      </Grid>
+    </Container>
   );
 }
 

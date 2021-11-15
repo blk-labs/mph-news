@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     ...theme.spreadThis,
     topicCont: {
-      margin: '2rem 0 5rem',
+      margin: '4rem 0 5rem',
     },
     topic: {
       color: '#52C41A',
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) =>
     },
     titleClass: {
       fontWeight: 900,
-      fontSize: 22,
+      fontSize: 20,
       margin: '10px 0 0',
       lineHeight: 1.2,
       textTransform: 'initial',
@@ -82,8 +82,9 @@ const useStyles = makeStyles((theme) =>
       },
     },
     createBy: {
-      fontSize: 15,
+      fontSize: 11,
       color: '#6B3FA0',
+      fontWeight: 600,
       marginRight: 20,
       fontFamily: '"Helvetica"',
 
@@ -93,6 +94,7 @@ const useStyles = makeStyles((theme) =>
       },
     },
     createAt: {
+    fontSize: 11,
       fontFamily: '"Helvetica"',
       textTransform: 'capitalize',
       [theme.breakpoints.down('xs')]: {

@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import EmailIcon from '@mui/icons-material/Email';
 import { Facebook } from '@material-ui/icons';
 import { Twitter } from '@material-ui/icons';
+import Container from '@material-ui/core/Container';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const useStyles = makeStyles((theme) =>
@@ -99,23 +100,26 @@ export default function StoryMap(props) {
 
   return (
     <span>
-      <Typography
-        variant='body1'
-        style={{
-          fontFamily: '"Playfair Display"',
-          fontWeight: 900,
-          fontSize: 36,
-          color: '#5BA66E',
-          textTransform: 'capitalize',
-          marginBottom: 20,
-        }}
-      >
-        {topic}
-      </Typography>
+      <Container maxWidth='lg'>
+        <Typography
+          variant='body1'
+          style={{
+            fontFamily: '"Playfair Display"',
+            fontWeight: 900,
+            fontSize: 36,
+            color: '#5BA66E',
+            textTransform: 'capitalize',
+            marginBottom: 20,
+          }}
+          container
+        >
+          {topic}
+        </Typography>
+      </Container>
       <span>
         <img className={classes.imgCont} src={postImage} />
       </span>
-      <div className={classes.headerCont}>
+      <Container maxWidth='lg' className={classes.headerCont}>
         <div className={classes.socialCont}>
           <div
             style={{
@@ -185,7 +189,7 @@ export default function StoryMap(props) {
             {body}
           </Typography>
         </div>
-      </div>
+      </Container>
     </span>
   );
 }

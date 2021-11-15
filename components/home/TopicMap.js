@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     ...theme.spreadThis,
     gridCont: {
-      marginTop: '2rem',
+      // marginTop: '2rem',
     },
     mainCont: {
       display: 'flex',
@@ -109,6 +109,10 @@ const useStyles = makeStyles((theme) =>
       letterSpacing: 0,
       fontFamily: '"Helvetica Light"',
       fontWeight: 300,
+      display: '-webkit-box',
+      WebkitLineClamp: 2,
+      WebkitBoxOrient: 'vertical',
+      overflow: 'hidden',
       [theme.breakpoints.down('xs')]: {
         fontSize: 13,
       },
@@ -140,7 +144,7 @@ const useStyles = makeStyles((theme) =>
       marginBottom: 40,
       padding: '0 .5rem',
       [theme.breakpoints.down('xs')]: {
-        flexDirection: 'column',
+        // flexDirection: 'column',
       },
     },
     btnClass: {
@@ -152,6 +156,7 @@ const useStyles = makeStyles((theme) =>
       fontSize: 15,
       color: '#6B3FA0',
       marginRight: 20,
+      fontWeight: 600,
       fontFamily: '"Helvetica"',
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
@@ -161,6 +166,7 @@ const useStyles = makeStyles((theme) =>
     createAt: {
       textTransform: 'capitalize',
       fontFamily: '"Helvetica"',
+      fontSize: 15,
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
         marginTop: 0,
@@ -178,7 +184,7 @@ export default function TopicMap(props) {
   dayjs.extend(relativeTime);
 
   return (
-    <Grid item className={classes.gridCont}>
+    <Grid container item className={classes.gridCont}>
       <Typography
         variant='body1'
         style={{
@@ -275,6 +281,7 @@ export default function TopicMap(props) {
                         textTransform: 'capitalize',
                         marginRight: 20,
                         marginBotttom: 40,
+                        fontWeight: 600,
                         fontSize: 15,
                         color: '#6B3FA0',
                         fontFamily: '"Helvetica"',

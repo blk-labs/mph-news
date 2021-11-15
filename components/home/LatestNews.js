@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -23,6 +24,10 @@ const useStyles = makeStyles((theme) =>
       width: '100vw',
       height: '700px',
       objectFit: 'cover',
+      [theme.breakpoints.down('md')]: {
+        // marginBottom: 30,
+      },
+
       [theme.breakpoints.down('sm')]: {
         height: '100%',
         display: 'block',
@@ -32,18 +37,31 @@ const useStyles = makeStyles((theme) =>
     },
     newsTitle: {
       width: 500,
-      marginLeft: 95,
+      marginLeft: 70,
       marginBottom: 5,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         margin: '0 20px',
+      },
+      [theme.breakpoints.down('sm')]: {
         width: '100px',
+      },
+    },
+    newsSubTitle: {
+      margin: '5px 60px',
+      [theme.breakpoints.down('md')]: {
+        margin: '5px 20px',
       },
     },
     resNewsTitle: {
       position: 'absolute',
       margin: 20,
       bottom: 0,
-      [theme.breakpoints.down('sm')]: {},
+      [theme.breakpoints.down('md')]: {
+        width: 400,
+      },
+      [theme.breakpoints.down('xs')]: {
+        width: '300px',
+      },
     },
     title: {
       marginBottom: '.5rem',
@@ -147,11 +165,10 @@ export default function LatestNews(props) {
                               display: 'inline',
                               padding: 5,
                               padding: 5,
-                              margin: '10px 85px',
                               fontFamily: '"Helvetica Light"',
                             }}
                           >
-                            {data.subTitle}
+                            {dayjs(data.createdAt).fromNow()}
                           </Typography>
                         </div>
                       </div>
@@ -197,10 +214,7 @@ export default function LatestNews(props) {
                     }}
                   >
                     <div className={classes.resNewsTitle}>
-                      <Typography
-                        variant='body1'
-                        className={classes.resTitle}                        
-                      >
+                      <Typography variant='body1' className={classes.resTitle}>
                         {data.title}
                       </Typography>
                     </div>
@@ -216,7 +230,8 @@ export default function LatestNews(props) {
             ))
         )}
         {!matches ? (
-          <div
+          <Container
+            maxWidth='lg'
             style={{
               position: 'relative',
               display: 'flex',
@@ -272,7 +287,7 @@ export default function LatestNews(props) {
                   </a>
                 </Link>
               ))}
-          </div>
+          </Container>
         ) : null}
       </Grid>
     </>

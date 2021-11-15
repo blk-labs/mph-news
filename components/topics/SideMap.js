@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) =>
       objectFit: 'cover',
       minWidth: '100%',
       maxWidth: '100%',
-      height: 'auto',
+      height: '274px',
       [theme.breakpoints.down('md')]: {
         height: '350px',
       },
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) =>
     },
     bottomNews: {
       fontWeight: 900,
-      fontSize: 22,
+      fontSize: 15,
       margin: '10px 0 0',
       lineHeight: 1.2,
       textTransform: 'initial',
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) =>
     },
     subnews: {
       color: 'black',
-      fontSize: 15,
+      fontSize: 13,
       margin: '10px 0',
       letterSpacing: 0,
       fontWeight: 300,
@@ -62,9 +62,10 @@ const useStyles = makeStyles((theme) =>
       },
     },
     createBy: {
-      fontSize: 15,
+      fontSize: 11,
       color: '#6B3FA0',
       fontFamily: '"Helvetica"',
+      fontWeight: 600,
       marginRight: 20,
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
@@ -72,6 +73,7 @@ const useStyles = makeStyles((theme) =>
       },
     },
     createAt: {
+      fontSize: 11,
       fontFamily: '"Helvetica"',
       textTransform: 'capitalize',
       [theme.breakpoints.down('xs')]: {
@@ -114,7 +116,7 @@ export default function SideMap(props) {
                 className={classes.subnews}
                 style={{ margin: '.5rem 0' }}
               >
-                {body.substring(0, 150)}...
+                {body.substring(0, 50)}...
               </Typography>
               <Typography variant='caption' className={classes.contRead}>
                 Continue reading

@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) =>
     videoCont: {
       color: 'white',
       cursor: 'pointer',
-      margin: '2.5rem auto 5rem',
+      margin: '0rem auto 5rem',
       padding: '2rem 0 3rem',
     },
     videoClass: {
@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme) =>
     createAt: {
       textTransform: 'capitalize',
       color: 'black',
+      fontSize: 15,
       fontFamily: '"Helvetica"',
       [theme.breakpoints.down('xs')]: {
         fontSize: 12,
@@ -110,7 +111,7 @@ export default function VideoNews(props) {
                   </Typography>
                   <Typography
                     variant='caption'
-                    style={{ textTransform: 'uppercase' }}
+                    style={{ textTransform: 'capitalize', fontSize: 15 }}
                   >
                     {dayjs(data.createdAt).fromNow()}
                   </Typography>
@@ -145,24 +146,6 @@ export default function VideoNews(props) {
           </Grid>
         </Container>
       </Grid>
-      <Container>
-        <Grid className='advertSpace' item sm={12}>
-          <Typography
-            variant='h5'
-            style={{
-              cursor: 'pointer',
-              margin: 'auto',
-              fontWeight: 900,
-              width: 'fit-content',
-              letterSpacing: '1px',
-              fontFamily: '"Helvetica Bold"',
-              textTransform: 'uppercase',
-            }}
-          >
-            interested in Buying this space?
-          </Typography>
-        </Grid>
-      </Container>
     </span>
   );
 }

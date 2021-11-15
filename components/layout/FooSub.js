@@ -17,9 +17,8 @@ const useStyles = makeStyles((theme) =>
     titleCont: {
       textTransform: 'uppercase',
       textAlign: 'center',
-      fontWeight: 900,
       fontSize: 24,
-      fontFamily: '"Helvetica Bold"',
+      fontFamily: '"Helvetica Black Bold"',
       margin: '2rem 0 .6rem',
     },
     subClass: {
@@ -44,6 +43,7 @@ const useStyles = makeStyles((theme) =>
       backgroundColor: 'white',
       display: 'flex',
       padding: '7.5px',
+      width: 325,
       [theme.breakpoints.down('sm')]: {
         fontSize: 15,
         width: 250,

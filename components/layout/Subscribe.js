@@ -15,23 +15,26 @@ const useStyles = makeStyles((theme) =>
     subClass: {
       color: 'white',
       padding: 20,
-      marginLeft: '2rem',
+      marginTop: '1rem',
+      marginBottom: '1rem',
       textAlign: 'center',
       display: 'flex',
       flexDirection: 'column',
-      height: 360,
+      width: 387,
+      marginLeft: 'auto',
       backgroundColor: 'black',
+      position: 'sticky',
+      top: 50,
       [theme.breakpoints.down('md')]: {
-        margin: 0,
         margin: '4rem 0',
+        width: '100%',
       },
     },
     titleCont: {
-      fontWeight: 900,
       fontSize: 24,
       textAlign: 'left',
       textTransform: 'uppercase',
-      fontFamily: '"Helvetica Bold"',
+      fontFamily: '"Helvetica Black Bold"',
       margin: '.5rem 0 1rem',
       [theme.breakpoints.down('sm')]: {
         fontSize: 20,
@@ -52,6 +55,7 @@ const useStyles = makeStyles((theme) =>
       flexDirection: 'column',
       justifyContent: 'center',
       margin: '2rem 0',
+      padding: '0 7.5px',
     },
     terms: {
       fontWeight: 300,
@@ -61,7 +65,7 @@ const useStyles = makeStyles((theme) =>
       },
     },
     subBtn: {
-      margin: '1.5rem 0 0 0',
+      margin: '1.5rem 0 1rem 0',
       boxShadow: 'none',
       height: '46px',
       fontSize: 15,

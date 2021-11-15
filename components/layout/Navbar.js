@@ -45,11 +45,8 @@ const useStyles = makeStyles((theme) =>
     navCont: {
       display: 'flex',
       justifyContent: 'space-between',
-      marginBottom: '.5rem',
       alignItems: 'center',
-      [theme.breakpoints.down('sm')]: {
-        marginTop: '1rem',
-      },
+      marginTop: '1rem',
     },
     homeIcon: {
       color: theme.palette.secondary.light,
@@ -72,20 +69,19 @@ const useStyles = makeStyles((theme) =>
 
     logoFull: {
       height: 'auto',
-      width: 150,
+      width: 189,
       [theme.breakpoints.down('sm')]: {
         width: '105px',
       },
     },
     logoClass: {
       height: 'auto',
-      width: 150,
-      marginBottom: '.5rem',
+      width: 189,
     },
     searchCont: {
       cursor: 'pointer',
-      // width: '2.5rem',
       display: 'flex',
+      alignItems: 'center',
       marginLeft: 'auto',
 
       [theme.breakpoints.down('sm')]: {
@@ -104,13 +100,21 @@ const useStyles = makeStyles((theme) =>
         display: 'none',
       },
     },
+    menuList: {
+      borderTop: '0.5px solid #eee',
+      borderBottom: '0.5px solid #eee',
+      width: '100%',
+    },
     titleCont: {
       display: 'flex',
       alignItems: 'baseline',
       fontSize: 15,
-      padding: '.5rem 1rem .5rem 0',
+      padding: '.5rem 3rem .5rem 0',
       '&:hover': {
         color: theme.palette.secondary.light,
+      },
+      [theme.breakpoints.down('md')]: {
+        padding: '.5rem 1.5rem .5rem 0',
       },
     },
     stickyClass: {
@@ -132,6 +136,8 @@ const titles = [
   { title: 'Business' },
   { title: 'Other' },
   { title: 'National Assembly' },
+  { title: 'Voices' },
+  { title: 'Admin Panel' },
 ];
 
 export function Navbar(props) {
@@ -193,67 +199,7 @@ export function Navbar(props) {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <div id='navBar'>
-      {matches ? (
-        <span>
-          <Container maxWidth='lg'>
-            <div className={classes.topClass}>
-              <Button
-                color='default'
-                style={{ textTransform: 'capitalize', padding: 0 }}
-              >
-                <Typography variant='caption' style={{ fontWeight: 'bold' }}>
-                  Join our newsletter
-                </Typography>
-              </Button>
-              <span> | </span>
-              {props.user.authenticated ? (
-                <Button
-                  color='default'
-                  style={{ textTransform: 'capitalize', padding: 0 }}
-                  onClick={handleLogout}
-                >
-                  <Typography variant='caption' style={{ fontWeight: 'bold' }}>
-                    Logout
-                  </Typography>
-                </Button>
-              ) : (
-                <span>
-                  <Button
-                    color='default'
-                    style={{ textTransform: 'capitalize', padding: 0 }}
-                    onClick={handleOpen}
-                  >
-                    <Typography
-                      variant='caption'
-                      style={{ fontWeight: 'bold' }}
-                    >
-                      Login or Register
-                    </Typography>
-                  </Button>
-                  <Modal
-                    aria-labelledby='transition-modal-title'
-                    aria-describedby='transition-modal-description'
-                    className={classes.modal}
-                    open={open}
-                    onClose={handleClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                      timeout: 500,
-                    }}
-                  >
-                    <Fade in={open}>
-                      <AuthModal handleClose={handleClose} />
-                    </Fade>
-                  </Modal>
-                </span>
-              )}
-            </div>
-          </Container>
-          <hr className={classes.hrTop} />
-        </span>
-      ) : null}
+    <div id='navBar'>      
       <Container className={classes.navCont}>
         <div
           className='hidden md:block md:flex'
@@ -321,29 +267,68 @@ export function Navbar(props) {
         ) : null}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {matches ? (
-            <a
-              href='https://mypoliticalhub.com/profile'
-              style={{ textDecoration: 'none' }}
-              target='_blank'
-              rel='noreferrer'
-            >
-              <div style={{ display: 'flex' }}>
-                <img src={userImg.src} alt='' className={classes.hubClass} />
-                <Typography
-                  style={{
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    margin: 'auto',
-                    textTransform: 'uppercase',
-                  }}
-                  variant='p'
-                >
-                  Account
-                </Typography>
-              </div>
-            </a>
+            <span>
+              <Container maxWidth='lg' style={{ display: 'contents' }}>
+                <div className={classes.topClass}>
+                  {props.user.authenticated ? (
+                    <Button
+                      color='default'
+                      style={{ textTransform: 'capitalize', padding: 0 }}
+                      onClick={handleLogout}
+                    >
+                      <Typography
+                        variant='caption'
+                        style={{ fontWeight: 'bold' }}
+                      >
+                        Logout
+                      </Typography>
+                    </Button>
+                  ) : (
+                    <span>
+                      <Button
+                        color='default'
+                        style={{ textTransform: 'capitalize', padding: 0 }}
+                        onClick={handleOpen}
+                      >
+                        <img
+                          src={userImg.src}
+                          alt=''
+                          className={classes.hubClass}
+                        />
+                        <Typography
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: 600,
+                            margin: 'auto',
+                            textTransform: 'uppercase',
+                          }}
+                          variant='p'
+                        >
+                          Account
+                        </Typography>
+                      </Button>
+                      <Modal
+                        aria-labelledby='transition-modal-title'
+                        aria-describedby='transition-modal-description'
+                        className={classes.modal}
+                        open={open}
+                        onClose={handleClose}
+                        closeAfterTransition
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{
+                          timeout: 500,
+                        }}
+                      >
+                        <Fade in={open}>
+                          <AuthModal handleClose={handleClose} />
+                        </Fade>
+                      </Modal>
+                    </span>
+                  )}
+                </div>
+              </Container>
+            </span>
           ) : null}
-
         </div>
       </Container>
       <AppBar
@@ -352,78 +337,82 @@ export function Navbar(props) {
         elevation={0}
       >
         <div className={classes.menuCont}>
-          <Container
-            style={{
-              display: 'flex',
-              width: '100%',
-            }}
-            className='flex flex-row items-center py-1'
-          >
-            {matches
-              ? titles.map((str, i) => {
-                  const chars = str.title.charAt(0);
-                  const words = str.title.split(chars);
-                  return (
+          <div className={classes.menuList}>
+            <Container style={{ display: 'flex' }} maxWidth='lg'>
+              {matches
+                ? titles.map((str, i) => {
+                    const chars = str.title.charAt(0);
+                    const words = str.title.split(chars);
+                    return (
+                      <Link
+                        key={i}
+                        href={
+                          str.title === 'Admin Panel'
+                            ? `/admin`
+                            : `/topics/${str.title.toLowerCase()}` &&
+                              str.title === 'National Assembly'
+                            ? `/document`
+                            : `/topics/${str.title.toLowerCase()}`
+                        }
+                        className={`${classes.titleCont} ${classes.linkClass}`}
+                      >
+                        <a
+                          className={`${classes.titleCont} ${classes.linkClass}`}
+                        >
+                          <Typography
+                            variant='body2'
+                            style={{
+                              fontSize: 15,
+                              fontFamily: '"Helvetica"',
+                            }}
+                          >
+                            {chars}
+                          </Typography>
+                          <Typography
+                            variant='body2'
+                            style={{
+                              textTransform: 'lowercase',
+                              fontFamily: '"Helvetica"',
+                              fontSize: 15,
+                            }}
+                          >
+                            {words[1]}
+                          </Typography>
+                        </a>
+                      </Link>
+                    );
+                  })
+                : titles.map((str, i) => (
                     <Link
                       key={i}
                       href={
-                        str.title === 'National Assembly'
+                        str.title === 'Admin Panel'
+                          ? `/admin`
+                          : `/topics/${str.title.toLowerCase()}` &&
+                            str.title === 'National Assembly'
                           ? `/documents`
                           : `/topics/${str.title.toLowerCase()}`
                       }
                       className={`${classes.titleCont} ${classes.linkClass}`}
                     >
-                      <a
-                        className={`${classes.titleCont} ${classes.linkClass}`}
-                      >
+                      <a className='pr-3 py-1'>
                         <Typography
                           variant='body2'
                           style={{
-                            fontFamily: '"Helvetica"',
+                            width: 'max-content',
+                            textTransform: 'capitalize',
                           }}
                         >
-                          {chars}
-                        </Typography>
-                        <Typography
-                          variant='body2'
-                          style={{
-                            textTransform: 'lowercase',
-                            fontFamily: '"Helvetica"',
-                          }}
-                        >
-                          {words[1]}
+                          {str.title}
                         </Typography>
                       </a>
                     </Link>
-                  );
-                })
-              : titles.map((str, i) => (
-                  <Link
-                    key={i}
-                    href={
-                      str.title === 'National Assembly'
-                        ? `/documents`
-                        : `/topics/${str.title.toLowerCase()}`
-                    }
-                    className={`${classes.titleCont} ${classes.linkClass}`}
-                  >
-                    <a className='pr-3 py-1'>
-                      <Typography
-                        variant='body2'
-                        style={{
-                          width: 'max-content',
-                          textTransform: 'capitalize',
-                        }}
-                      >
-                        {str.title}
-                      </Typography>
-                    </a>
-                  </Link>
-                ))}
-            <div className={classes.searchCont}>
-              <SearchModal />
-            </div>
-          </Container>
+                  ))}
+              <div className={classes.searchCont}>
+                <SearchModal style={{ padding: 'auto' }} />
+              </div>
+            </Container>
+          </div>
         </div>
       </AppBar>
       {navLoading ? <LinearProgress /> : <div />}

@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
-import jwtDecode from 'jwt-decode'
-import axios from 'axios'
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
 // Redux
 import { connect } from 'react-redux';
-import { getTopic, getAllPosts, getDocuments } from '../redux/actions/dataActions';
+import {
+  getTopic,
+  getAllPosts,
+  getDocuments,
+} from '../redux/actions/dataActions';
 import { isAuth } from '../redux/actions/userActions';
 
 // Material
@@ -25,247 +29,378 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
 // Comps
-import AddStory from '../components/admin/AddStory'
-import Loading from '../components/layout/Loading'
-import DeleteStory from '../components/admin/DeleteStory'
-import AddDocument from '../components/admin/AddDocument'
-import DeleteDocument from '../components/admin/DeleteDocument'
-import EditorsPick from '../components/admin/EditorsPick'
-import logoFull from '../public/images/logoFullColor.png'
-import logo from '../public/images/logo.png'
+import AddStory from '../components/admin/AddStory';
+import Loading from '../components/layout/Loading';
+import DeleteStory from '../components/admin/DeleteStory';
+import AddDocument from '../components/admin/AddDocument';
+import DeleteDocument from '../components/admin/DeleteDocument';
+import EditorsPick from '../components/admin/EditorsPick';
+import logoFull from '../public/images/logoFullColor2.png';
+import userImg from '../public/images/userImg.png';
+import logo from '../public/images/logo.png';
 
-const useStyles = makeStyles((theme) => createStyles({
-	...theme.spreadThis,
-	formControl: {
-		marginTop: '2.5rem',
-	},
-	navCont: {
-		marginBottom: '5rem'
-	},
-	logoFull: {
-		height: 'auto',
-		width: 50,
-		margin: '1rem'
-	},
-	mainCont: {
-		marginTop: '2.5rem'
-	},
-	buttonCont: {
-		display: 'flex',
-		flexDirection: 'column',
-		marginTop: '2.5rem'
-	},
-	btnCont: {
-		backgroundColor: '#d34b47',
-		marginTop: '1rem',
-		color: 'white',
-		borderColor: 'transparent',
-		'&:hover': {
-			backgroundColor: '#e94b47'
-		}
-	}
-}));
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    ...theme.spreadThis,
+    formControl: {
+      width: '100%',
+    },
+    navCont: {
+      marginBottom: '5rem',
+      paddingTop: '1.5rem',
+    },
+    logoFull: {
+      height: 'auto',
+      width: 50,
+      margin: '1rem',
+    },
+    hubClass: {
+      height: '20px',
+      width: 'auto',
+      marginRight: '.25rem',
+    },
+    mainCont: {
+      marginTop: '1rem',
+    },
+    contentType: {
+      fontSize: 15,
+      marginBottom: '0.5rem',
+      fontFamily: '"Helvetica"',
+    },
+    list: {
+      padding: 0,
+    },
+    selectRoot: {
+      [theme.breakpoints.down('sm')]: {
+        // width: '90px',
+      },
+    },
+    buttonCont: {
+      display: 'flex',
+      marginTop: '2rem',
+    },
+    btnCont: {
+      backgroundColor: '#185E5C',
+      color: 'white',
+      borderColor: 'transparent',
+      '&:hover': {
+        backgroundColor: '#e94b47',
+      },
+    },
+  })
+);
 
 export function Admin(props) {
+  const [select, setSelect] = useState('');
+  const [add, setAdd] = useState(false);
+  const [remove, setRemove] = useState(false);
+  const [content, setContent] = useState([]);
 
-	const [select, setSelect] = useState('');
-	const [add, setAdd] = useState(false);
-	const [remove, setRemove] = useState(false);
-	const [content, setContent] = useState([]);
+  const { docs, topic } = props.data;
+  // const { loading } = props.UI;
 
-	const { docs, topic } = props.data;
-	// const { loading } = props.UI;
+  const [open, setOpen] = useState(false);
 
-	const [open, setOpen] = useState(false);
+  const handleSuccess = () => {
+    setSelect('');
+    setOpen(true);
+  };
 
-	const handleSuccess = () => {
-		setSelect('');
-		setOpen(true);
-	};
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
-	const handleClose = (event, reason) => {
-		if (reason === 'clickaway') {
-			return;
-		}
-		setOpen(false);
-	};
+  const handleChange = (event) => {
+    setSelect(event.target.value);
+    getContent(event.target.value);
+  };
 
-	const handleChange = (event) => {
-		setSelect(event.target.value);
-		getContent(event.target.value);
-	};
+  const getContent = (cont) => {
+    if (cont === 'story' || cont === 'editors') {
+      props.getAllPosts();
+      setAdd(false);
+      setRemove(false);
+      setContent(props.data.posts);
+    } else if (cont === 'video') {
+      props.getTopic(cont);
+      setAdd(false);
+      setRemove(false);
+      setContent(props.data.topic);
+    } else if (cont === 'documents') {
+      props.getDocuments();
+      setAdd(false);
+      setRemove(false);
+      setContent(props.data.docs);
+    }
+  };
 
-	const getContent = (cont) => {
-		if (cont === 'story' || cont === 'editors') {
-			props.getAllPosts()
-			setAdd(false);
-			setRemove(false);
-			setContent(props.data.posts);
-		} else if (cont === 'video') {
-			props.getTopic(cont)
-			setAdd(false);
-			setRemove(false);
-			setContent(props.data.topic);
-		} else if (cont === 'documents') {
-			props.getDocuments()
-			setAdd(false);
-			setRemove(false);
-			setContent(props.data.docs);
-		}
-	}
+  const addContent = () => {
+    setAdd(true);
+    setRemove(false);
+  };
 
-	const addContent = () => {
-		setAdd(true);
-		setRemove(false)
-	}
+  const removeContent = () => {
+    setAdd(false);
+    setRemove(true);
+  };
 
-	const removeContent = () => {
-		setAdd(false);
-		setRemove(true)
-	}
+  let router = useRouter();
 
-	let router = useRouter();
+  const theme = useTheme();
+  const classes = useStyles(props);
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
 
-	const theme = useTheme();
-	const classes = useStyles(props);
-	const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const [loading, setLoading] = useState(true);
 
-	const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const token = localStorage.FBIdToken;
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken.exp * 1000 < Date.now()) {
+        props.logoutUser();
+        router.push('/');
+      } else {
+        props.isAuth(decodedToken);
+        let nav = document.getElementById('navBar');
+        if (nav !== null) {
+          nav.style.display = 'none';
+        }
+      }
+    } else {
+      router.push('/');
+    }
+  }, []);
 
+  // useEffect(() => {
+  // 	console.log(`props.user: ${props.user.authenticated}`);
+  // 	// if (props.user.authenticated === false) {
+  // 	// 	router.push('/')
+  // 	// } else if (props.user.credentials.moderator === false) {
+  // 	// 	router.push('/')
+  // 	// } else {
+  // 	// 	let nav = document.getElementById('navBar');
+  // 	// 	if (nav !== null) {
+  // 	// 		nav.style.display = 'none'
+  // 	// 	}
+  // 	// }
+  // }, [props.user])
 
+  return (
+    <div style={{ background: '#FBFBFB', height: '100%' }}>
+      {!props.user.authenticated ? (
+        <Loading />
+      ) : (
+        <div>
+          <Container className={classes.navCont}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Link href='/' className={classes.logoComp}>
+                <a>
+                  <img
+                    src={matches ? logoFull.src : logo.src}
+                    className={matches ? classes.logoClass : classes.logoFull}
+                    alt='MPH-logo'
+                    style={{ width: '' }}
+                  />
+                </a>
+              </Link>
+              <div
+                style={{
+                  display: 'flex',
+                  cursor: 'pointer',
+                }}
+              >
+                <img src={userImg.src} alt='' className={classes.hubClass} />
+                <Typography
+                  variant='p'
+                  style={{
+                    fontSize: 15,
+                    textTransform: 'capitalize',
+                    fontFamily: '"Helvetica"',
+                  }}
+                >
+                  {props.user.credentials.fName} {props.user.credentials.lName}
+                </Typography>
+              </div>
+            </div>
+          </Container>
+          <Container className={classes.adminCont}>
+            <Typography
+              style={{
+                fontFamily: '"Helvetica Black Bold"',
+                fontSize: 48,
+                paddingBottom: 40,
+              }}
+              variant='h5'
+            >
+              Admin Panel
+            </Typography>
+            <Grid
+              style={{
+                background: '#fff',
+                width: '690px',
+                margin: 'auto',
+                padding: '40px',
+                boxShadow: '0px 4px 34px 10px rgba(228, 228, 228, 0.25)',
+              }}
+            >
+              <Grid className={classes.formControl}>
+                <Typography className={classes.contentType}>
+                  Select a Content Type
+                </Typography>
+                <FormControl
+                  style={{
+                    minWidth: '100%',
+                    border: '1px solid #D9D9D9',
+                    padding: '3px 0 3px 5px',
+                  }}
+                >
+                  <Select
+                    // id='demo-simple-select-outlined'
+                    value={select}
+                    color='secondary'
+                    onChange={handleChange}
+                    label='Content'
+                    disableUnderline
+                    MenuProps={{ classes: { list: classes.list } }}
+                    classes={{
+                      root: classes.selectRoot,
+                      icon: classes.icon,
+                    }}
+                  >
+                    <MenuItem value=''>
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem
+                      style={{
+                        fontFamily: '"Helvetica"',
+                        fontSize: 15,
+                      }}
+                      value='story'
+                    >
+                      Story
+                    </MenuItem>
+                    <MenuItem
+                      style={{
+                        fontFamily: '"Helvetica"',
+                        fontSize: 15,
+                      }}
+                      value='video'
+                    >
+                      Video
+                    </MenuItem>
+                    <MenuItem
+                      style={{
+                        fontFamily: '"Helvetica"',
+                        fontSize: 15,
+                      }}
+                      value='documents'
+                    >
+                      Documents
+                    </MenuItem>                   
+                  </Select>
+                </FormControl>
+              </Grid>
+              {select !== '' && (
+                <Grid className={classes.buttonCont}>
+                  <Button
+                    size={matches ? 'small' : 'large'}
+                    onClick={addContent}
+                    style={{
+                      width: 'fit-content',
+                      textTransform: 'uppercase',
+                      marginLeft: 'auto',
+                      background: '#6B3FA0',
+                      height: 45,
+                      fontSize: 15,
+                      fontFamily: '"Helvetica Bold"',
+                      boxShadow: 'none',
+                    }}
+                    variant='contained'
+                    color='secondary'
+                  >
+                    Add New {select}
+                  </Button>
+                  {select !== 'editors' && (
+                    <Button
+                      size={matches ? 'small' : 'large'}
+                      onClick={removeContent}
+                      style={{
+                        width: 'fit-content',
+                        textTransform: 'uppercase',
+                        marginLeft: 30,
+                        fontSize: 15,
+                        fontFamily: '"Helvetica Bold"',
+                      }}
+                      variant='outlined'
+                      className={classes.btnCont}
+                    >
+                      {select === 'story' ? 'Edit' : 'Delete'} {select}
+                    </Button>
+                  )}
+                </Grid>
+              )}
 
-	useEffect(() => {
-		const token = localStorage.FBIdToken;
-		if (token) {
-			const decodedToken = jwtDecode(token);
-			if (decodedToken.exp * 1000 < Date.now()) {
-				props.logoutUser();
-				router.push('/')
-			} else {
-				props.isAuth(decodedToken)
-				let nav = document.getElementById('navBar');
-				if (nav !== null) {
-					nav.style.display = 'none'
-				}
-			}
-		} else {
-			router.push('/')
-		}
-	}, [])
-
-	// useEffect(() => {
-	// 	console.log(`props.user: ${props.user.authenticated}`);
-	// 	// if (props.user.authenticated === false) {
-	// 	// 	router.push('/')
-	// 	// } else if (props.user.credentials.moderator === false) {
-	// 	// 	router.push('/')
-	// 	// } else {
-	// 	// 	let nav = document.getElementById('navBar');
-	// 	// 	if (nav !== null) {
-	// 	// 		nav.style.display = 'none'
-	// 	// 	}
-	// 	// }
-	// }, [props.user])
-
-	return (
-		<div>
-			{
-				!props.user.authenticated ? (<Loading />)
-					: (
-						<div>
-							<Container className={classes.navCont}>
-								<Link href='/' className={classes.logoComp}>
-									<a>
-										<img src={matches ? logoFull.src : logo.src} className={matches ? classes.logoClass : classes.logoFull} alt="MPH-logo" />
-									</a>
-								</Link>
-							</Container>
-							<Container className={classes.adminCont}>
-								<Typography style={{ fontWeight: 'bold' }} variant="h5">Admin Panel</Typography>
-								<Grid justify="space-between" container>
-									<Grid xs={12} sm={6} lg={3} className={classes.formControl}>
-										<Typography>Select a Content Type</Typography>
-										<FormControl style={{ minWidth: 120 }}>
-											<Select
-												id="demo-simple-select-outlined"
-												value={select}
-												color="secondary"
-												onChange={handleChange}
-												label="Content"
-											>
-												<MenuItem value=""><em>None</em></MenuItem>
-												<MenuItem value='story'>Story</MenuItem>
-												<MenuItem value='video'>Video</MenuItem>
-												<MenuItem value='documents'>Documents</MenuItem>
-												<MenuItem value='editors'>Editors Pick</MenuItem>
-											</Select>
-										</FormControl>
-									</Grid>
-									{
-										select !== "" &&
-										<Grid xs={12} sm={6} lg={3} className={classes.buttonCont}>
-											<Button
-												size={matches ? 'small' : 'large'}
-												onClick={addContent}
-												style={{ width: 'fit-content', textTransform: 'capitalize' }}
-												variant="contained"
-												color="secondary"
-											>Add New {select}</Button>
-											{
-												select !== 'editors' &&
-												<Button
-													size={matches ? 'small' : 'large'}
-													onClick={removeContent}
-													style={{ width: 'fit-content', textTransform: 'capitalize' }}
-													variant="outlined"
-													className={classes.btnCont}
-												>{select === "story" ? "Edit" : "Delete"} {select}</Button>
-											}
-										</Grid>
-									}
-
-									<Grid xs={12} lg={6} className={classes.mainCont}>
-										<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-											<Alert onClose={handleClose} severity="success">
-												Successful!
-											</Alert>
-										</Snackbar>
-										{
-											select === 'story' ? (
-												add === true ? <AddStory handleSuccess={handleSuccess} /> : (
-													remove === true ? <DeleteStory handleSuccess={handleSuccess} posts={props.data.posts} /> : null
-												)
-											) : (
-												select === 'video' ? (
-													add === true ? <AddStory video={true} handleSuccess={handleSuccess} /> : (
-														remove === true ? <DeleteStory video={true} posts={props.data.posts} /> : null
-													)
-												) : (
-													select === 'documents' ? (
-														add === true ? <AddDocument handleSuccess={handleSuccess} /> : (
-															remove === true ? <DeleteDocument docs={props.data.docs} /> : null
-														)
-													) : (
-														select === 'editors' ? (
-															add === true ? <EditorsPick posts={props.data.posts} handleSuccess={handleSuccess} /> : null
-														) : null
-													)
-												)
-											)}
-									</Grid>
-								</Grid>
-							</Container>
-						</div>
-					)
-			}
-		</div>
-	)
+              <Grid className={classes.mainCont}>
+                <Snackbar
+                  open={open}
+                  autoHideDuration={6000}
+                  onClose={handleClose}
+                >
+                  <Alert onClose={handleClose} severity='success'>
+                    Successful!
+                  </Alert>
+                </Snackbar>
+                {select === 'story' ? (
+                  add === true ? (
+                    <AddStory handleSuccess={handleSuccess} />
+                  ) : remove === true ? (
+                    <DeleteStory
+                      handleSuccess={handleSuccess}
+                      posts={props.data.posts}
+                    />
+                  ) : null
+                ) : select === 'video' ? (
+                  add === true ? (
+                    <AddStory video={true} handleSuccess={handleSuccess} />
+                  ) : remove === true ? (
+                    <DeleteStory video={true} posts={props.data.posts} />
+                  ) : null
+                ) : select === 'documents' ? (
+                  add === true ? (
+                    <AddDocument handleSuccess={handleSuccess} />
+                  ) : remove === true ? (
+                    <DeleteDocument docs={props.data.docs} />
+                  ) : null
+                ) : select === 'editors' ? (
+                  add === true ? (
+                    <EditorsPick
+                      posts={props.data.posts}
+                      handleSuccess={handleSuccess}
+                    />
+                  ) : null
+                ) : null}
+              </Grid>
+            </Grid>
+          </Container>
+        </div>
+      )}
+    </div>
+  );
 }
 
-const mapStateToProps = state => ({
-	user: state.user,
-	data: state.data,
-	UI: state.UI
+const mapStateToProps = (state) => ({
+  user: state.user,
+  data: state.data,
+  UI: state.UI,
 });
 
 const mapDispatchToProps = { getTopic, getAllPosts, getDocuments, isAuth };

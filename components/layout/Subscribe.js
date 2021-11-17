@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) =>
       backgroundColor: 'black',
       position: 'sticky',
       top: 50,
+      height: 'fit-content',
       [theme.breakpoints.down('md')]: {
         margin: '4rem 0',
         width: '100%',
@@ -71,6 +72,8 @@ const useStyles = makeStyles((theme) =>
       fontSize: 15,
       color: 'white',
       float: 'left',
+      fontFamily: '"Helvetica Bold"',
+
       backgroundColor: '#69409e',
       [theme.breakpoints.down('sm')]: {
         height: 44,

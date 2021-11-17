@@ -199,7 +199,7 @@ export function Navbar(props) {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <div id='navBar'>      
+    <div id='navBar'>
       <Container className={classes.navCont}>
         <div
           className='hidden md:block md:flex'
@@ -273,12 +273,20 @@ export function Navbar(props) {
                   {props.user.authenticated ? (
                     <Button
                       color='default'
-                      style={{ textTransform: 'capitalize', padding: 0 }}
+                      style={{
+                        textTransform: 'capitalize',
+                        padding: 5,
+                      }}
                       onClick={handleLogout}
                     >
                       <Typography
                         variant='caption'
-                        style={{ fontWeight: 'bold' }}
+                        style={{
+                          fontSize: '14px',
+                          fontWeight: 600,
+                          fontFamily: '"Helvetica"',
+                          textTransform: 'uppercase',
+                        }}
                       >
                         Logout
                       </Typography>
@@ -287,7 +295,10 @@ export function Navbar(props) {
                     <span>
                       <Button
                         color='default'
-                        style={{ textTransform: 'capitalize', padding: 0 }}
+                        style={{
+                          textTransform: 'capitalize',
+                          padding: 5,
+                        }}
                         onClick={handleOpen}
                       >
                         <img
@@ -352,6 +363,9 @@ export function Navbar(props) {
                             : `/topics/${str.title.toLowerCase()}` &&
                               str.title === 'National Assembly'
                             ? `/document`
+                            : `/topics/${str.title.toLowerCase()}` &&
+                              str.title === 'Voices'
+                            ? `/voices`
                             : `/topics/${str.title.toLowerCase()}`
                         }
                         className={`${classes.titleCont} ${classes.linkClass}`}
@@ -362,7 +376,7 @@ export function Navbar(props) {
                           <Typography
                             variant='body2'
                             style={{
-                              fontSize: 15,
+                              fontSize: '15px',
                               fontFamily: '"Helvetica"',
                             }}
                           >

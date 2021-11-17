@@ -189,7 +189,7 @@ export function Admin(props) {
   // }, [props.user])
 
   return (
-    <div style={{ background: '#FBFBFB', height: '100%' }}>
+    <div style={{ background: '#FBFBFB', minHeight: '100vh' }}>
       {!props.user.authenticated ? (
         <Loading />
       ) : (
@@ -249,6 +249,7 @@ export function Admin(props) {
                 width: '690px',
                 margin: 'auto',
                 padding: '40px',
+                marginBottom: 30,
                 boxShadow: '0px 4px 34px 10px rgba(228, 228, 228, 0.25)',
               }}
             >
@@ -305,7 +306,7 @@ export function Admin(props) {
                       value='documents'
                     >
                       Documents
-                    </MenuItem>                   
+                    </MenuItem>
                   </Select>
                 </FormControl>
               </Grid>

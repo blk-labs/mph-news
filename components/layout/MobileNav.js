@@ -9,6 +9,7 @@ import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
+import Container from '@material-ui/core/Container';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
@@ -83,6 +84,11 @@ const useStyles = makeStyles((theme) =>
       alignItems: 'center',
       justifyContent: 'center',
     },
+    hubClass: {
+      minWidth: 24,
+      maxWidth: 24,
+      height: 24,
+    },
   })
 );
 
@@ -94,6 +100,8 @@ const titles = [
   { start: 'B', end: 'usiness', link: 'business' },
   { start: 'O', end: 'ther', link: 'other' },
   { start: 'N', end: 'ational assembly', link: 'documents' },
+  { start: 'V', end: 'oices', link: 'voices' },
+  { start: 'A', end: 'dmin Panel', link: 'admin' },
 ];
 
 export function MobileNav(props) {
@@ -147,7 +155,13 @@ export function MobileNav(props) {
           {titles.map((tit, i) => (
             <Link
               href={
-                tit.link == 'documents' ? `/documents` : `/topics/${tit.link}`
+                tit.link == 'documents'
+                  ? `/documents`
+                  : `/topics/${tit.link}` && tit.link == 'voices'
+                  ? `/voices`
+                  : `/topics/${tit.link}` && tit.link == 'admin'
+                  ? `/admin`
+                  : `/topics/${tit.link}`
               }
               onClick={toggleDrawer()}
               key={i}
@@ -174,27 +188,80 @@ export function MobileNav(props) {
             </Link>
           ))}
         </div>
-        <a
-          className='flex justify-center'
-          target='_blank'
-          rel='noreferrer'
-          href='https://www.mypoliticalhub.com/profile'
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
         >
-          <div style={{ margin: 'auto 0', minWidth: '24px' }}>
-            <img src={userImg.src} alt='user' className='w-6' />
-          </div>
-          <Typography
-            className={classes.acount}
-            style={{
-              marginLeft: '15px',
-              fontSize: 25,
-              textTransform: 'uppercase',
-            }}
-            variant='p'
-          >
-            Account
-          </Typography>
-        </a>
+          <span>
+            <Container maxWidth='lg' style={{ display: 'contents' }}>
+              <div className={classes.topClass}>
+                {props.user.authenticated ? (
+                  <Button
+                    color='default'
+                    style={{ textTransform: 'capitalize', padding: '0 20px' }}
+                    onClick={handleLogout}
+                  >
+                    <Typography
+                      variant='caption'
+                      style={{
+                        fontSize: 25,
+                        fontFamily: '"Helvetica"',
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      Logout
+                    </Typography>
+                  </Button>
+                ) : (
+                  <span>
+                    <Button
+                      color='default'
+                      style={{ textTransform: 'capitalize', padding: '0 20px' }}
+                      onClick={handleOpen}
+                    >
+                      <img
+                        src={userImg.src}
+                        alt=''
+                        className={classes.hubClass}
+                      />
+                      <Typography
+                        style={{
+                          fontSize: 25,
+                          fontFamily: '"Helvetica"',
+                          fontWeight: 600,
+                          marginLeft: '15px',
+                          textTransform: 'uppercase',
+                        }}
+                        variant='p'
+                      >
+                        Account
+                      </Typography>
+                    </Button>
+                    <Modal
+                      aria-labelledby='transition-modal-title'
+                      aria-describedby='transition-modal-description'
+                      className={classes.modal}
+                      open={open}
+                      onClose={handleClose}
+                      closeAfterTransition
+                      BackdropComponent={Backdrop}
+                      BackdropProps={{
+                        timeout: 500,
+                      }}
+                    >
+                      <Fade in={open}>
+                        <AuthModal handleClose={handleClose} />
+                      </Fade>
+                    </Modal>
+                  </span>
+                )}
+              </div>
+            </Container>
+          </span>
+        </div>
 
         <div className='flex justify-center mt-4'>
           <a

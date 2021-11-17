@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 // Redux
+
 import { connect } from 'react-redux';
 import { getAllPosts, clearErrors } from '../redux/actions/dataActions';
 

@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) =>
       marginLeft: 10,
       color: 'white',
       backgroundColor: '#69409e',
-      fontFamily: '"Helvetica"',
+      fontFamily: '"Helvetica Bold"',
+      fontSize: 15,
 
       [theme.breakpoints.down('sm')]: {
         width: '113px',
-        fontSize: 15,
       },
     },
     textField: {

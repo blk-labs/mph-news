@@ -41,14 +41,22 @@ const useStyles = makeStyles((theme) =>
       marginTop: '1.5rem',
       display: 'flex',
       alignItems: 'center',
+      [theme.breakpoints.down('sm')]: {
+        marginTop: '1rem',
+      },
     },
     list: {
       padding: 0,
     },
-    selectRoot: {
+    topicSel: {
+      justifyContent: 'space-between',
       [theme.breakpoints.down('sm')]: {
-        // width: '90px',
+        flexDirection: 'column',
       },
+    },
+    resize: {
+      fontSize: 15,
+      fontFamily: '"Helvetica"',
     },
     uploadImg: {
       '&:hover, &.MuiIconButton-root': { borderRadius: '0' },
@@ -69,6 +77,23 @@ const useStyles = makeStyles((theme) =>
     },
     popover: {
       padding: '.5rem .75rem',
+    },
+    bottmInfo: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
+      },
+    },
+    post: {
+      marginLeft: 'auto',
+      width: '100px',
+      height: 46,
+      backgroundColor: '#36C2F3',
+      boxShadow: 'none',
+      [theme.breakpoints.down('sm')]: {
+        width: '60px',
+      },
     },
   })
 );
@@ -151,7 +176,7 @@ export function AddStory(props) {
     <div>
       <form className={classes.formCont} onSubmit={handleSubmit}>
         {!props.video && (
-          <Grid container style={{ justifyContent: 'space-between' }}>
+          <Grid container className={classes.topicSel}>
             <Grid xs={6} sm={4} lg={4} className={classes.optionClass}>
               <Typography
                 variant='body1'
@@ -171,7 +196,7 @@ export function AddStory(props) {
                 inputProps={{ 'aria-label': 'primary checkbox' }}
               />
             </Grid>
-            <Grid xs={6} sm={4} sm={8} className={classes.optionClass}>
+            <Grid sm={12} md={8} lg={4} className={classes.optionClass}>
               <div style={{ width: '100%' }}>
                 <Typography
                   variant='body1'
@@ -281,11 +306,14 @@ export function AddStory(props) {
           fullWidth
           value={title}
           onChange={(e) => setTtile(e.target.value)}
-          InputProps={{ disableUnderline: true }}
+          InputProps={{
+            disableUnderline: true,
+            classes: {
+              input: classes.resize,
+            },
+          }}
           margin='normal'
           style={{
-            fontFamily: '"Helvetica"',
-            fontSize: 15,
             border: '1px solid #D9D9D9',
             padding: '4px 12px',
             marginTop: '0',
@@ -349,16 +377,19 @@ export function AddStory(props) {
           value={link}
           onChange={(e) => setLink(e.target.value)}
           margin='normal'
-          InputProps={{ disableUnderline: true }}
-          style={{
-            fontFamily: '"Helvetica"',
-            fontSize: 15,
+          InputProps={{
+            disableUnderline: true,
+            classes: {
+              input: classes.resize,
+            },
+          }}
+          style={{          
             border: '1px solid #D9D9D9',
             padding: '4px 12px',
             marginTop: '0',
           }}
         />
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div className={classes.bottmInfo}>
           {!props.video && (
             <span className={classes.userCont}>
               <Typography
@@ -423,13 +454,7 @@ export function AddStory(props) {
           variant='contained'
           color='secondary'
           type='submit'
-          style={{
-            marginLeft: 'auto',
-            width: '100px',
-            height: 46,
-            backgroundColor: '#36C2F3',
-            boxShadow: 'none',
-          }}
+          className={classes.post}
         >
           Post
         </Button>

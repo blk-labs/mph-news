@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) =>
       },
     },
     createAt: {
-    fontSize: 11,
+      fontSize: 11,
       fontFamily: '"Helvetica"',
       textTransform: 'capitalize',
       [theme.breakpoints.down('xs')]: {
@@ -106,25 +106,45 @@ const useStyles = makeStyles((theme) =>
 );
 
 const postsPerPage = 4;
+const firstIndex = 0;
+
 let arrayForHoldingPosts = [];
 
 export default function TopicMap(props) {
-  const [postsToShow, setPostsToShow] = useState([]);
-  const [next, setNext] = useState(3);
+  // const [postsToShow, setPostsToShow] = useState([]);
+  // const [next, setNext] = useState(3);
 
-  const loopWithSlice = (start, end) => {
-    const slicedPosts = props.posts.slice(start, end);
-    arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedPosts];
-    setPostsToShow(arrayForHoldingPosts);
+  // const loopWithSlice = (start, end) => {
+  //   const slicedPosts = props.posts.slice(start, end);
+  //   arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedPosts];
+  //   setPostsToShow(arrayForHoldingPosts);
+  // };
+
+  // useEffect(() => {
+  //   loopWithSlice(4, postsPerPage);
+  // }, []);
+
+  // const handleShowMorePosts = () => {
+  //   loopWithSlice(next, next + postsPerPage);
+  //   setNext(next + postsPerPage);
+  // };
+
+  const [pageSize, setPageSize] = React.useState(6);
+  const [page, setPage] = React.useState(1);
+  const [postsToShow, setData] = React.useState(arrayForHoldingPosts.slice(firstIndex, pageSize));
+
+  React.useEffect(() => {
+    setData(arrayForHoldingPosts.slice(0, pageSize));
+  }, [pageSize]);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+    setData(arrayForHoldingPosts.slice(firstIndex + pageSize * (value - 1), pageSize * value));
   };
 
-  useEffect(() => {
-    loopWithSlice(4, postsPerPage);
-  }, []);
-
-  const handleShowMorePosts = () => {
-    loopWithSlice(next, next + postsPerPage);
-    setNext(next + postsPerPage);
+  //Change width
+  const changeWidth = (e) => {
+    setPageSize(parseInt(e.target.value, 10));
   };
 
   const theme = useTheme();
@@ -173,21 +193,24 @@ export default function TopicMap(props) {
           </a>
         </Link>
       ))}
-      <Button
+      {/* <Button
         onClick={handleShowMorePosts}
         variant='outlined'
         style={{ marginTop: '2rem', width: '100%' }}
       >
         More {props.title} stories
-      </Button>
-      {/* <Stack spacing={2}>
-        <Pagination
-          count={5}
-          variant='outlined'
-          shape='rounded'
-          onClick={handleShowMorePosts}
-        />
-      </Stack> */}
+      </Button> */}
+      <div style={{ marginTop: 70, marginBottom: 50 }}>
+        <Stack spacing={2}>
+          <Pagination
+            count={Math.ceil(arrayForHoldingPosts.length / pageSize)}
+            variant='outlined'
+            shape='rounded'
+            onChange={handleChange}
+            className={classes.root}
+          />
+        </Stack>
+      </div>
     </div>
   );
 }

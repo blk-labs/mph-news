@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) =>
       flexDirection: 'column',
       marginTop: '1rem',
     },
+    resize: {
+      fontSize: 15,
+      fontFamily: '"Helvetica"',
+    },
     optionClass: {
       display: 'flex',
       margin: '1rem 0 1rem',
@@ -42,6 +46,16 @@ const useStyles = makeStyles((theme) =>
       backgroundColor: 'rgba(0,0,0,.10)',
       padding: '.5rem',
       borderRadius: '50%',
+    },
+    post: {
+      marginLeft: 'auto',
+      width: '100px',
+      height: 46,
+      backgroundColor: '#36C2F3',
+      boxShadow: 'none',
+      [theme.breakpoints.down('sm')]: {
+        width: '60px',
+      },
     },
   })
 );
@@ -94,7 +108,16 @@ export function AddDocument(props) {
 
   return (
     <div>
-      <Typography variant='caption'>Please upload document</Typography>
+      <Typography
+        variant='caption'
+        style={{
+          margin: '1rem 0 0.5rem',
+          fontFamily: '"Helvetica"',
+          fontSize: 15,
+        }}
+      >
+        Please upload document
+      </Typography>
       <form className={classes.formCont} onSubmit={handleSubmit}>
         <Typography
           variant='body1'
@@ -113,7 +136,12 @@ export function AddDocument(props) {
           value={title}
           onChange={(e) => setTtile(e.target.value)}
           margin='normal'
-          InputProps={{ disableUnderline: true }}
+          InputProps={{
+            disableUnderline: true,
+            classes: {
+              input: classes.resize,
+            },
+          }}
           style={{
             fontFamily: '"Helvetica"',
             fontSize: 15,
@@ -169,7 +197,12 @@ export function AddDocument(props) {
           value={link}
           onChange={(e) => setLink(e.target.value)}
           margin='normal'
-          InputProps={{ disableUnderline: true }}
+          InputProps={{
+            disableUnderline: true,
+            classes: {
+              input: classes.resize,
+            },
+          }}
           style={{
             fontFamily: '"Helvetica"',
             fontSize: 15,
@@ -223,13 +256,7 @@ export function AddDocument(props) {
           variant='contained'
           color='secondary'
           type='submit'
-          style={{
-            marginLeft: 'auto',
-            width: '100px',
-            height: 46,
-            backgroundColor: '#36C2F3',
-            boxShadow: 'none',
-          }}
+          className={classes.post}
         >
           Post
         </Button>

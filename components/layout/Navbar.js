@@ -361,11 +361,11 @@ export function Navbar(props) {
                           str.title === 'Admin Panel'
                             ? `/admin`
                             : `/topics/${str.title.toLowerCase()}` &&
-                              str.title === 'National Assembly'
-                            ? `/document`
-                            : `/topics/${str.title.toLowerCase()}` &&
                               str.title === 'Voices'
                             ? `/voices`
+                            : `/topics/${str.title.toLowerCase()}` &&
+                              str.title === 'National Assembly'
+                            ? `/document`
                             : `/topics/${str.title.toLowerCase()}`
                         }
                         className={`${classes.titleCont} ${classes.linkClass}`}

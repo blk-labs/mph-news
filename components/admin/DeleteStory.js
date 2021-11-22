@@ -33,11 +33,28 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       margin: '1rem auto',
       gap: 20,
+      [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
+        width: '344px',
+      },
+      [theme.breakpoints.down('xs')]: {
+        width: '100%',
+      },
     },
     delete: {
       cursor: 'pointer',
       '&:hover': {
         transition: '.5s',
+      },
+    },
+    postImg: {
+      minWidth: '100%',
+      maxWidth: '378px',
+      height: '281px',
+      objectFit: 'cover',
+      [theme.breakpoints.down('sm')]: {
+        minWidth: '100%',
+        maxWidth: '344px',
       },
     },
     title: {
@@ -135,12 +152,7 @@ export function DeleteStory(props) {
               <img
                 src={post.postImage}
                 alt={`${props.topic} image`}
-                style={{
-                  minWidth: '378px',
-                  maxWidth: '378px',
-                  height: '281px',
-                  objectFit: 'cover',
-                }}
+                className={classes.postImg}               
               />
               <div>
                 <div className={classes.postConts}>

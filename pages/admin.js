@@ -45,13 +45,37 @@ const useStyles = makeStyles((theme) =>
     formControl: {
       width: '100%',
     },
+    admin: {
+      fontFamily: '"Helvetica Black Bold"',
+      fontSize: 48,
+      paddingBottom: 40,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 24,
+      },
+    },
     navCont: {
       marginBottom: '5rem',
       paddingTop: '1.5rem',
     },
+    gridCont: {
+      background: '#fff',
+      width: '690px',
+      margin: 'auto',
+      padding: '40px',
+      marginBottom: 30,
+      boxShadow: '0px 4px 34px 10px rgba(228, 228, 228, 0.25)',
+      [theme.breakpoints.down('sm')]: {
+        width: '85%',
+      },
+      [theme.breakpoints.down('xs')]: {
+        paddingRight: '20px',
+        paddingLeft: '20px',
+        width: '100%',
+      },
+    },
     logoFull: {
       height: 'auto',
-      width: 50,
+      width: 105,
       margin: '1rem',
     },
     hubClass: {
@@ -80,11 +104,32 @@ const useStyles = makeStyles((theme) =>
       marginTop: '2rem',
     },
     btnCont: {
+      width: 'fit-content',
+      textTransform: 'uppercase',
+      marginLeft: 30,
+      fontSize: 15,
+      fontFamily: '"Helvetica Bold"',
       backgroundColor: '#185E5C',
       color: 'white',
       borderColor: 'transparent',
       '&:hover': {
         backgroundColor: '#e94b47',
+      },
+      [theme.breakpoints.down('sm')]: {
+        padding: 8,
+      },
+    },
+    btnConts: {
+      width: 'fit-content',
+      textTransform: 'uppercase',
+      marginLeft: 'auto',
+      background: '#6B3FA0',
+      height: 45,
+      fontSize: 15,
+      fontFamily: '"Helvetica Bold"',
+      boxShadow: 'none',
+      [theme.breakpoints.down('sm')]: {
+        padding: 8,
       },
     },
   })
@@ -205,7 +250,7 @@ export function Admin(props) {
               <Link href='/' className={classes.logoComp}>
                 <a>
                   <img
-                    src={matches ? logoFull.src : logo.src}
+                    src={logoFull.src}
                     className={matches ? classes.logoClass : classes.logoFull}
                     alt='MPH-logo'
                     style={{ width: '' }}
@@ -233,26 +278,10 @@ export function Admin(props) {
             </div>
           </Container>
           <Container className={classes.adminCont}>
-            <Typography
-              style={{
-                fontFamily: '"Helvetica Black Bold"',
-                fontSize: 48,
-                paddingBottom: 40,
-              }}
-              variant='h5'
-            >
+            <Typography className={classes.admin} variant='h5'>
               Admin Panel
             </Typography>
-            <Grid
-              style={{
-                background: '#fff',
-                width: '690px',
-                margin: 'auto',
-                padding: '40px',
-                marginBottom: 30,
-                boxShadow: '0px 4px 34px 10px rgba(228, 228, 228, 0.25)',
-              }}
-            >
+            <Grid className={classes.gridCont}>
               <Grid className={classes.formControl}>
                 <Typography className={classes.contentType}>
                   Select a Content Type
@@ -315,16 +344,8 @@ export function Admin(props) {
                   <Button
                     size={matches ? 'small' : 'large'}
                     onClick={addContent}
-                    style={{
-                      width: 'fit-content',
-                      textTransform: 'uppercase',
-                      marginLeft: 'auto',
-                      background: '#6B3FA0',
-                      height: 45,
-                      fontSize: 15,
-                      fontFamily: '"Helvetica Bold"',
-                      boxShadow: 'none',
-                    }}
+                    className={classes.btnConts}
+                    style={{}}
                     variant='contained'
                     color='secondary'
                   >
@@ -334,13 +355,6 @@ export function Admin(props) {
                     <Button
                       size={matches ? 'small' : 'large'}
                       onClick={removeContent}
-                      style={{
-                        width: 'fit-content',
-                        textTransform: 'uppercase',
-                        marginLeft: 30,
-                        fontSize: 15,
-                        fontFamily: '"Helvetica Bold"',
-                      }}
                       variant='outlined'
                       className={classes.btnCont}
                     >

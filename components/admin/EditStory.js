@@ -45,12 +45,19 @@ const useStyles = makeStyles((theme) =>
       margin: 'auto',
       padding: '2.5%',
       overflow: 'scroll',
+      [theme.breakpoints.down('sm')]: {
+        width: '90%',
+      },
     },
     textClass: {
       width: '100%',
       fontFamily: '"Helvetica"',
       fontSize: 15,
     },
+    input: {
+      color: '#fff',
+    },
+
     btnClass: {
       width: 'fit-content',
     },
@@ -83,6 +90,9 @@ const useStyles = makeStyles((theme) =>
       height: 46,
       backgroundColor: '#36C2F3',
       boxShadow: 'none',
+      [theme.breakpoints.down('sm')]: {
+        width: 'auto',
+      },
     },
   })
 );
@@ -236,10 +246,14 @@ export function EditStory(props) {
                 color='secondary'
                 value={link}
                 onChange={(e) => setLink(e.target.value)}
-                InputProps={{ disableUnderline: true }}
+                InputProps={{
+                  disableUnderline: true,
+                  className: classes.input,
+                }}
                 style={{
                   border: '1px solid #D9D9D9',
                   padding: '4px 12px',
+                  fontFamily: '"Helvetica"',
                   marginTop: '0',
                 }}
               />

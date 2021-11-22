@@ -87,7 +87,7 @@ export function Topics(props) {
   const { topic } = props.data;
   const { loading } = props.UI;
 
-  const moreFilter = topic.filter((data, i) => i > 0);
+  const moreFilter = topic.filter((data, i) => data > 3);
 
   useEffect(() => {
     if (title !== router.query.title) {
@@ -143,7 +143,9 @@ export function Topics(props) {
           </Grid>
           <Grid container item container spacing={5} className='mt-4'>
             <Grid item xs={12} md={8}>
-              <MoreMap posts={moreFilter.splice(4, 4)} title={title} />
+              <div className={classes.gridBtm}>
+                <MoreMap posts={moreFilter.splice(4, 4)} title={title} />
+              </div>
             </Grid>
             <Grid item xs={12} md={4}>
               <Subscribe />

@@ -35,7 +35,12 @@ const useStyles = makeStyles((theme) =>
     inputCont: {
       display: 'flex',
     },
+    input: {
+      color: '#000',
+    },
     iconCont: {
+      borderTopRightRadius: 2,
+      borderBottomRightRadius: 2,
       cursor: 'pointer',
       minWidth: '3rem',
       minHeight: '2.6rem',
@@ -133,7 +138,6 @@ export function SearchModal(props) {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   const searchFunc = () => {
-    // do something
     let updated = props.data.posts.filter((fil) =>
       fil.title.toLowerCase().includes(search.toLowerCase())
     );
@@ -155,8 +159,18 @@ export function SearchModal(props) {
             fullWidth
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            InputProps={{ disableUnderline: true }}
-            style={{ border: '1px solid #D9D9D9', height: '42px' }}
+            InputProps={{
+              disableUnderline: true,
+              className: classes.input,
+            }}
+            style={{
+              border: '1px solid #D9D9D9',
+              padding: '4px 12px',
+              fontFamily: '"Helvetica"',
+              marginTop: '0',
+              borderTopLeftRadius: 2,
+              borderBottomLeftRadius: 2,
+            }}
           />
           <div className={classes.iconCont}>
             <SearchIcon

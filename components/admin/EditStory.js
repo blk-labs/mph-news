@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) =>
       fontSize: 15,
     },
     input: {
-      color: '#fff',
+      color: '#000',
     },
 
     btnClass: {

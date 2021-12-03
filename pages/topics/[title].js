@@ -12,6 +12,8 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Stack from '@mui/material/Stack';
+import Pagination from '@material-ui/lab/Pagination';
 
 // Comps
 import FirstMap from '../../components/topics/FirstMap';
@@ -75,7 +77,10 @@ const useStyles = makeStyles((theme) =>
     },
   })
 );
+const postsPerPage = 4;
+const firstIndex = 6;
 
+let arrayForHoldingPosts = [];
 export function Topics(props) {
   const router = useRouter();
 
@@ -99,6 +104,45 @@ export function Topics(props) {
     props.getTopic(router.query.title);
   }, [title]);
 
+  // const [pageSize, setPageSize] = React.useState(6);
+  // const [page, setPage] = React.useState(1);
+  // const [topicData, setData] = React.useState(
+  //   arrayForHoldingPosts.slice(firstIndex, pageSize)
+  // );
+
+  // React.useEffect(() => {
+  //   setData(arrayForHoldingPosts.slice(0, pageSize));
+  // }, [pageSize]);
+
+  // const handleChange = (event, value) => {
+  //   setPage(value);
+  //   setData(
+  //     arrayForHoldingPosts.slice(
+  //       firstIndex + pageSize * (value - 1),
+  //       pageSize * value
+  //     )
+  //   );
+  // };
+
+  // const loopWithSlice = (next, prev) => {
+  //   const slicedPosts = props.posts.slice(next, prev);
+  //   arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedPosts];
+  //   setPostsToShow(arrayForHoldingPosts);
+  // };
+
+  // useEffect(() => {
+  //   loopWithSlice(0, postsPerPage);
+  // }, []);
+
+  // const handleShowMorePosts = () => {
+  //   loopWithSlice(next, next + postsPerPage);
+  //   setNext(next + postsPerPage);
+  // };
+
+  // //Change width
+  // const changeWidth = (e) => {
+  //   setPageSize(parseInt(e.target.value, 10));
+  // };
   return (
     <div style={{ position: 'relative' }}>
       <SEO
@@ -132,22 +176,32 @@ export function Topics(props) {
                   .map((data, i) => (
                     <span key={i}>
                       <SideMap topic={data} />
-                      {/* {topic.filter((data, i) => i > 0).splice(0, 4).length !==
-                      i + 1 ? (
-                        <hr className={classes.newsHr} />
-                      ) : null} */}
                     </span>
                   ))}
               </div>
             </Grid>
           </Grid>
-          <Grid container item container spacing={5} className='mt-4'>
+          <Grid container item container spacing={5} className='mt-8 pt-6'>
             <Grid item xs={12} md={8}>
-              <div className={classes.gridBtm}>
-                <MoreMap posts={moreFilter.splice(4, 4)} title={title} />
-              </div>
+              {topic
+                .filter((data, i) => i > 0)
+                .splice(2, 6)
+                .map((data, i) => (
+                  <span key={i}>
+                    <MoreMap topic={data} />
+                  </span>
+                ))}
+              {/* <Stack spacing={2}>
+                <Pagination
+                  count={Math.ceil(arrayForHoldingPosts.length / pageSize)}
+                  variant='outlined'
+                  shape='rounded'
+                  onChange={handleChange}
+                  className={classes.root}
+                />
+              </Stack> */}
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} mt={4}>
               <Subscribe />
             </Grid>
           </Grid>

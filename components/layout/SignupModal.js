@@ -262,15 +262,6 @@ export const SignupModal = (props) => {
             </IconButton>
           </Paper>
         </div>
-
-        {/* <TextField
-          id='confirm'
-          label='Confirm'
-          value={confirm}
-          type='password'
-          onChange={(e) => setConfirm(e.target.value)}
-          error={errors !== null}
-        /> */}
         <Button
           disabled={loading}
           type='submit'

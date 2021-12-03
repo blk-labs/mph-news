@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) =>
       },
     },
     postImg: {
-      minWidth: '100%',
+      minWidth: '378px',
       maxWidth: '378px',
       height: '281px',
       objectFit: 'cover',
@@ -93,6 +93,8 @@ const useStyles = makeStyles((theme) =>
       minWidth: '3rem',
       minHeight: '2.6rem',
       backgroundColor: 'transparent',
+      borderTopRightRadius: 2,
+      borderBottomRightRadius: 2,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -134,8 +136,19 @@ export function DeleteStory(props) {
           fullWidth
           //   value={search}
           //   onChange={(e) => setSearch(e.target.value)}
-          InputProps={{ disableUnderline: true }}
-          style={{ border: '1px solid #D9D9D9', height: '42px 60px' }}
+          onChange={(e) => setSearch(e.target.value)}
+          InputProps={{
+            disableUnderline: true,
+            className: classes.input,
+          }}
+          style={{
+            border: '1px solid #D9D9D9',
+            padding: '4px 10px',
+            fontFamily: '"Helvetica"',
+            marginTop: '0',
+            borderTopLeftRadius: 2,
+            borderBottomLeftRadius: 2,
+          }}
         />
         <div className={classes.iconCont}>
           <SearchIcon
@@ -152,7 +165,7 @@ export function DeleteStory(props) {
               <img
                 src={post.postImage}
                 alt={`${props.topic} image`}
-                className={classes.postImg}               
+                className={classes.postImg}
               />
               <div>
                 <div className={classes.postConts}>

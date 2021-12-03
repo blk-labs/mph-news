@@ -20,7 +20,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme) => 
   createStyles({
     root: {
       fontSize: 24,

@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       flexDirection: 'column',
       marginRight: '1.5rem',
+      maxWidth: '100%',
       [theme.breakpoints.down('xs')]: {
         marginRight: '0',
       },
@@ -40,7 +41,6 @@ const useStyles = makeStyles((theme) =>
     },
     mainImg: {
       minWidth: 683,
-      maxWidth: 683,
       height: '558px',
       [theme.breakpoints.down('md')]: {
         minWidth: 683,
@@ -50,6 +50,12 @@ const useStyles = makeStyles((theme) =>
         minWidth: '100%',
         height: '100%',
       },
+    },
+    imgMain: {
+      minWidth: '100%',
+      maxWidth: '100%',
+      height: '100%',
+      objectFit: 'cover',
     },
     subImg: {
       height: '350px',
@@ -208,16 +214,12 @@ export default function TopicMap(props) {
               href={`/story/${data.id}`}
             >
               <a>
-                <Grid item xs={12} md={12} className={classes.mainCont} key={i}>
+                <Grid item xs={12} lg={12} className={classes.mainCont} key={i}>
                   <div className={classes.mainImg}>
                     <img
                       src={data.postImage}
                       alt={`${props.topic} image`}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                      }}
+                      className={classes.imgMain}
                     />
                   </div>
                   <Typography className={classes.newsTitle}>
@@ -259,7 +261,7 @@ export default function TopicMap(props) {
               href={`/story/${data.id}`}
             >
               <a>
-                <Grid item xs={12} md={4} className={classes.subCont} key={i}>
+                <Grid item xs={12} lg={2} className={classes.subCont} key={i}>
                   <img
                     src={data.postImage}
                     className={classes.subImg}

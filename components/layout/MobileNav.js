@@ -14,7 +14,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 // Comps
-import AuthModal from './AuthModal';
+import AuthModal from '../../pages/login';
 import logo from '../../public/images/logoFullColor2.png';
 import navImg from '../../public/images/navImg.png';
 import navClose from '../../public/images/navClose.png';
@@ -101,7 +101,6 @@ const titles = [
   { start: 'O', end: 'ther', link: 'other' },
   { start: 'N', end: 'ational assembly', link: 'documents' },
   { start: 'V', end: 'oices', link: 'voices' },
-  { start: 'A', end: 'dmin Panel', link: 'admin' },
 ];
 
 export function MobileNav(props) {
@@ -159,8 +158,6 @@ export function MobileNav(props) {
                   ? `/documents`
                   : `/topics/${tit.link}` && tit.link == 'voices'
                   ? `/voices`
-                  : `/topics/${tit.link}` && tit.link == 'admin'
-                  ? `/admin`
                   : `/topics/${tit.link}`
               }
               onClick={toggleDrawer()}
@@ -187,6 +184,30 @@ export function MobileNav(props) {
               </a>
             </Link>
           ))}
+          {props.user.authenticated && (
+            <Link
+              href='/admin'
+              className={`${classes.titleCont} ${classes.linkClass}`}
+            >
+              <a
+                className={classes.linkClass}
+                style={{
+                  display: 'block',
+                }}
+              >
+                <span className={classes.titleClass}>
+                  <Typography
+                    variant='p'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                    }}
+                  >
+                    Admin Panel
+                  </Typography>
+                </span>
+              </a>
+            </Link>
+          )}
         </div>
         <div
           style={{
@@ -199,27 +220,36 @@ export function MobileNav(props) {
             <Container maxWidth='lg' style={{ display: 'contents' }}>
               <div className={classes.topClass}>
                 {props.user.authenticated ? (
-                  <Button
-                    color='default'
-                    style={{ textTransform: 'capitalize', padding: '0 20px' }}
-                    onClick={handleLogout}
-                  >
-                    <Typography
-                      variant='caption'
-                      style={{
-                        fontSize: 25,
-                        fontFamily: '"Helvetica"',
-                        textTransform: 'uppercase',
-                      }}
-                    >
-                      Logout
-                    </Typography>
-                  </Button>
-                ) : (
-                  <span>
-                    <Button
+                  <Link href='/'>
+                    <a
                       color='default'
                       style={{ textTransform: 'capitalize', padding: '0 20px' }}
+                      onClick={handleLogout}
+                    >
+                      <Typography
+                        variant='caption'
+                        style={{
+                          fontSize: 25,
+                          fontFamily: '"Helvetica"',
+                          fontWeight: 600,
+                          marginLeft: '8px',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        Logout
+                      </Typography>
+                    </a>
+                  </Link>
+                ) : (
+                  <Link href='/login'>
+                    <a
+                      color='default'
+                      style={{
+                        textTransform: 'capitalize',
+                        padding: '0 20px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
                       onClick={handleOpen}
                     >
                       <img
@@ -232,31 +262,15 @@ export function MobileNav(props) {
                           fontSize: 25,
                           fontFamily: '"Helvetica"',
                           fontWeight: 600,
-                          marginLeft: '15px',
+                          marginLeft: '8px',
                           textTransform: 'uppercase',
                         }}
                         variant='p'
                       >
                         Account
                       </Typography>
-                    </Button>
-                    <Modal
-                      aria-labelledby='transition-modal-title'
-                      aria-describedby='transition-modal-description'
-                      className={classes.modal}
-                      open={open}
-                      onClose={handleClose}
-                      closeAfterTransition
-                      BackdropComponent={Backdrop}
-                      BackdropProps={{
-                        timeout: 500,
-                      }}
-                    >
-                      <Fade in={open}>
-                        <AuthModal handleClose={handleClose} />
-                      </Fade>
-                    </Modal>
-                  </span>
+                    </a>
+                  </Link>
                 )}
               </div>
             </Container>

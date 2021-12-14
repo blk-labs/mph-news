@@ -126,8 +126,8 @@ const useStyles = makeStyles((theme) =>
       background: '#6B3FA0',
       height: 45,
       fontSize: 15,
-      fontFamily: '"Helvetica Bold"',
-      boxShadow: 'none',
+      fontmily: '"Helvetica Bold"',
+      boxShaw: 'none',
       [theme.breakpoints.down('sm')]: {
         padding: 8,
       },
@@ -135,155 +135,159 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+
 export function Admin(props) {
-  const [select, setSelect] = useState('');
-  const [add, setAdd] = useState(false);
-  const [remove, setRemove] = useState(false);
-  const [content, setContent] = useState([]);
 
-  const { docs, topic } = props.data;
-  // const { loading } = props.UI;
+const [select, sSelect] = useState('');
+const [add, setA] = useState(false);
+const [remove, sRemove] = useState(false);
+const [content, tContent] = useState([]);
 
-  const [open, setOpen] = useState(false);
+ const { doctopic } = props.data;
+ // const oading } = props.UI;
 
-  const handleSuccess = () => {
-    setSelect('');
-    setOpen(true);
-  };
+ const [openetOpen] = useState(false);
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
+const handleSuccess = () => {
+		setSelect('');
+		setOpen(true);
+	};
 
-  const handleChange = (event) => {
-    setSelect(event.target.value);
-    getContent(event.target.value);
-  };
+ const handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+		setOpen(false);
+	};
+
+	const handleChange = (event) => {
+		setSelect(event.target.value);
+		getContent(event.target.value);
+	};
 
   const getContent = (cont) => {
-    if (cont === 'story' || cont === 'editors') {
-      props.getAllPosts();
-      setAdd(false);
-      setRemove(false);
-      setContent(props.data.posts);
-    } else if (cont === 'video') {
-      props.getTopic(cont);
-      setAdd(false);
-      setRemove(false);
-      setContent(props.data.topic);
-    } else if (cont === 'documents') {
-      props.getDocuments();
-      setAdd(false);
-      setRemove(false);
-      setContent(props.data.docs);
-    }
-  };
+		if (cont === 'story' || cont === 'editors') {
+			props.getAllPosts()
+			setAdd(false);
+			setRemove(false);
+			setContent(props.data.posts);
+		} else if (cont === 'video') {
+			props.getTopic(cont)
+			setAdd(false);
+			setRemove(false);
+			setContent(props.data.topic);
+		} else if (cont === 'documents') {
+			props.getDocuments()
+			setAdd(false);
+			setRemove(false);
+			setContent(props.data.docs);
+		}
+	}
 
-  const addContent = () => {
-    setAdd(true);
-    setRemove(false);
-  };
+	const addContent = () => {
+		setAdd(true);
+		setRemove(false)
+	}
 
-  const removeContent = () => {
-    setAdd(false);
-    setRemove(true);
-  };
+	const removeContent = () => {
+		setAdd(false);
+		setRemove(true)
+	}
 
-  let router = useRouter();
+	let router = useRouter();
 
-  const theme = useTheme();
-  const classes = useStyles(props);
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+	const theme = useTheme();
+	const classes = useStyles(props);
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
 
-  const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.FBIdToken;
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      if (decodedToken.exp * 1000 < Date.now()) {
-        props.logoutUser();
-        router.push('/');
-      } else {
-        props.isAuth(decodedToken);
-        let nav = document.getElementById('navBar');
-        if (nav !== null) {
-          nav.style.display = 'none';
-        }
-      }
-    } else {
-      router.push('/');
-    }
-  }, []);
 
-  // useEffect(() => {
-  // 	console.log(`props.user: ${props.user.authenticated}`);
-  // 	// if (props.user.authenticated === false) {
-  // 	// 	router.push('/')
-  // 	// } else if (props.user.credentials.moderator === false) {
-  // 	// 	router.push('/')
-  // 	// } else {
-  // 	// 	let nav = document.getElementById('navBar');
-  // 	// 	if (nav !== null) {
-  // 	// 		nav.style.display = 'none'
-  // 	// 	}
+
+	useEffect(() => {
+		const token = localStorage.FBIdToken;
+		if (token) {
+			const decodedToken = jwtDecode(token);
+			if (decodedToken.exp * 1000 < Date.now()) {
+				props.logoutUser();
+				router.push('/')
+			} else {
+				props.isAuth(decodedToken)
+				let nav = document.getElementById('navBar');
+				if (nav !== null) {
+					nav.style.display = 'none'
+				}
+			}
+		} else {
+			router.push('/')
+		}
+	}, [])
+  
+    // useEffect(() => {
+    // 	console.log(`props.user: ${props.user.authenticated}`);
+    // 	// if (props.user.authenticated === false) {
+   // 	// 	ro uter.push('/')
+   // 	// } e lse if (props.user.credentials.moderator === false) {
+   // 	// 	ro uter.push('/')
+   // 	// } e lse {
+   // 	// 	le t nav = document.getElementById('navBar');
+   // 	// 	if  (nav !== null) {
+   // 	// 		n av.style.display = 'none'
+   // 	// 	 }
   // 	// }
-  // }, [props.user])
-
-  return (
-    <div style={{ background: '#FBFBFB', minHeight: '100vh' }}>
-      {!props.user.authenticated ? (
-        <Loading />
-      ) : (
-        <div>
-          <Container className={classes.navCont}>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Link href='/' className={classes.logoComp}>
-                <a>
-                  <img
-                    src={logoFull.src}
-                    className={matches ? classes.logoClass : classes.logoFull}
-                    alt='MPH-logo'
-                    style={{ width: '' }}
-                  />
-                </a>
-              </Link>
+   // }, [p rops.user])
+  
+   return ( 
+     <div style={{ background: '#FBFBFB', minHeight: '100vh' }}>
+       {!props.user.authenticated ? (
+         <Loading />
+       ) : ( 
+         <div>
+            <Container className={classes.navCont}>
               <div
                 style={{
                   display: 'flex',
-                  cursor: 'pointer',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
                 }}
               >
-                <img src={userImg.src} alt='' className={classes.hubClass} />
-                <Typography
-                  variant='p'
+                <Link href='/' className={classes.logoComp}>
+                  <a>
+                    <img
+                      src={logoFull.src}
+                      className={matches ? classes.logoClass : classes.logoFull}
+                      alt='MPH-logo'
+                      style={{ width: '' }}
+                    />
+                  </a>
+                </Link>
+                <div
                   style={{
-                    fontSize: 15,
-                    textTransform: 'capitalize',
-                    fontFamily: '"Helvetica"',
+                    display: 'flex',
+                    cursor: 'pointer',
                   }}
                 >
-                  {props.user.credentials.fName} {props.user.credentials.lName}
-                </Typography>
-              </div>
+                  <img src={userImg.src} alt='' className={classes.hubClass} />
+                  <Typography
+                    variant='p'
+                    style={{
+                      fontSize: 15,
+                      textTransform: 'capitalize',
+                      fontFamily: '"Helvetica"',
+                    }}
+                  >
+                    {props.user.credentials.fName} {props.user.credentials.lName}
+                  </Typography>
+                </div>
             </div>
-          </Container>
-          <Container className={classes.adminCont}>
-            <Typography className={classes.admin} variant='h5'>
-              Admin Panel
-            </Typography>
-            <Grid className={classes.gridCont}>
-              <Grid className={classes.formControl}>
-                <Typography className={classes.contentType}>
+           </Container>
+           <Container className={classes.adminCont}>
+              <Typography className={classes.admin} variant='h5'>
+                Admin Panel
+              </Typography>
+              <Grid className={classes.gridCont}>
+                <Grid className={classes.formControl}>
+                  <Typography className={classes.contentType}>
                   Select a Content Type
                 </Typography>
                 <FormControl

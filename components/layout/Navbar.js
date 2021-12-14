@@ -11,9 +11,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import { LinearProgress } from '@material-ui/core';
 
 // Icons
@@ -30,7 +27,7 @@ import {
 //Comps
 import MobileNav from './MobileNav';
 import SearchModal from './Search';
-import AuthModal from './AuthModal';
+// import AuthModal from '../../pages/authModal';
 import logoFull from '../../public/images/logoFullColor2.png';
 import userImg from '../../public/images/userImg.png';
 import logo from '../../public/images/logo.png';
@@ -137,7 +134,6 @@ const titles = [
   { title: 'Other' },
   { title: 'National Assembly' },
   { title: 'Voices' },
-  { title: 'Admin Panel' },
 ];
 
 export function Navbar(props) {
@@ -271,33 +267,37 @@ export function Navbar(props) {
               <Container maxWidth='lg' style={{ display: 'contents' }}>
                 <div className={classes.topClass}>
                   {props.user.authenticated ? (
-                    <Button
-                      color='default'
-                      style={{
-                        textTransform: 'capitalize',
-                        padding: 5,
-                      }}
-                      onClick={handleLogout}
-                    >
-                      <Typography
-                        variant='caption'
-                        style={{
-                          fontSize: '14px',
-                          fontWeight: 600,
-                          fontFamily: '"Helvetica"',
-                          textTransform: 'uppercase',
-                        }}
-                      >
-                        Logout
-                      </Typography>
-                    </Button>
-                  ) : (
-                    <span>
-                      <Button
+                    <Link href='/'>
+                      <a
                         color='default'
                         style={{
                           textTransform: 'capitalize',
                           padding: 5,
+                          display: 'flex',
+                        }}
+                        onClick={handleLogout}
+                      >
+                        <Typography
+                          variant='caption'
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: 600,
+                            fontFamily: '"Helvetica"',
+                            textTransform: 'uppercase',
+                          }}
+                        >
+                          Logout
+                        </Typography>
+                      </a>
+                    </Link>
+                  ) : (
+                    <Link href='/login'>
+                      <a
+                        color='default'
+                        style={{
+                          textTransform: 'capitalize',
+                          padding: 5,
+                          display: 'flex'
                         }}
                         onClick={handleOpen}
                       >
@@ -317,24 +317,8 @@ export function Navbar(props) {
                         >
                           Account
                         </Typography>
-                      </Button>
-                      <Modal
-                        aria-labelledby='transition-modal-title'
-                        aria-describedby='transition-modal-description'
-                        className={classes.modal}
-                        open={open}
-                        onClose={handleClose}
-                        closeAfterTransition
-                        BackdropComponent={Backdrop}
-                        BackdropProps={{
-                          timeout: 500,
-                        }}
-                      >
-                        <Fade in={open}>
-                          <AuthModal handleClose={handleClose} />
-                        </Fade>
-                      </Modal>
-                    </span>
+                      </a>
+                    </Link>
                   )}
                 </div>
               </Container>
@@ -400,10 +384,7 @@ export function Navbar(props) {
                     <Link
                       key={i}
                       href={
-                        str.title === 'Admin Panel'
-                          ? `/admin`
-                          : `/topics/${str.title.toLowerCase()}` &&
-                            str.title === 'National Assembly'
+                        str.title === 'National Assembly'
                           ? `/documents`
                           : `/topics/${str.title.toLowerCase()}`
                       }
@@ -422,6 +403,25 @@ export function Navbar(props) {
                       </a>
                     </Link>
                   ))}
+              {props.user.authenticated && (
+                <Link
+                  href='/admin'
+                  className={`${classes.titleCont} ${classes.linkClass}`}
+                >
+                  <a className={`${classes.titleCont} ${classes.linkClass}`}>
+                    <Typography
+                      variant='body2'
+                      style={{
+                        fontSize: '15px',
+                        fontFamily: '"Helvetica"',
+                      }}
+                    >
+                      Admin Panel
+                    </Typography>
+                  </a>
+                </Link>
+              )}
+
               <div className={classes.searchCont}>
                 <SearchModal style={{ padding: 'auto' }} />
               </div>

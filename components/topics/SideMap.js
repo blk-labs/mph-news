@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) =>
       [theme.breakpoints.down('md')]: {
         height: '350px',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         height: '270px',
       },
     },
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'initial',
       letterSpacing: -0.2,
       fontFamily: '"Playfair Display"',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: '24px',
       },
     },
@@ -48,13 +48,13 @@ const useStyles = makeStyles((theme) =>
       margin: '10px 0',
       letterSpacing: 0,
       fontWeight: 300,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: '13px',
       },
     },
     contRead: {
       display: 'none',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'initial',
         fontWeight: 500,
         margin: '10px 0 20px 0',
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) =>
       fontFamily: '"Helvetica"',
       fontWeight: 600,
       marginRight: 20,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 12,
         color: '#000',
       },
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) =>
       fontSize: 11,
       fontFamily: '"Helvetica"',
       textTransform: 'capitalize',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 12,
         marginTop: 0,
       },

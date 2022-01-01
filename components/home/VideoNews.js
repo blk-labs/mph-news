@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) =>
       cursor: 'pointer',
       margin: '0rem auto 5rem',
       padding: '2rem 0 3rem',
+      [theme.breakpoints.down('sm')]: {
+        padding: '0px!important'
+      },
     },
     videoClass: {
       width: '100%',
@@ -98,7 +101,7 @@ export default function VideoNews(props) {
   dayjs.extend(relativeTime);
 
   return (
-    <span>
+    <React.Fragment>
       <Grid container className={classes.videoCont}>
         <Container maxWidth='lg'>
           {news
@@ -146,6 +149,6 @@ export default function VideoNews(props) {
           </Grid>
         </Container>
       </Grid>
-    </span>
+    </React.Fragment>
   );
 }

@@ -138,10 +138,11 @@ const useStyles = makeStyles((theme) =>
 
 export function Admin(props) {
 
-const [select, sSelect] = useState('');
-const [add, setA] = useState(false);
-const [remove, sRemove] = useState(false);
-const [content, tContent] = useState([]);
+const [select, setSelect] = useState('');
+const [add, setAdd] = useState(false);
+const [open, setOpen] = useState(false);
+const [remove, setRemove] = useState(false);
+const [content, setContent] = useState([]);
 
  const { doctopic } = props.data;
  // const oading } = props.UI;

@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) =>
     ...theme.spreadThis,
     CustomNews: {
       [theme.breakpoints.down('md')]: {
-        display: 'none',
+        display: 'none!important',
       },
     },
     titleCont: {
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) =>
       [theme.breakpoints.down('sm')]: {
         height: '150px',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         height: '100px',
       },
     },

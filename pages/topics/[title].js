@@ -165,7 +165,7 @@ export function Topics(props) {
             stories and pictures to discover more!
           </Typography>
           <hr className="absolute left-0 right-0"/>
-          <Grid container className="py-16">
+          <Grid container className="md:pt-16">
             <Grid item xs={12} md={8}>
               {props.data.topic.length !== 0 && <FirstMap topic={topic[0]} />}
             </Grid>
@@ -182,7 +182,7 @@ export function Topics(props) {
               </div>
             </Grid>
           </Grid>
-          <Grid item container spacing={5} className='mt-8 pt-6'>
+          <Grid item container spacing={5}>
             <Grid item xs={12} md={8}>
               {topic
                 .filter((data, i) => i > 0)
@@ -202,7 +202,7 @@ export function Topics(props) {
                 />
               </Stack> */}
             </Grid>
-            <Grid item xs={12} md={4} mt={4}>
+            <Grid item xs={12} md={4} className='mt-0 md:mt-16 pt-0'>
               <Subscribe />
             </Grid>
           </Grid>

@@ -64,13 +64,13 @@ const useStyles = makeStyles((theme) =>
     fooDetails: {
       display: 'flex',
       justifyContent: 'space-between',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         flexDirection: 'column',
       },
     },
     fooCont: {
       display: 'contents',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         justifyContent: 'space-between',
         display: 'flex',
         marginTop: '1rem',
@@ -80,14 +80,14 @@ const useStyles = makeStyles((theme) =>
       marginTop: '1rem',
       display: 'flex',
       justifyContent: 'space-evenly',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
     mobileIcons: {
       marginTop: '1rem',
       display: 'none',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'flex',
         justifyContent: 'space-evenly',
       },

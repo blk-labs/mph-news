@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) =>
       width: '100%',
       height: '617px',
       objectFit: 'cover',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         minWidth: '100%',
         maxWidth: '100%',
         margin: 'auto',

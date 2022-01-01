@@ -108,18 +108,18 @@ const useStyles = makeStyles((theme) =>
       color: '#6B3FA0',
       marginRight: 20,
       fontFamily: '"Helvetica"',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 12,
-        color: '#000',
-        marginRight: 10,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '12px!important',
+        color: '#000!important',
+        marginRight: '10px!important',
       },
     },
     createAt: {
       textTransform: 'capitalize',
       fontFamily: '"Helvetica"',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 12,
-        marginTop: 0,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '12px!important',
+        marginTop: '0!important',
       },
     },
   })

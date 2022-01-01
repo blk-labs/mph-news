@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) =>
       minWidth: '280px',
       height: '200px',
       maxWidth: '280px',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         marginRight: '.5rem',
         minWidth: '160px',
         height: '126px',
@@ -82,8 +82,9 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'initial',
       letterSpacing: -0.2,
       fontFamily: '"Playfair Display"',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 15,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '12px!important',
+        lineHeight: '20px!important',
       },
     },
     subnews: {
@@ -93,7 +94,7 @@ const useStyles = makeStyles((theme) =>
       fontWeight: 300,
       textTransform: 'initial',
       fontFamily: '"Helvetica Light"',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         display: 'none',
       },
     },

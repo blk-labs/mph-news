@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) =>
       marginTop: '2rem',
       objectFit: 'cover',
       width: '100%',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         height: '400px',
       },
     },
@@ -42,16 +42,17 @@ const useStyles = makeStyles((theme) =>
     headerCont: {
       display: 'flex',
       marginTop: '3rem',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         flexDirection: 'column-reverse',
       },
     },
     socialCont: {
       marginRight: '5rem',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         marginRight: '0',
         display: 'flex',
         justifyContent: 'space-between',
+        marginTop: '2rem'
       },
     },
     bodyText: {
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) =>
       [theme.breakpoints.down('md')]: {
         marginBottom: '5rem',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 15,
       },
     },

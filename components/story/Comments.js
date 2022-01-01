@@ -33,7 +33,16 @@ const useStyles = makeStyles((theme) => ({
   paperCont: {
     boxShadow: 'none',
     width: '70%',
-    margin: 'auto'
+    margin: 'auto',
+    [theme.breakpoints.down('md')]: {
+      width: '80%',
+      margin: 0,
+      marginLeft: 'auto',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      margin: 'auto',
+    },
   },
   commentSort: {
     marginLeft: 'auto',

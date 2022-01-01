@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) =>
       marginTop: '30px',
       position: 'relative',
     },
-
     imgClass: {
       width: '100vw',
       height: '700px',
@@ -111,6 +110,21 @@ const useStyles = makeStyles((theme) =>
       height: '112px',
       objectFit: 'cover',
     },
+    containerClass: {
+      position: 'relative',
+      display: 'flex!important',
+      width: '100%',
+      overflow: 'auto',
+      paddingTop: '1.1rem',
+      marginBottom: '2rem',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      [theme.breakpoints.down('sm')]: {
+        justifyContent: 'space-evenly',
+        paddingLeft: '0!important',
+        paddingRight: '0!important',
+      }
+    }
   })
 );
 
@@ -232,16 +246,7 @@ export default function LatestNews(props) {
         {!matches ? (
           <Container
             maxWidth='lg'
-            style={{
-              position: 'relative',
-              display: 'flex',
-              width: '100%',
-              overflow: 'auto',
-              paddingTop: '1.1rem',
-              marginBottom: '2rem',
-              flexWrap: 'wrap',
-              justifyContent: 'space-between',
-            }}
+            className={classes.containerClass}
           >
             {news
               .filter((data, i) => i > 0)

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import EditStory from './EditStory';
 
 // Redux
@@ -37,8 +38,8 @@ const useStyles = makeStyles((theme) =>
         flexDirection: 'column',
         width: '344px',
       },
-      [theme.breakpoints.down('xs')]: {
-        width: '100%',
+      [theme.breakpoints.down('sm')]: {
+        width: '100%!important',
       },
     },
     delete: {
@@ -65,8 +66,8 @@ const useStyles = makeStyles((theme) =>
       lineHeight: 1.1,
       paddingTop: 25,
       letterSpacing: -1,
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 24,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '24px!important',
       },
     },
     subnews: {
@@ -80,8 +81,8 @@ const useStyles = makeStyles((theme) =>
       WebkitLineClamp: 2,
       WebkitBoxOrient: 'vertical',
       overflow: 'hidden',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 13,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '13px!important',
       },
     },
     inputCont: {
@@ -116,6 +117,8 @@ export function DeleteStory(props) {
   const classes = useStyles(props);
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
+  const [search, setSearch] = useState('');
+
   const posts = props.video
     ? props.posts.filter((fil) => fil.topic === 'video')
     : props.posts.filter((fil) => fil.topic !== 'video');
@@ -126,6 +129,7 @@ export function DeleteStory(props) {
   const handleDelete = (pid) => {
     props.deletePost(pid);
   };
+  dayjs.extend(relativeTime);
 
   return (
     <div>

@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme) =>
       marginBottom: '1rem',
       backgroundColor: 'white',
       [theme.breakpoints.down('md')]: {
+        justifyContent: 'space-evenly',
+        flexWrap: 'wrap',
+      },
+      [theme.breakpoints.down('sm')]: {
+        justifyContent: 'space-between',
         flexDirection: 'column',
       },
     },
@@ -53,11 +58,11 @@ const useStyles = makeStyles((theme) =>
       minWidth: '278px',
       height: '197px',
       maxWidth: '278px',
-      [theme.breakpoints.down('xs')]: {
-        marginRight: '.5rem',
-        minWidth: '160px',
-        height: '126px',
-        maxWidth: '160px',
+      [theme.breakpoints.down('sm')]: {
+        marginRight: '.5rem!important',
+        minWidth: '100%!important',
+        height: '250px!important',
+        maxWidth: '100%!important',
       },
     },
     topic: {
@@ -78,7 +83,7 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'initial',
       letterSpacing: -0.2,
       fontFamily: '"Playfair Display"',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 15,
       },
     },
@@ -86,7 +91,7 @@ const useStyles = makeStyles((theme) =>
       fontFamily: '"Helvetica"',
       fontSize: 15,
       textTransform: 'capitalize',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         marginTop: 0,
       },
     },

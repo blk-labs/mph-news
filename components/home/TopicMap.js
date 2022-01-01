@@ -14,14 +14,16 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     ...theme.spreadThis,
     gridCont: {
-      // marginTop: '2rem',
+      [theme.breakpoints.down('sm')]: {
+        padding: '0px!important'
+      },
     },
     mainCont: {
       display: 'flex',
       flexDirection: 'column',
       marginRight: '1.5rem',
       maxWidth: '100%',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         marginRight: '0',
       },
     },
@@ -35,7 +37,7 @@ const useStyles = makeStyles((theme) =>
     },
     newsCont: {
       display: 'flex',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'inherit',
       },
     },
@@ -46,7 +48,7 @@ const useStyles = makeStyles((theme) =>
         minWidth: 683,
         maxWidth: 683,
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         minWidth: '100%',
         height: '100%',
       },
@@ -64,7 +66,7 @@ const useStyles = makeStyles((theme) =>
         height: '250px',
         width: '100%',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         width: '100%',
         height: '250px',
       },
@@ -80,7 +82,7 @@ const useStyles = makeStyles((theme) =>
     ContDetails: {
       alignSelf: 'flex-end',
       margin: '0 20px',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         margin: 0,
       },
     },
@@ -90,7 +92,7 @@ const useStyles = makeStyles((theme) =>
       height: 250,
       objectFit: 'cover',
       marginRight: '.5rem',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         minWidth: 160,
         maxWidth: 160,
         height: 126,
@@ -104,8 +106,10 @@ const useStyles = makeStyles((theme) =>
       lineHeight: 1.1,
       paddingTop: 25,
       letterSpacing: -1,
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 24,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '24px!important',
+        lineHeight: '32px!important',
+        marginTop: '1rem!important'
       },
     },
     subnews: {
@@ -119,7 +123,7 @@ const useStyles = makeStyles((theme) =>
       WebkitLineClamp: 2,
       WebkitBoxOrient: 'vertical',
       overflow: 'hidden',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 13,
       },
     },
@@ -131,8 +135,10 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'initial',
       letterSpacing: -0.2,
       fontFamily: '"Playfair Display"',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 15,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '15px!important',
+        lineHeight: '18px!important',
+        paddingBottom: '0!important',
       },
     },
     bottomDetails: {
@@ -142,14 +148,14 @@ const useStyles = makeStyles((theme) =>
       fontWeight: 300,
       fontFamily: '"Helvetica Light"',
       textTransform: 'initial',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
     newsGroup: {
       marginBottom: 40,
       padding: '0 .5rem',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         // flexDirection: 'column',
       },
     },
@@ -160,11 +166,11 @@ const useStyles = makeStyles((theme) =>
     },
     createBy: {
       fontSize: 15,
-      color: '#6B3FA0',
-      marginRight: 20,
+      color: '#6B3FA0!important',
+      marginRight: '20px!important',
       fontWeight: 600,
       fontFamily: '"Helvetica"',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 12,
         color: '#000',
       },
@@ -173,7 +179,7 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'capitalize',
       fontFamily: '"Helvetica"',
       fontSize: 15,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 12,
         marginTop: 0,
       },

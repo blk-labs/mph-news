@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) =>
       '&>:nth-child(1)': {
         color: '#eee',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) =>
       minWidth: 280,
       objectFit: 'cover',
       marginRight: 10,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         height: 270,
         maxWidth: '100%',
         minWidth: '100%',
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) =>
       marginTop: '1rem',
       display: 'flex',
       alignItems: 'start',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'block',
       },
     },
@@ -62,8 +62,9 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'initial',
       letterSpacing: -0.2,
       fontFamily: '"Playfair Display"',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: '24px',
+      [theme.breakpoints.down('sm')]: {
+        marginTop: '1rem!important',
+        fontSize: '20px!important',
       },
     },
     bottomDetails: {
@@ -72,13 +73,13 @@ const useStyles = makeStyles((theme) =>
       letterSpacing: 0,
       fontWeight: 300,
       textTransform: 'initial',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: '13px',
       },
     },
     contRead: {
       display: 'none',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'initial',
         fontWeight: 500,
         margin: '10px 0 20px 0',
@@ -92,7 +93,7 @@ const useStyles = makeStyles((theme) =>
       marginRight: 20,
       fontFamily: '"Helvetica"',
 
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 12,
         color: '#000',
       },
@@ -101,7 +102,7 @@ const useStyles = makeStyles((theme) =>
       fontSize: 11,
       fontFamily: '"Helvetica"',
       textTransform: 'capitalize',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 12,
         marginTop: 0,
       },

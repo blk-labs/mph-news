@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'capitalized',
       fontFamily: '"Playfair Display"',
       margin: '2rem 0',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 24,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '24px!important',
         margin: '2rem 0 1rem',
       },
     },
@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) =>
       WebkitLineClamp: 2,
       WebkitBoxOrient: 'vertical',
       overflow: 'hidden',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 12,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '12px!important',
       },
     },
     gridClass: {
@@ -53,8 +53,8 @@ const useStyles = makeStyles((theme) =>
       color: '#6B3FA0',
       fontFamily: '"Helvetica Black Bold"',
       marginRight: 10,
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 14,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '14px!important',
       },
     },
     timeUpload: {
@@ -64,8 +64,8 @@ const useStyles = makeStyles((theme) =>
       marginLeft: 5,
       fontSize: 14,
       fontWeight: 400,
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 12,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '12px!important',
       },
     },
     edtorsNews: {

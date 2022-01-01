@@ -299,7 +299,6 @@ export const SignupModal = (props) => {
               >
                 <InputBase
                   sx={{ ml: 1, flex: 1, fontSize: 15 }}
-                  id='first'
                   placeholder='Email address'
                   id='email'
                   value={email}

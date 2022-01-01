@@ -279,7 +279,6 @@ export default function LatestNews(props) {
                           margin: '.5rem 0 0',
                         }}
                         className="text-xs font-medium"
-                        variant='caption'
                       >
                         {dayjs(data.createdAt).fromNow()}
                       </Typography>

@@ -125,7 +125,7 @@ export default function Subscribe(props) {
             name='termsCheck'
             value='termsCons'
           />
-          <label for='termsCon' className={classes.terms}>
+          <label htmlFor='termsCon' className={classes.terms}>
             I agree to the terms of newsletter
           </label>
         </form>

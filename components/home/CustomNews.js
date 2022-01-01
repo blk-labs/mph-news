@@ -87,7 +87,7 @@ export default function CustomNews(props) {
       className={classes.CustomNews}
     >
       {liked.map((data, i) => (
-        <div className='recent'>
+        <div className='recent' key={i}>
           <div className={classes.gridClass} key={i}>
             <Link className={classes.linkClass} href={`/story/${data.id}`}>
               <a

@@ -269,7 +269,6 @@ export default function TopicMap(props) {
                                     fontSize: 15,
                                     fontFamily: '"Helvetica"',
                                   }}
-                                  variant='caption'
                                 >
                                   {dayjs(data.createdAt).fromNow()}
                                 </Typography>

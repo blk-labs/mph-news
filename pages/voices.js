@@ -252,7 +252,7 @@ const Voices = (props) => {
             }}
           >
             {data.map((n, i) => (
-              <div className={classes.newCont}>
+              <div className={classes.newCont} key={i}>
                 <div className={classes.imgPlay}>
                   <div>
                     <img

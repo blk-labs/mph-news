@@ -89,7 +89,7 @@ export default function CustomNews(props) {
   return (
     <div>
       <Typography variant='h5' className={`${classes.titleCont} mb-3 py-2 text-4xl font-bold tracking-wide cinzel`}>
-        Editor's Pick
+        Editor&apos;s Pick
       </Typography>
       <div className={classes.editors}>
         {recommend.map((data, i) => (

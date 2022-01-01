@@ -214,7 +214,6 @@ export function AddStory(props) {
                   error={errors}
                   value={topic}
                   onChange={handleTopic}
-                  style={{ minWidth: '100%' }}
                   disableUnderline
                   color='secondary'
                   MenuProps={{ classes: { list: classes.list } }}

@@ -182,7 +182,7 @@ export function Topics(props) {
               </div>
             </Grid>
           </Grid>
-          <Grid container item container spacing={5} className='mt-8 pt-6'>
+          <Grid item container spacing={5} className='mt-8 pt-6'>
             <Grid item xs={12} md={8}>
               {topic
                 .filter((data, i) => i > 0)

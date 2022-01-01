@@ -139,7 +139,6 @@ export default function RecentNews(props) {
       <Grid
         container
         item
-        container
         // spacing={2}
         classes={{
           root: classes.leftColumn,

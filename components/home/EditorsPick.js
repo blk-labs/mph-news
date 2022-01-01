@@ -4,10 +4,10 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Material
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 // Icons
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -88,7 +88,7 @@ export default function CustomNews(props) {
 
   return (
     <div>
-      <Typography variant='h5' className={classes.titleCont}>
+      <Typography variant='h5' className={`${classes.titleCont} mb-3 py-2 text-4xl font-bold tracking-wide cinzel`}>
         Editor's Pick
       </Typography>
       <div className={classes.editors}>
@@ -97,18 +97,18 @@ export default function CustomNews(props) {
             <Link className={classes.linkClass} href={`/story/${data.id}`}>
               <a>
                 <div className={classes.edtorsNews}>
-                  <Typography variant='h1' className={classes.number}>
+                  <Typography variant='h1' className={`${classes.number} text-xl bebas-neue tracking-wider font-bold px-2`}>
                     0{i + 1}
                   </Typography>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Typography variant='subtitle2' className={classes.title}>
+                    <Typography variant='subtitle2' className={`${classes.title} text-base tracking-wide font-bold`}>
                       {data.title}
                     </Typography>
                     <div>
-                      <AccessTimeIcon style={{ fontSize: '13px' }} />
+                      <AccessTimeIcon style={{ fontSize: '18px' }} className="font-bold" />
                       <Typography
                         variant='button'
-                        className={classes.timeUpload}
+                        className={`${classes.timeUpload} ml-2 text-xs font-medium`}
                       >
                         {dayjs(data.createdAt).fromNow()}
                       </Typography>

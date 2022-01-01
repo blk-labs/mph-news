@@ -7,17 +7,17 @@ import { deletePost, clearErrors } from '../../redux/actions/dataActions';
 import { connect } from 'react-redux';
 
 // Material UI
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Fade from '@material-ui/core/Fade';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Fade from '@mui/material/Fade';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Typography from '@mui/material/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import TextField from '@material-ui/core/TextField';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import TextField from '@mui/material/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) =>

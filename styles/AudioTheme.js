@@ -1,6 +1,7 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+// import { createMuiTheme } from '@mui/styles';
+import { createTheme } from '@mui/material';
 
-import { grey, red, green, orange, blue } from '@material-ui/core/colors';
+import { grey, red, green, orange, blue } from '@mui/material/colors';
 
 /*
     Palette
@@ -237,5 +238,5 @@ const theme = {
   overrides: overrides,
 };
 
-export default createMuiTheme(theme);
+export default createTheme(theme);
 export { theme as sourceTheme };

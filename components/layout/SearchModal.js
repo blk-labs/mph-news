@@ -8,10 +8,10 @@ import { connect } from 'react-redux';
 import { getAllPosts } from '../../redux/actions/dataActions';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 // Icons
 import SearchIcon from '@material-ui/icons/Search';

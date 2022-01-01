@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/userActions';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Modal from '@material-ui/core/Modal';
-import Container from '@material-ui/core/Container';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import Drawer from '@mui/material/Drawer';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Container from '@mui/material/Container';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
 
 // Comps
 import AuthModal from '../../pages/login';

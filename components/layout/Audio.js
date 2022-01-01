@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-} from '@material-ui/core';
+} from '@mui/material';
 import { ClosedCaption } from '@material-ui/icons';
 import AudioPlayer from 'material-ui-audio-player';
 import theme from '../../styles/AudioTheme';

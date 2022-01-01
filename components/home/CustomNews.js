@@ -4,11 +4,11 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Material
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
 
 // Comps
 import Subscribe from '../layout/Subscribe';
@@ -109,11 +109,11 @@ export default function CustomNews(props) {
                     <div className={classes.dettails}>
                       <Typography
                         variant='button'
-                        className={classes.timeUpload}
+                        className={`${classes.timeUpload} text-xs font-medium text-gray-600 capitalize`}
                       >
                         {dayjs(data.createdAt).fromNow()}
                       </Typography>
-                      <Typography className={classes.titleCont}>
+                      <Typography className={`${classes.titleCont} cinzel font-bold text-sm`}>
                         {data.title}
                       </Typography>
                     </div>

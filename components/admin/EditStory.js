@@ -4,20 +4,20 @@ import { postImage } from '../../redux/actions/userActions';
 import { connect } from 'react-redux';
 
 // Material UI
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Fade from '@material-ui/core/Fade';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Fade from '@mui/material/Fade';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Typography from '@mui/material/Typography';
 import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import CheckIcon from '@material-ui/icons/CheckCircle';
 import PhotoCamera from '@material-ui/icons/PhotoCameraOutlined';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 

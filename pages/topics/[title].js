@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
 import { getTopic } from '../../redux/actions/dataActions';
 
 // Topic
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Stack from '@mui/material/Stack';
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -152,19 +152,20 @@ export function Topics(props) {
       />
       <div className={classes.background}></div>
       {loading ? (
-        <Container className={classes.loadingCont}>
+        <Container className={`${classes.loadingCont} top-0 left-0 right-0 bottom-0 max-w-full overflow-x-hidden`}>
           <Loading />
         </Container>
       ) : (
         <Container className={classes.topicCont} maxWidth='lg'>
-          <Typography variant='body1' className={classes.topicTitle}>
+          <Typography variant='body1' className={`${classes.topicTitle} py-2 cinzel font-bold text-xl lg:text-4xl`}>
             {title}
           </Typography>
-          <Typography className={classes.topicInfo}>
+          <Typography className={`${classes.topicInfo} py-2 mb-4 text-gray-900 text-base font-medium`}>
             Get the latest travel news and hot celeb gossip with exclusive
             stories and pictures to discover more!
           </Typography>
-          <Grid container>
+          <hr className="absolute left-0 right-0"/>
+          <Grid container className="py-16">
             <Grid item xs={12} md={8}>
               {props.data.topic.length !== 0 && <FirstMap topic={topic[0]} />}
             </Grid>

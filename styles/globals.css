@@ -38,6 +38,18 @@
   src: url('../util/fonts/PlayfairDisplay-Black.ttf');
 }
 
+.abril {
+  font-family: "Abril Fatface", Verdana, Geneva, Tahoma, sans-serif !important;
+}
+
+.cinzel {
+  font-family: 'Cinzel', serif !important;
+}
+
+.bebas-neue {
+  font-family: 'Bebas Neue', cursive !important;
+}
+
 body {
   margin: 0;
   font-family: 'Helvetica' !important;

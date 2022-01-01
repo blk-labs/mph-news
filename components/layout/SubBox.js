@@ -2,14 +2,14 @@ import React from "react";
 
 // Material UI
 
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
 import KeyboardArrow from '@material-ui/icons/KeyboardArrowRight';
 
 const useStyles = makeStyles((theme) => createStyles({

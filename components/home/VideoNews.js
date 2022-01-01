@@ -4,11 +4,11 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Material
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 // Comps
 
@@ -106,7 +106,7 @@ export default function VideoNews(props) {
             .map((data, i) => (
               <div style={{ padding: '2rem 0', position: 'relative' }} key={i}>
                 <div className={classes.upTitle}>
-                  <Typography className={classes.linkTitle} variant='h4'>
+                  <Typography className={`${classes.linkTitle} cinzel text-4xl`} variant='h4'>
                     {data.title}
                   </Typography>
                   <Typography
@@ -133,7 +133,7 @@ export default function VideoNews(props) {
                     className={classes.videoBottom}
                     src={`${data.link}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
                   ></iframe>
-                  <Typography className={classes.btmTitle} variant='h6'>
+                  <Typography className={`${classes.btmTitle} cinzel font-bold`} variant='h6'>
                     {data.title}
                   </Typography>
                   <div className='capitalize'>

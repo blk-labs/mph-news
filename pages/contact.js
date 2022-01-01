@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 // Material
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
 
 //Comps
 import Subscribe from '../components/layout/Subscribe'

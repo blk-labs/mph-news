@@ -5,15 +5,15 @@ import { connect } from 'react-redux';
 import { commentOnPost } from '../../redux/actions/dataActions';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Container from '@material-ui/core/Container';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import CircularProgress from '@mui/material/CircularProgress';
+import Container from '@mui/material/Container';
 
 // Components
 import CommentMap from './CommentMap';
@@ -81,7 +81,7 @@ export function Comments(props) {
   return (
     <Container maxWidth='lg' className={classes.headerCont}>
       <Grid xs={12} md={12} lg={12} className={classes.gridCont}>
-        <Paper className={classes.paperCont}>
+        <div className={classes.paperCont}>
           <span style={{ display: 'flex', alignItems: 'baseline' }}>
             <Typography
               variant='overline'
@@ -102,7 +102,6 @@ export function Comments(props) {
             <TextField
               style={{
                 width: '100%',
-                height: '165px',
                 border: '1px solid #D9D9D9',
                 fontSize: 6,
               }}
@@ -118,7 +117,7 @@ export function Comments(props) {
                 },
                 disableUnderline: true,
               }}
-              className={classes.textField}
+              className={`${classes.textField} h-auto`}
             />
           </div>
           {!props.user.authenticated ? (
@@ -161,7 +160,7 @@ export function Comments(props) {
               ))
             )}
           </Grid>
-        </Paper>
+        </div>
       </Grid>
     </Container>
   );

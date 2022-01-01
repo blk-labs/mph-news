@@ -4,10 +4,10 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Material
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -108,7 +108,7 @@ export default function SideMap(props) {
               className={classes.recentImg}
             />
             <div className={classes.ContDetails}>
-              <Typography variant='body2' className={classes.bottomNews}>
+              <Typography variant='body2' className={`${classes.bottomNews} py-2 text-xl cinzel font-bold tracking-wide`}>
                 {title}
               </Typography>
               <Typography

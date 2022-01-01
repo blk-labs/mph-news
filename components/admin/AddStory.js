@@ -7,23 +7,23 @@ import { postImage } from '../../redux/actions/userActions';
 import { connect } from 'react-redux';
 
 // Material UI
-import Grid from '@material-ui/core/Grid';
-import Switch from '@material-ui/core/Switch';
-import Select from '@material-ui/core/Select';
-import Popover from '@material-ui/core/Popover';
-import FormControl from '@material-ui/core/FormControl';
+import Grid from '@mui/material/Grid';
+import Switch from '@mui/material/Switch';
+import Select from '@mui/material/Select';
+import Popover from '@mui/material/Popover';
+import FormControl from '@mui/material/FormControl';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import CheckIcon from '@material-ui/icons/CheckCircle';
 import PhotoCamera from '@material-ui/icons/PhotoCameraOutlined';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

@@ -4,11 +4,11 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Subscribe from '../layout/Subscribe';
 // Material
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -108,7 +108,7 @@ export default function RecentNews(props) {
 
   return (
     <Container>
-      <Typography variant='h5' className={classes.titleCont}>
+      <Typography variant='h5' className={`${classes.titleCont} cinzel font-bold`}>
         Recent News
       </Typography>
       <div className={classes.gridCont}>
@@ -122,7 +122,7 @@ export default function RecentNews(props) {
                   className={classes.recentImg}
                 />
                 <div className={classes.body}>
-                  <Typography variant='body1' className={classes.newsTitle}>
+                  <Typography variant='body1' className={`${classes.newsTitle} cinzel font-bold`}>
                     {data.title}
                   </Typography>
                   <Typography className={classes.createAt} variant='caption'>

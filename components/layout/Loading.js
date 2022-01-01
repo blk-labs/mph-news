@@ -1,7 +1,7 @@
 import React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { LinearProgress } from "@material-ui/core"
+import CircularProgress from '@mui/material/CircularProgress';
+import { makeStyles, withStyles } from '@mui/styles';
+import { LinearProgress } from "@mui/material"
 
 const BorderLinearProgress = withStyles((theme) => ({
 	root: {

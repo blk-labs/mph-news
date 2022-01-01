@@ -6,11 +6,11 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import '@brainhubeu/react-carousel/lib/style.css';
 
 // Material
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Container from '@material-ui/core/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Container from '@mui/material/Container';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -125,7 +125,7 @@ export default function LatestNews(props) {
 
   return (
     <>
-      <Grid item xs={12} md={0} className={classes.gridCont}>
+      <Grid item xs={12} md={0} className={`${classes.gridCont} my-12`}>
         {matches ? (
           <Carousel
             autoPlay={7500}
@@ -151,16 +151,16 @@ export default function LatestNews(props) {
                         }}
                       >
                         <div className={classes.newsTitle}>
-                          <Typography variant='body1' className={classes.title}>
+                          <Typography variant='body1' className={`${classes.title} text-4xl cinzel font-bold leading-snug`}>
                             {data.title}
                           </Typography>
                         </div>
-                        <div className={classes.newsSubTitle}>
+                        <div className={`${classes.newsSubTitle} pt-1`}>
                           <Typography
                             variant='body1'
                             style={{
                               color: '#fff',
-                              fontSize: 14,
+                              fontSize: 12,
                               backgroundColor: 'black',
                               display: 'inline',
                               padding: 5,
@@ -275,10 +275,10 @@ export default function LatestNews(props) {
                       <Typography
                         variant='caption'
                         style={{
-                          fontSize: 15,
                           fontFamily: '"Helvetica"',
                           margin: '.5rem 0 0',
                         }}
+                        className="text-xs font-medium"
                         variant='caption'
                       >
                         {dayjs(data.createdAt).fromNow()}

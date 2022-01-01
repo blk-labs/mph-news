@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/userActions';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import AppBar from '@material-ui/core/AppBar';
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { LinearProgress } from '@material-ui/core';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import AppBar from '@mui/material/AppBar';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { LinearProgress } from '@mui/material';
 
 // Icons
 import {
@@ -22,7 +22,7 @@ import {
   Twitter,
   YouTube,
   Instagram,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 
 //Comps
 import MobileNav from './MobileNav';
@@ -133,7 +133,7 @@ const titles = [
   { title: 'Business' },
   { title: 'Other' },
   { title: 'National Assembly' },
-  { title: 'Voices' },
+  // { title: 'Voices' },
 ];
 
 export function Navbar(props) {
@@ -196,9 +196,9 @@ export function Navbar(props) {
 
   return (
     <div id='navBar'>
-      <Container className={classes.navCont}>
+      <Container className={`${classes.navCont} flex`}>
         <div
-          className='hidden md:block md:flex'
+          className='hidden md:flex flex-row items-center'
           style={{ alignItems: 'center' }}
         >
           <div className={classes.iconClass}>
@@ -306,17 +306,10 @@ export function Navbar(props) {
                           alt=''
                           className={classes.hubClass}
                         />
-                        <Typography
-                          style={{
-                            fontSize: '14px',
-                            fontWeight: 600,
-                            margin: 'auto',
-                            textTransform: 'uppercase',
-                          }}
-                          variant='p'
-                        >
+                        <h2
+                        className="ml-2 text-sm tracking-wide font-bold uppercase">
                           Account
-                        </Typography>
+                        </h2>
                       </a>
                     </Link>
                   )}
@@ -327,13 +320,13 @@ export function Navbar(props) {
         </div>
       </Container>
       <AppBar
-        className={sticky ? classes.stickyClass : ''}
+        className={`mb-4 ${sticky ? classes.stickyClass : ''}`}
         position='sticky'
         elevation={0}
       >
         <div className={classes.menuCont}>
           <div className={classes.menuList}>
-            <Container style={{ display: 'flex' }} maxWidth='lg'>
+            <Container style={{ display: 'flex' }} maxWidth='lg' className="py-2">
               {matches
                 ? titles.map((str, i) => {
                     const chars = str.title.charAt(0);

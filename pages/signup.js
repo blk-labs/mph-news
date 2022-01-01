@@ -7,15 +7,15 @@ import { signupUser } from '../redux/actions/userActions';
 import { clearErrors } from '../redux/actions/dataActions';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Container from '@material-ui/core/Container';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Container from '@mui/material/Container';
 import { Typography } from '@mui/material';
 
 //Comps

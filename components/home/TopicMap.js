@@ -4,11 +4,11 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Material
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -190,13 +190,12 @@ export default function TopicMap(props) {
   dayjs.extend(relativeTime);
 
   return (
-    <Grid container item className={classes.gridCont}>
+    <Grid container item className={`${classes.gridCont} py-8`}>
       <Typography
         variant='body1'
+        className="cinzel font-bold tracking-wide text-4xl"
         style={{
-          fontFamily: '"Playfair Display"',
           fontWeight: 900,
-          fontSize: 36,
           color: '#5BA66E',
           textTransform: 'capitalize',
           marginBottom: 20,
@@ -204,7 +203,7 @@ export default function TopicMap(props) {
       >
         {props.topic}
       </Typography>
-      <Grid justify='flex-start' className={classes.newsCont}>
+      <Grid justify='flex-start' className={`${classes.newsCont} `}>
         {news
           .filter((data, i) => i === 0)
           .map((data, i) => (
@@ -214,18 +213,76 @@ export default function TopicMap(props) {
               href={`/story/${data.id}`}
             >
               <a>
-                <Grid item xs={12} lg={12} className={classes.mainCont} key={i}>
-                  <div className={classes.mainImg}>
-                    <img
-                      src={data.postImage}
-                      alt={`${props.topic} image`}
-                      className={classes.imgMain}
-                    />
+                <Grid item xs={12} lg={12} className={`${classes.mainCont} flex-col`} key={i}>
+                  <div className="w-full flex">
+                    <div className={`${classes.mainImg} w-4/6 lg:pr-6`}>
+                      <img
+                        src={data.postImage}
+                        alt={`${props.topic} image`}
+                        className={classes.imgMain}
+                      />
+                    </div>
+                    {news
+                      .filter((data, i) => i === 1)
+                      .map((data, i) => (
+                        <Link
+                          key={i}
+                          className={`${classes.linkClass} w-2/6 lg:pl-6`}
+                          href={`/story/${data.id}`}
+                        >
+                          <a>
+                            <Grid item xs={12} lg={2} className={`${classes.subCont} flex-col w-full mx-0 max-w-full`} key={i}>
+                              <img
+                                src={data.postImage}
+                                className={classes.subImg}
+                                alt={`${props.topic} image`}
+                              />
+                              <Typography className={`${classes.newsTitle} cinzel font-bold text-3xl tracking-wide`}>
+                                {data.title}
+                              </Typography>
+                              <Typography className={`${classes.subnews} py-4`}>
+                                {data.subTitle}
+                              </Typography>
+                              <div
+                                style={{
+                                  marginBottom: 30,
+                                }}
+                              >
+                                <Typography
+                                  style={{
+                                    textTransform: 'capitalize',
+                                    marginRight: 20,
+                                    marginBotttom: 40,
+                                    fontWeight: 600,
+                                    fontSize: 15,
+                                    color: '#6B3FA0',
+                                    fontFamily: '"Helvetica"',
+                                  }}
+                                  variant='caption'
+                                >
+                                  {data.postedBy}
+                                </Typography>
+                                <Typography
+                                  variant='caption'
+                                  style={{
+                                    margin: '0 0 1rem',
+                                    fontSize: 15,
+                                    fontFamily: '"Helvetica"',
+                                  }}
+                                  variant='caption'
+                                >
+                                  {dayjs(data.createdAt).fromNow()}
+                                </Typography>
+                              </div>
+                            </Grid>
+                          </a>
+                        </Link>
+                      ))}
                   </div>
-                  <Typography className={classes.newsTitle}>
+                  <Typography className={`${classes.newsTitle} lg:w-4/6 cinzel font-bold tracking-wide text-3xl pt-0`}>
                     {data.title}
                   </Typography>
-                  <Typography className={classes.subnews}>
+                  <Typography className={`${classes.subnews} py-4 lg:w-4/6`}>
                     {data.subTitle}
                   </Typography>
                   <div
@@ -235,7 +292,7 @@ export default function TopicMap(props) {
                   >
                     <div className='flex sm:justify-inherit items-center capitalize mt-2'>
                       <Typography
-                        className={classes.createBy}
+                        className={`${classes.createBy} lg:mr-3`}
                         variant='caption'
                       >
                         {data.postedBy}
@@ -247,62 +304,6 @@ export default function TopicMap(props) {
                         {dayjs(data.createdAt).fromNow()}
                       </Typography>
                     </div>
-                  </div>
-                </Grid>
-              </a>
-            </Link>
-          ))}
-        {news
-          .filter((data, i) => i === 1)
-          .map((data, i) => (
-            <Link
-              key={i}
-              className={classes.linkClass}
-              href={`/story/${data.id}`}
-            >
-              <a>
-                <Grid item xs={12} lg={2} className={classes.subCont} key={i}>
-                  <img
-                    src={data.postImage}
-                    className={classes.subImg}
-                    alt={`${props.topic} image`}
-                  />
-                  <Typography className={classes.newsTitle}>
-                    {data.title}
-                  </Typography>
-                  <Typography className={classes.subnews}>
-                    {data.subTitle}
-                  </Typography>
-                  <div
-                    style={{
-                      marginBottom: 30,
-                    }}
-                  >
-                    <Typography
-                      style={{
-                        textTransform: 'capitalize',
-                        marginRight: 20,
-                        marginBotttom: 40,
-                        fontWeight: 600,
-                        fontSize: 15,
-                        color: '#6B3FA0',
-                        fontFamily: '"Helvetica"',
-                      }}
-                      variant='caption'
-                    >
-                      {data.postedBy}
-                    </Typography>
-                    <Typography
-                      variant='caption'
-                      style={{
-                        margin: '0 0 1rem',
-                        fontSize: 15,
-                        fontFamily: '"Helvetica"',
-                      }}
-                      variant='caption'
-                    >
-                      {dayjs(data.createdAt).fromNow()}
-                    </Typography>
                   </div>
                 </Grid>
               </a>
@@ -339,15 +340,15 @@ export default function TopicMap(props) {
                     <div className={classes.ContDetails}>
                       <Typography
                         variant='body2'
-                        className={classes.bottomNews}
+                        className={`${classes.bottomNews} py-4 cinzel font-bold text-xl tracking-wide`}
                       >
                         {data.title}
                       </Typography>
                       <Typography
-                        className={classes.bottomDetails}
+                        className={`${classes.bottomDetails} my-4`}
                         variant='body1'
                       >
-                        {data.subTitle}
+                        {data.subTitle.length > 100 ? data.subTitle.substring(0, 100) + "..." : data.subTitle}
                       </Typography>
                       <div className='capitalize mt-2'>
                         <Typography

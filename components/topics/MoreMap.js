@@ -5,11 +5,11 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 // Material
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -130,10 +130,10 @@ export default function TopicMap(props) {
         <a key={postsId} className={classes.mapCont}>
           <img src={postImage} alt='recent-img' className={classes.imgClass} />
           <div className={classes.moreDetail}>
-            <Typography variant='h5' className={classes.topic}>
+            <Typography variant='h5' className={`${classes.topic} text-xs`}>
               {topic}
             </Typography>
-            <Typography variant='h5' className={classes.titleClass}>
+            <Typography variant='h5' className={`${classes.titleClass} cinzel font-bold`}>
               JUST IN: {title}
             </Typography>
             <Typography

@@ -13,11 +13,11 @@ import { SET_AUTHENTICATED } from '../redux/types';
 import { logoutUser, getUserData } from '../redux/actions/userActions';
 
 // Material UI
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider as MuiThemeProvider } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
 import appTheme from '../util/theme';
 import PropTypes from 'prop-types';
-import withWidth from '@material-ui/core/withWidth';
+import { withWidth } from '@material-ui/core';
 
 const theme = createTheme(appTheme);
 

@@ -4,14 +4,14 @@ import { useRouter } from 'next/router';
 import dayjs from 'dayjs';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import EmailIcon from '@mui/icons-material/Email';
 import { Facebook } from '@material-ui/icons';
 import { Twitter } from '@material-ui/icons';
-import Container from '@material-ui/core/Container';
+import Container from '@mui/material/Container';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const useStyles = makeStyles((theme) =>
@@ -119,7 +119,7 @@ export default function StoryMap(props) {
       <span>
         <img className={classes.imgCont} src={postImage} />
       </span>
-      <Container maxWidth='lg' className={classes.headerCont}>
+      <Container maxWidth='lg' className={`${classes.headerCont} flex`}>
         <div className={classes.socialCont}>
           <div
             style={{
@@ -176,13 +176,13 @@ export default function StoryMap(props) {
           </div>
         </div>
         <div style={{ position: 'relative' }}>
-          <Typography className={classes.newsTitle}>{title}</Typography>
+          <Typography className={`${classes.newsTitle} cinzel font-bold text-xl lg:text-4xl`}>{title}</Typography>
           <div className='flex items-baseline sm:justify-inherit capitalize my-4'>
-            <Typography className={classes.createBy} variant='caption'>
+            <Typography className={`${classes.createBy} mr-2`} variant='caption'>
               <span style={{ color: 'black' }}>By</span> {postedBy}
             </Typography>
             <Typography className={classes.createAt} variant='caption'>
-              {dayjs(createdAt).fromNow()}
+              {typeof dayjs(createdAt).fromNow === 'function' && dayjs(createdAt).fromNow()}
             </Typography>
           </div>
           <Typography variant='p' className={classes.bodyText}>

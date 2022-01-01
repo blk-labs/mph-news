@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
 
 // Icons
 import SearchIcon from '@material-ui/icons/Search';
@@ -53,22 +53,16 @@ export default function Search(props) {
       <div onClick={handleOpen}>
         <SearchIcon className={classes.iconClass} />
       </div>
-      <Modal
-        aria-labelledby='transition-modal-title'
-        aria-describedby='transition-modal-description'
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <SearchModal handleClose={handleClose} />
-        </Fade>
-      </Modal>
+      {
+        open && (
+          <Backdrop
+            sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+            onClick={handleClose}>
+            <SearchModal handleClose={handleClose} />
+          </Backdrop>
+        )
+      }
     </div>
   );
 }

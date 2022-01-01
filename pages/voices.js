@@ -9,16 +9,16 @@ import { office } from '../public/images/voices/office.png';
 import { female } from '../public/images/voices/female.png';
 import userImg from '../public/images/voices/city.png';
 import Subscribe from '../components/layout/Subscribe';
-import Audio from '../components/layout/Audio';
+// import Audio from '../components/layout/Audio';
 import Footer from '../components/layout/Footer';
 
 // Material
 import Stack from '@mui/material/Stack';
 import Pagination from '@material-ui/lab/Pagination';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => 
   createStyles({
@@ -230,10 +230,10 @@ const Voices = (props) => {
   return (
     <>
       <Container>
-        <Typography variant='body1' className={classes.topicTitle}>
+        <Typography variant='body1' className={`${classes.topicTitle} text-xl lg:text-4xl cinzel font-bold`}>
           Voices
         </Typography>
-        <Typography className={classes.topicInfo}>
+        <Typography className={`${classes.topicInfo} py-4`}>
           Get the latest travel news and hot celeb gossip with exclusive stories
           and pictures to discover more!
         </Typography>
@@ -263,7 +263,7 @@ const Voices = (props) => {
                   </div>
                   <div className={classes.mobileAud}>
                     <StrictMode>
-                      <Audio />
+                      {/* <Audio /> */}
                     </StrictMode>
                   </div>
                 </div>
@@ -272,7 +272,7 @@ const Voices = (props) => {
                 </Typography>
                 <div className={classes.deskAud}>
                   <StrictMode>
-                    <Audio />
+                    {/* <Audio /> */}
                   </StrictMode>
                 </div>
                 <Typography

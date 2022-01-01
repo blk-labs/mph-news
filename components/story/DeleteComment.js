@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { deleteComment } from '../../redux/actions/dataActions';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Button from '@material-ui/core/Button';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Button from '@mui/material/Button';
 
 const useStyles = makeStyles((theme) => createStyles({
 	...theme.spreadThis,

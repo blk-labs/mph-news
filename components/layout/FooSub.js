@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 // Material
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
-import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@mui/styles';
+import { useTheme } from '@mui/styles';
+import { createStyles } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -65,7 +65,7 @@ export default function Subscribe(props) {
 
   return (
     <div className={classes.subClass}>
-      <Typography variant='h4' className={classes.titleCont}>
+      <Typography variant='h4' className={`${classes.titleCont} bebas-neue`}>
         Weekly News Updates
       </Typography>
       <Typography
@@ -79,20 +79,20 @@ export default function Subscribe(props) {
       >
         Subscribe to get the week&apos;s most important news.
       </Typography>
-      <div className='flex justify-center mx-2'>
+      <div className='flex justify-center items-stretch mx-2'>
         <TextField
           color='secondary'
           value={subscribe}
           onChange={(e) => setSubscribe(e.target.value)}
           onClick={handleSubmit}
+          size="small"
           placeholder='email@address.com'
-          className='textField'
-          className={classes.textField}
+          className={`${classes.textField} h-full lg:mr-3`}
           InputProps={{ disableUnderline: true }}
         />
-        <Button variant='contained' className={classes.subBtn}>
+        <a href="#" className="px-10 flex justify-center items-center uppercase tracking-wide bg-violet-600 text-sm text-white font-bold">
           Subscribe
-        </Button>
+        </a>
       </div>
     </div>
   );

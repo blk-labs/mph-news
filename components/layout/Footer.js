@@ -3,13 +3,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Subscribe from './FooSub';
 
-import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import { makeStyles } from '@mui/styles';
+import { useTheme } from '@mui/styles';
+import { createStyles } from '@mui/styles';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 // Icons
 import { Facebook } from '@material-ui/icons';
 import { Twitter } from '@material-ui/icons';
@@ -213,10 +213,12 @@ export default function Footer(props) {
             </div>
 
             <div className={classes.paddingSM}>
-              <Typography variant='caption' className={classes.address}>
+              <Typography variant='caption' className={`${classes.address} leading-relaxed`}>
                 Plot 177 R.B. Dikko Rd, Garki, Abuja
                 <br />
+                <br />
                 (+234) 814 565 5270
+                <br />
                 <br />
                 info@mypoliticalhub.com
               </Typography>

@@ -7,10 +7,10 @@ import { loginUser } from '../redux/actions/userActions';
 import { clearErrors } from '../redux/actions/dataActions';
 
 // Material
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -284,7 +284,7 @@ export const AuthModal = (props) => {
                   disabled={loading}
                   type='submit'
                   variant='contained'
-                  className={classes.loginBtn}
+                  className={`${classes.loginBtn} bg-violet-600`}
                 >
                   Login
                 </Button>

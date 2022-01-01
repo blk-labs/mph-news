@@ -4,11 +4,11 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Subscribe from '../layout/Subscribe';
 // Material
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -133,7 +133,7 @@ export default function RecentNews(props) {
 
   return (
     <div>
-      <Typography variant='h5' className={classes.titleCont}>
+      <Typography variant='h5' className={`${classes.titleCont} mb-5 cinzel font-bold text-4xl`}>
         Trending Topics
       </Typography>
       <Grid
@@ -156,19 +156,19 @@ export default function RecentNews(props) {
                     alt='recent-img'
                     className={classes.recentImg}
                   />
-                  <div className={classes.body}>
-                    <Typography variant='h5' className={classes.topic}>
+                  <div className={`${classes.body} flex flex-col items-start`}>
+                    <Typography variant='h5' className={`${classes.topic} mb-2 text-xs font-medium px-8`}>
                       {data.topic}
                     </Typography>
-                    <Typography variant='body1' className={classes.newsTitle}>
+                    <Typography variant='body1' className={`${classes.newsTitle} mb-2 cinzel font-bold text-xl`}>
                       JUST IN: {data.title}
                     </Typography>
-                    <Typography className={classes.subnews}>
+                    <Typography className={`${classes.subnews} text-gray-700 flex-grow`}>
                       {data.subTitle}
                     </Typography>
                     <div className='flex justify-inherit items-baseline capitalize mt-2'>
                       <Typography
-                        className={classes.createBy}
+                        className={`${classes.createBy} mr-2 text-xs`}
                         variant='caption'
                       >
                         {data.postedBy}

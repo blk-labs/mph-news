@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 // Material
 
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -96,20 +96,20 @@ export default function Subscribe(props) {
   };
 
   return (
-    <div className={classes.subClass}>
+    <div className={`${classes.subClass} py-12 px-6`}>
       <span>
-        <Typography className={classes.titleCont}>Our newsletter</Typography>
-        <Typography variant='body1' className={classes.contDetails}>
+        <Typography className={`${classes.titleCont} mb-4 tracking-wide text-4xl font-extrabold bebas-neue uppercase`}>Our newsletter</Typography>
+        <Typography variant='body1' className={`${classes.contDetails} font-medium text-base`}>
           Now to get notified about exclusive offers every week!
         </Typography>
         <TextField
           color='secondary'
+          fullWidth
           value={subscribe}
           onChange={(e) => setSubscribe(e.target.value)}
           onClick={handleSubmit}
           placeholder='email@address.com'
-          className='textField'
-          className={classes.textField}
+          className={`${classes.textField} my-6`}
           InputProps={{ disableUnderline: true }}
         />
 
@@ -117,6 +117,7 @@ export default function Subscribe(props) {
           style={{
             textAlign: 'left',
           }}
+          className="my-4"
         >
           <input
             type='checkbox'
@@ -128,8 +129,8 @@ export default function Subscribe(props) {
             I agree to the terms of newsletter
           </label>
         </form>
-        <Button variant='contained' className={classes.subBtn}>
-          add new story
+        <Button variant='contained' className={`${classes.subBtn} bg-violet-600 mt-4 font-bold`}>
+          Subscribe
         </Button>
       </span>
     </div>

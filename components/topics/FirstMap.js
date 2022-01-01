@@ -4,10 +4,10 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Material
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import { makeStyles, createStyles, useTheme } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -98,10 +98,10 @@ export default function FirstMap(props) {
               alt={`${title} image`}
               className={classes.topImg}
             />
-            <Typography variant='h4' className={classes.titleText}>
+            <Typography variant='h4' className={`${classes.titleText} cinzel font-bold text-xl lg:text-4xl`}>
               {title}
             </Typography>
-            <Typography className={classes.subnews}>
+            <Typography className={`${classes.subnews} py-4`}>
               {body.substring(0, 150)}...
               <br />
             </Typography>
@@ -109,7 +109,7 @@ export default function FirstMap(props) {
               Continue reading
             </Typography>
             <div className='md:flex md:items-baseline sm:justify-inherit capitalize mt-2 hidden'>
-              <Typography className={classes.createBy} variant='caption'>
+              <Typography className={`${classes.createBy} mr-2`} variant='caption'>
                 {postedBy}
               </Typography>
               <Typography className={classes.createAt} variant='caption'>

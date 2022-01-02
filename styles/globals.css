@@ -279,6 +279,8 @@ input[type=checkbox]:checked:disabled+label:before {
 @media (max-width: 1025px) {
   .w-full > .mainImg {
     width: 100%!important;
+    min-width: 100%!important;
+    max-width: 100%!important
   }
   .mainSub {
     display: none;

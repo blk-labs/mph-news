@@ -24,14 +24,15 @@ import Footer from '../../components/layout/Footer';
 // import SEO from '../../components/utils/SEO'
 
 // This gets called on every request
-export async function getServerSideProps(context) {
-  // Fetch data from external API
-  const res = await axios.get(`/post/${context.params.sid}`);
-  const data = await res.data;
+// export async function getServerSideProps(context) {
+//   // Fetch data from external API
+//   const res = await axios.get(`/post/${context.params.sid}`);
+//   const data = res.data;
+//   // console.log("datazz ", data);
 
-  // Pass data to the page via props
-  return { props: { post: data } };
-}
+//   // Pass data to the page via props
+//   return { props: { post: data } };
+// }
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -52,34 +53,36 @@ const useStyles = makeStyles((theme) =>
 
 export function Story(props) {
   const router = useRouter();
+  const { sid } = router.query;
 
   console.log(props);
 
-  //   const [story, setStory] = useState(props.location.pathname.slice(7))
+  // const [story, setStory] = useState(props.location.pathname.slice(7))
 
-  //   useEffect(() => {
-  //   	axios.get(`/post/${story}`)
-  //   	.then((res) => {
-  //   		props.getTopic(res.data.topic)
-  //   	})
-  //   	.catch((err) => console.log(err));
-  //   	props.getPost(story);
-  //   }, []);
+  useEffect(() => {
+    // axios.get(`/post/${story}`)
+    // .then((res) => {
+    // 	props.getTopic(res.data.topic)
+    // })
+    // .catch((err) => console.log(err));
+    console.log("sid: ", sid)
+    props.getPost(sid);
+  }, [sid]);
 
-  const {
-    postsid,
-    topic,
-    createdAt,
-    postedBy,
-    postImage,
-    id,
-    body,
-    title,
-    important,
-    subTitle,
-    link,
-    commentCount,
-  } = props.post;
+  // const {
+  //   postsid,
+  //   topic,
+  //   createdAt,
+  //   postedBy,
+  //   postImage,
+  //   id,
+  //   body,
+  //   title,
+  //   important,
+  //   subTitle,
+  //   link,
+  //   commentCount,
+  // } = props.post;
   const { loading } = props.data;
   // document.title = `${title === undefined ? 'Story' : title} | News | My Political Hub`;
 
@@ -95,20 +98,18 @@ export function Story(props) {
 				image={{ src: props.post.postImage, width: 250, height: 250 }}
 				pathname={router.query.sid}
 			/> */}
-      <Head>
-        <title>{props.post.title}</title>
-      </Head>
+      
       <div maxWidth='lg'>
         <div className={classes.headerCont} container>
           <div style={{ position: 'relative' }}>
-            {loading ? <Loading /> : <StoryMap story={props.post} />}
+            {loading ? <Loading /> : <StoryMap story={props.data.post} />}
           </div>
           <div>
             <span>
-              <Comments story={props.post} />
+              <Comments story={props.data.post} />
             </span>
           </div>
-          <RecentTopic       
+          <RecentTopic
             news={props.data.posts}
           />
         </div>

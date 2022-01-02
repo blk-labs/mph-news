@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) =>
       maxWidth: 200,
       minWidth: 200,
       height: 'auto',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         maxWidth: 105,
         minWidth: 105,
       },
@@ -39,14 +39,14 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
     },
     listCont: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         // margin: 0,
       },
     },
     paddingSM: {
       display: 'flex',
       flexDirection: 'column',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         fontSize: 15,
       },
     },
@@ -64,13 +64,13 @@ const useStyles = makeStyles((theme) =>
     fooDetails: {
       display: 'flex',
       justifyContent: 'space-between',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
       },
     },
     fooCont: {
       display: 'contents',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         justifyContent: 'space-between',
         display: 'flex',
         marginTop: '1rem',
@@ -80,14 +80,14 @@ const useStyles = makeStyles((theme) =>
       marginTop: '1rem',
       display: 'flex',
       justifyContent: 'space-evenly',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         display: 'none',
       },
     },
     mobileIcons: {
       marginTop: '1rem',
       display: 'none',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         display: 'flex',
         justifyContent: 'space-evenly',
       },
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) =>
     menu: {
       fontFamily: '"Helvetica"',
       fontSize: 15,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         fontSize: 12,
       },
     },
@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) =>
       fontFamily: '"Helvetica"',
       fontSize: 15,
       lineHeight: 2,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         fontSize: 12,
       },
     },

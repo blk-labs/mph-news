@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) =>
         paddingLeft: '0',
         width: '100%',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         paddingLeft: '0',
         height: '300px',
       },
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) =>
       width: '100%',
       height: '200px',
       border: 0,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         height: '200px',
       },
     },
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) =>
       position: 'absolute',
       bottom: '100px',
       marginLeft: 50,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         bottom: '60px',
         marginLeft: 15,
       },
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) =>
       fontSize: 36,
       lineHeight: 1.1,
       letterSpacing: -1,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 24,
       },
     },
@@ -73,8 +73,8 @@ const useStyles = makeStyles((theme) =>
       fontWeight: 'bold',
       textTransform: 'capitalize',
       fontFamily: '"Playfair Display"',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: '15px',
+      [theme.breakpoints.down('md')]: {
+        fontSize: '15px!important',
         padding: '1rem 0 0.3rem',
       },
     },
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) =>
       color: 'black',
       fontSize: 15,
       fontFamily: '"Helvetica"',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 12,
         marginTop: 0,
       },

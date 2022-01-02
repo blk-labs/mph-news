@@ -24,15 +24,15 @@ import Footer from '../../components/layout/Footer';
 // import SEO from '../../components/utils/SEO'
 
 // This gets called on every request
-export async function getServerSideProps(context) {
-  // Fetch data from external API
-  const res = await axios.get(`/post/${context.params.sid}`);
-  const data = res.data;
-  // console.log("datazz ", data);
+// export async function getServerSideProps(context) {
+//   // Fetch data from external API
+//   const res = await axios.get(`/post/${context.params.sid}`);
+//   const data = res.data;
+//   // console.log("datazz ", data);
 
-  // Pass data to the page via props
-  return { props: { post: data } };
-}
+//   // Pass data to the page via props
+//   return { props: { post: data } };
+// }
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -53,21 +53,21 @@ const useStyles = makeStyles((theme) =>
 
 export function Story(props) {
   const router = useRouter();
-  // const { sid } = router.query;
+  const { sid } = router.query;
 
   console.log(props);
 
   // const [story, setStory] = useState(props.location.pathname.slice(7))
 
-  // useEffect(() => {
-  //   // axios.get(`/post/${story}`)
-  //   // .then((res) => {
-  //   // 	props.getTopic(res.data.topic)
-  //   // })
-  //   // .catch((err) => console.log(err));
-  //   console.log("sid: ", sid)
-  //   props.getPost(sid);
-  // }, []);
+  useEffect(() => {
+    // axios.get(`/post/${story}`)
+    // .then((res) => {
+    // 	props.getTopic(res.data.topic)
+    // })
+    // .catch((err) => console.log(err));
+    console.log("sid: ", sid)
+    props.getPost(sid);
+  }, [sid]);
 
   // const {
   //   postsid,
@@ -98,54 +98,15 @@ export function Story(props) {
 				image={{ src: props.post.postImage, width: 250, height: 250 }}
 				pathname={router.query.sid}
 			/> */}
-      <Head>
-        <title>{props.data.post.title}</title>
-        <Head>
-          <meta
-            property='og:url'
-            content={`https://news.mypoliticalhub.com/story/${props.post.id}`}
-          />
-          <meta property='og:type' content='website' />
-          {/* <meta property="fb:app_id" content="your fb app id" /> */}
-          <meta property='og:title' content={props.post.title} />
-          <meta name='twitter:card' content='summary' />
-          <meta
-            property='og:description'
-            content={
-              (props.post.subtitle || props.post.body).substring(
-                0,
-                190
-              ) + '...'
-            }
-          />
-          <meta property='og:image' content={props.post.postImage} />
-          <meta name='twitter:title' content={props.post.title} />
-          <meta
-            name='twitter:description'
-            content={
-              (props.post.subtitle || props.post.body).substring(
-                0,
-                190
-              ) + '...'
-            }
-          />
-          <script
-            async
-            src='https://www.googletagmanager.com/gtag/js?id=G-H1RJ9WJGML'
-          ></script>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-          <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Cinzel:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
-        </Head>
-      </Head>
+      
       <div maxWidth='lg'>
         <div className={classes.headerCont} container>
           <div style={{ position: 'relative' }}>
-            {loading ? <Loading /> : <StoryMap story={props.post} />}
+            {loading ? <Loading /> : <StoryMap story={props.data.post} />}
           </div>
           <div>
             <span>
-              <Comments story={props.post} />
+              <Comments story={props.data.post} />
             </span>
           </div>
           <RecentTopic

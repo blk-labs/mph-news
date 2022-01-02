@@ -2,15 +2,21 @@ import axios from 'axios';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx);
-    let post;
-    if (ctx.pathname == '/story/[sid]') {
-      let res = await axios.get(`post/${ctx.query.sid}`);
-      post = res.data;
-    }
-    return { ...initialProps, post };
-  }
+  // static async getInitialProps(ctx) {
+  //   const initialProps = await Document.getInitialProps(ctx);
+  //   let post;
+  //   console.log("ctx: ", ctx.pathname);
+  //   console.log("sid: ", ctx.query);
+  //   let sid = ctx.query.sid;
+
+  //   if(!sid) return { ...initialProps }
+
+  //   if (ctx.pathname == '/story/[sid]') {
+  //     let res = await axios.get(`post/${sid}`);
+  //     post = res.data;
+  //   }
+  //   return { ...initialProps, post };
+  // }
 
   render() {
     return (

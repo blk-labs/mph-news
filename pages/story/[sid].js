@@ -27,7 +27,7 @@ import Footer from '../../components/layout/Footer';
 export async function getServerSideProps(context) {
   // Fetch data from external API
   const res = await axios.get(`/post/${context.params.sid}`);
-  const data = await res.data;
+  const data = res.data;
 
   // Pass data to the page via props
   return { props: { post: data } };

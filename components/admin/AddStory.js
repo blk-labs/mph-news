@@ -189,8 +189,8 @@ export function AddStory(props) {
                 Important
               </Typography>
               <Switch
-                checked={important.checkedB}
-                onChange={handleSwitch}
+                checked={important}
+                onClick={handleSwitch}
                 color='secondary'
                 name='checkedB'
                 inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -283,6 +283,33 @@ export function AddStory(props) {
                     }}
                   >
                     Other
+                  </MenuItem>
+                  <MenuItem
+                    value='politics'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                      fontSize: 15,
+                    }}
+                  >
+                    Politics
+                  </MenuItem>
+                  <MenuItem
+                    value='nass'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                      fontSize: 15,
+                    }}
+                  >
+                    NASS
+                  </MenuItem>
+                  <MenuItem
+                    value='tit'
+                    style={{
+                      fontFamily: '"Helvetica"',
+                      fontSize: 15,
+                    }}
+                  >
+                    Tit Bits
                   </MenuItem>
                 </Select>
               </div>

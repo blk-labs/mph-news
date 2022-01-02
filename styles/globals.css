@@ -266,3 +266,21 @@ input[type=checkbox]:checked:disabled+label:before {
 .recent:last-child hr {
   display: none;
 }
+
+.editorClass {
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.editorClass::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1025px) {
+  .w-full > .mainImg {
+    width: 100%!important;
+  }
+  .mainSub {
+    display: none;
+  }
+}

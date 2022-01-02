@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     ...theme.spreadThis,
     CustomNews: {
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('lg')]: {
         display: 'none!important',
       },
     },

@@ -91,7 +91,7 @@ export default function CustomNews(props) {
       <Typography variant='h5' className={`${classes.titleCont} mb-3 py-2 text-4xl font-bold tracking-wide cinzel`}>
         Editor&apos;s Pick
       </Typography>
-      <div className={classes.editors}>
+      <div className={`${classes.editors} editorClass`}>
         {recommend.map((data, i) => (
           <div className={classes.gridClass} key={i}>
             <Link className={classes.linkClass} href={`/story/${data.id}`}>

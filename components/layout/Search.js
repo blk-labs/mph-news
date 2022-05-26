@@ -12,6 +12,7 @@ import Fade from '@material-ui/core/Fade';
 
 // Icons
 import SearchIcon from '@material-ui/icons/Search';
+import { SearchOutlined } from '@mui/icons-material';
 
 // Comps
 import SearchModal from './SearchModal';
@@ -51,7 +52,7 @@ export default function Search(props) {
   return (
     <div>
       <div onClick={handleOpen}>
-        <SearchIcon className={classes.iconClass} />
+        <SearchOutlined fontSize={"large"} className={classes.iconClass} />
       </div>
       <Modal
         aria-labelledby='transition-modal-title'

@@ -3,51 +3,158 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('../util/fonts/HelveticaNowDisplay-Regular.ttf');
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-ThinItalic.ttf");
+  font-weight: 100;
+  font-style: italic;
 }
 
 @font-face {
-  font-family: 'Helvetica Bold';
-  src: url('../util/fonts/HelveticaNowDisplay-Bold.ttf');
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
 }
 @font-face {
-  font-family: 'Helvetica Black Bold';
-  src: url('../util/fonts/HelveticaNowDisplay-ExtBlk.ttf');
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-ExtraLightItalic.ttf");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-LightItalic.ttf");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-RegularItalic.ttf");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-SemiBoldItalic.ttf");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-BoldItalic.ttf");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-Heavy.ttf");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-HeavyItalic.ttf");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-Black.ttf");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mont";
+  src: url("../public/assets/fonts/Mont/Mont-BlackItalic.ttf");
+  font-weight: 900;
+  font-style: italic;
 }
 
 
 @font-face {
-  font-family: 'Helvetica Light';
-  src: url('../util/fonts/HelveticaNowDisplay-Light.ttf');
+  font-family: "Helvetica";
+  src: url("../util/fonts/HelveticaNowDisplay-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Helvetica Compressed';
-  src: url('../util/fonts/HelveticaNowDisplay-Regular.ttf');
+  font-family: "Helvetica Bold";
+  src: url("../util/fonts/HelveticaNowDisplay-Bold.ttf");
+}
+@font-face {
+  font-family: "Helvetica Black Bold";
+  src: url("../util/fonts/HelveticaNowDisplay-ExtBlk.ttf");
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url('../util/fonts/OpenSans-Bold.ttf');
+  font-family: "Helvetica Light";
+  src: url("../util/fonts/HelveticaNowDisplay-Light.ttf");
 }
 
 @font-face {
-  font-family: 'Playfair Display',
-    serif;
-  src: url('../util/fonts/PlayfairDisplay-Black.ttf');
+  font-family: "Helvetica Compressed";
+  src: url("../util/fonts/HelveticaNowDisplay-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../util/fonts/OpenSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Playfair Display", serif;
+  src: url("../util/fonts/PlayfairDisplay-Black.ttf");
 }
 
 body {
   margin: 0;
-  font-family: 'Helvetica' !important;
+  font-family: "Helvetica" !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.font-mont {
+  font-family: "Mont", sans-serif !important;
 }
 
 .App {
@@ -57,6 +164,10 @@ code {
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.home-title {
+  box-shadow: 0 0 0 10px #0c0c0c !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -106,7 +217,7 @@ code {
 .listFooter {
   margin-top: 0;
   list-style: none;
-  font-family: 'Helvetica Light';
+  font-family: "Helvetica Light";
   font-weight: bold;
   font-size: 90%;
   padding: 0;
@@ -116,8 +227,7 @@ code {
 
 .listFooter li {
   padding: 0 20px 0 0;
-  font-family: 'Helvetica';
-
+  font-family: "Helvetica";
 }
 
 @media (max-width: 600px) {
@@ -128,7 +238,6 @@ code {
   .listFooter li {
     padding: 0 20px 20px 0;
     font-size: 15px;
-
   }
 }
 
@@ -141,8 +250,8 @@ code {
 }
 
 .paperCont {
-  margin: .5rem 0;
-  padding: 0 .5rem;
+  margin: 0.5rem 0;
+  padding: 0 0.5rem;
 }
 
 .paperCont .MuiFormControl-root .MuiInputBase-formControl {
@@ -172,7 +281,7 @@ code {
   font-size: 75%;
   font-weight: bold;
   padding: 1rem;
-  margin-right: -.9rem;
+  margin-right: -0.9rem;
 }
 
 .textField .MuiInputBase-formControl {
@@ -205,15 +314,15 @@ code {
 
 /* News letter checkbox */
 
-input[type=checkbox]+label {
+input[type="checkbox"] + label {
   cursor: pointer;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   display: none;
 }
 
-input[type=checkbox]+label:before {
+input[type="checkbox"] + label:before {
   content: "\2714";
   border: 0.1em solid #69409e;
   border-radius: 0.2em;
@@ -222,30 +331,30 @@ input[type=checkbox]+label:before {
   height: 1.3em;
   padding-left: 0.2em;
   padding-bottom: 1.3em;
-  margin-right: .5em;
-  margin-bottom: .3em;
+  margin-right: 0.5em;
+  margin-bottom: 0.3em;
   vertical-align: bottom;
   color: transparent;
-  transition: .2s;
+  transition: 0.2s;
   font-size: 10px;
 }
 
-input[type=checkbox]+label:active:before {
+input[type="checkbox"] + label:active:before {
   transform: scale(0);
 }
 
-input[type=checkbox]:checked+label:before {
+input[type="checkbox"]:checked + label:before {
   background-color: #69409e;
   border-color: #69409e;
   color: #fff;
 }
 
-input[type=checkbox]:disabled+label:before {
+input[type="checkbox"]:disabled + label:before {
   transform: scale(1);
   border-color: #aaa;
 }
 
-input[type=checkbox]:checked:disabled+label:before {
+input[type="checkbox"]:checked:disabled + label:before {
   transform: scale(1);
   background-color: #bfb;
   border-color: #bfb;

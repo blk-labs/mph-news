@@ -15,12 +15,14 @@ import {
 	CLEAR_UPLOAD
 } from '../types';
 import axios from 'axios';
+import { newsService } from '../../lib/services';
 
 // Get all posts
 
 export const getAllPosts = () => (dispatch) => {
 	dispatch({ type: LOADING_DATA });
-	axios.get('/posts')
+	newsService.getAllNews()
+	// axios.get('/posts')
 	.then((res) => {
 		dispatch({
 			type: SET_POSTS,
@@ -40,7 +42,8 @@ export const getAllPosts = () => (dispatch) => {
 
 export const getTopic = (topic) => (dispatch) => {
 	dispatch({ type: LOADING_UI });
-	axios.get(`/posts/${topic}`)
+	newsService.getTopicNews(topic)
+	// axios.get(`/posts/${topic}`)
 		.then((res) => {
 			dispatch({
 				type: SET_TOPIC,
@@ -56,7 +59,8 @@ export const getTopic = (topic) => (dispatch) => {
 
 export const getPost = (id) => (dispatch) => {
 	dispatch({ type: LOADING_UI });
-	axios.get(`/post/${id}`)
+	newsService.getNewsPost(id)
+	// axios.get(`/post/${id}`)
 		.then((res) => {
 			dispatch({
 				type: SET_POST,
@@ -70,7 +74,8 @@ export const getPost = (id) => (dispatch) => {
 // Delete Post
 
 export const deletePost = (postsid) => (dispatch) => {
-	axios.delete(`/post/${postsid}`)
+	newsService.deletePost(postsid)
+	// axios.delete(`/post/${postsid}`)
 		.then(() => {
 			dispatch({
 				type: DELETE_POST,

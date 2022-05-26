@@ -13,8 +13,13 @@ import {
   DialogActions,
 } from '@material-ui/core';
 import { ClosedCaption } from '@material-ui/icons';
-import AudioPlayer from 'material-ui-audio-player';
+import dynamic from 'next/dynamic';
 import theme from '../../styles/AudioTheme';
+
+const AudioPlayer = dynamic(
+	() => import("material-ui-audio-player"),
+	{ ssr: false }
+);
 
 export default function Audio() {
   const RegisPlayer = ({

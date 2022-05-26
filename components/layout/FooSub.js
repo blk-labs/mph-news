@@ -86,7 +86,6 @@ export default function Subscribe(props) {
           onChange={(e) => setSubscribe(e.target.value)}
           onClick={handleSubmit}
           placeholder='email@address.com'
-          className='textField'
           className={classes.textField}
           InputProps={{ disableUnderline: true }}
         />

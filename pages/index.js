@@ -1,81 +1,88 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 // Redux
 
-import { connect } from 'react-redux';
-import { getAllPosts, clearErrors } from '../redux/actions/dataActions';
+import { connect } from "react-redux";
+import { getAllPosts, clearErrors } from "../redux/actions/dataActions";
 
 // Material
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles, createStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // Comps
-import LatestNews from '../components/home/LatestNews';
-import EditorsPick from '../components/home/EditorsPick';
-import RecentNews from '../components/home/RecentNews';
-import CustomNews from '../components/home/CustomNews';
-import TopicGrid from '../components/home/TopicGrid';
-import PopularPoliticians from '../components/home/PopularPoliticians';
-import VideoNews from '../components/home/VideoNews';
-import Loading from '../components/layout/Loading';
-import Footer from '../components/layout/Footer';
+import LatestNews from "../components/home/LatestNews";
+import EditorsPick from "../components/home/EditorsPick";
+import VideoNews from "../components/home/VideoNews";
+import Footer from "../components/surfaces/Footer";
+import TrendingNews from "../components/home/TrendingNews";
+import NewsLetterSubscription from "../components/home/NewsLetterSubscription";
+import TopicHighlight from "../components/home/TopicHighlight";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     ...theme.spreadThis,
     loader: {
-      height: '100vh',
-      background: 'white',
-      margin: 'auto',
+      height: "100vh",
+      background: "white",
+      margin: "auto",
     },
   })
 );
 
 export function Home(props) {
   useEffect(() => {
-    let nav = document.getElementById('navBar');
+    let nav = document.getElementById("navBar");
     if (nav !== null) {
-      nav.style.display = 'block';
+      nav.style.display = "block";
     }
 
     props.getAllPosts();
-    document.title = 'MPH News | My Political Hub';
+    document.title = "MPH News | My Political Hub";
     console.log(props);
   }, []);
 
   const { loading } = props.data;
 
-  const theme = useTheme();
-  const classes = useStyles(props);
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
-
-  console.log('loading: ', loading);
   return (
-    <span>
-      {loading ? (
-        <div className={classes.loader}>
-          <Loading />
+    <>
+      <Container maxWidth="lg">
+        <EditorsPick news={props.data.posts} />
+      </Container>
+      <Grid container>
+        <LatestNews news={props.data.posts} />
+        {/* <CustomNews news={props.data.posts} /> */}
+        <div className="w-full px-6 lg:px-[120px] py-[16px] lg:py-[80px] flex flex-wrap lg:items-stretch">
+          <TrendingNews />
+          <NewsLetterSubscription />
         </div>
-      ) : (
-        <span>
-          <Container maxWidth='lg'>
-            <EditorsPick news={props.data.posts} />
-          </Container>
-          <Grid container>
-            <LatestNews news={props.data.posts} />
-            <CustomNews news={props.data.posts} />
-            <Container maxWidth='lg'>
-              <RecentNews news={props.data.posts} />
-              <TopicGrid news={props.data.posts} />
-            </Container>
-          </Grid>
-          <VideoNews news={props.data.posts} />
-        </span>
-      )}
+        <div className="w-full px-6 lg:px-[68px]">
+          <hr className="border" />
+        </div>
+        <div className="w-full px-6 lg:px-[120px] py-[30px] lg:py-[80px]">
+          <TopicHighlight title={"Nigeria"} topic={"nigeria"} />
+        </div>
+
+        <div className="w-full px-6 lg:px-[68px]">
+          <hr className="border" />
+        </div>
+        <div className="w-full px-6 lg:px-[120px] py-[30px] lg:py-[80px]">
+          <TopicHighlight title={"International"} topic={"international"} />
+        </div>
+
+        <div className="w-full px-6 lg:px-[68px]">
+          <hr className="border" />
+        </div>
+        <div className="w-full px-6 lg:px-[120px] py-[30px] lg:py-[80px]">
+          <TopicHighlight title={"Security"} topic={"security"} />
+        </div>
+      </Grid>
+      <div className="w-full px-6 lg:px-[120px] py-[30px]">
+        <VideoNews news={props.data.posts} />
+      </div>
       <Footer />
-    </span>
+    </>
   );
 }
 

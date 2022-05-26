@@ -108,7 +108,6 @@ export default function Subscribe(props) {
           onChange={(e) => setSubscribe(e.target.value)}
           onClick={handleSubmit}
           placeholder='email@address.com'
-          className='textField'
           className={classes.textField}
           InputProps={{ disableUnderline: true }}
         />
@@ -124,7 +123,7 @@ export default function Subscribe(props) {
             name='termsCheck'
             value='termsCons'
           />
-          <label for='termsCon' className={classes.terms}>
+          <label htmlFor='termsCon' className={classes.terms}>
             I agree to the terms of newsletter
           </label>
         </form>

@@ -1,12 +1,11 @@
 import React, { StrictMode } from 'react';
-import Image from 'next/image';
 
 //Comps
-import { dog } from '../public/images/voices/dog.png';
-import { cam } from '../public/images/voices/cam.png';
-import { city } from '../public/images/voices/city.png';
-import { office } from '../public/images/voices/office.png';
-import { female } from '../public/images/voices/female.png';
+import dog from '../public/images/voices/dog.png';
+import cam from '../public/images/voices/cam.png';
+import city from '../public/images/voices/city.png';
+import office from '../public/images/voices/office.png';
+import female from '../public/images/voices/female.png';
 import userImg from '../public/images/voices/city.png';
 import Subscribe from '../components/layout/Subscribe';
 import Audio from '../components/layout/Audio';
@@ -252,7 +251,7 @@ const Voices = (props) => {
             }}
           >
             {data.map((n, i) => (
-              <div className={classes.newCont}>
+              <div key={n.title} className={classes.newCont}>
                 <div className={classes.imgPlay}>
                   <div>
                     <img

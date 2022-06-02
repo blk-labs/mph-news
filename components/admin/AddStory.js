@@ -163,7 +163,7 @@ export function AddStory(props) {
     const image = event.target.files[0];
     const formData = new FormData();
     formData.append('image', image, image.name);
-    props.postImage(formData);
+    props.postImage(image);
     setImage(true);
   };
 

@@ -97,7 +97,7 @@ export default function VideoNews(props) {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const matchesLG = useMediaQuery(theme.breakpoints.up('lg'));
 
-  const news = props.news.filter((n) => n.topic === 'video').splice(0, 5);
+  const news = (props.news || []).filter((n) => n.topic === 'video').splice(0, 5);
   dayjs.extend(relativeTime);
 
   return (

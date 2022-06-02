@@ -97,7 +97,7 @@ export function AddDocument(props) {
     const doc = event.target.files[0];
     const formData = new FormData();
     formData.append('doc', doc, doc.name);
-    props.postDoc(formData);
+    props.postDoc(doc);
     setDocu(true);
   };
 

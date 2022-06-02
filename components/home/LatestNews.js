@@ -129,7 +129,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function LatestNews(props) {
-  const news = props.news.filter((n) => n.important === true);
+  const news = (props.news || []).filter((n) => n.important === true);
   dayjs.extend(relativeTime);
 
   const theme = useTheme();

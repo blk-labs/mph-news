@@ -7,7 +7,7 @@ import TopicMap from './TopicMap';
 
 export default function TopicGrid(props) {
   const posts = (data) =>
-    props.news.filter((n) => n.topic === data).splice(0, 6);
+    (props.news || []).filter((n) => n.topic === data).splice(0, 6);
 
   return (
     <Grid justify='center'>

@@ -124,7 +124,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function RecentNews(props) {
-  const news = props.news
+  const news = (props.news || [])
     .filter((n, i) => n.important === true && i > 4)
     .slice(0, 4);
   dayjs.extend(relativeTime);

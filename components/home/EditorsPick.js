@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function CustomNews(props) {
-  const news = props.news.filter((n) => n.topic !== 'video');
+  const news = (props.news || []).filter((n) => n.topic !== 'video');
   dayjs.extend(relativeTime);
   const recommend = news.filter((n) => n.editors_pick === true).slice(0, 4);
   const liked = news

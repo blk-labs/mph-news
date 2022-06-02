@@ -270,7 +270,7 @@ export default function TopicMap(props) {
                     {news
                       .filter((data, i) => i === 1)
                       .map((data, i) => (
-                        <div className="mainSub">
+                        <div className="mainSub" key={data.id}>
                           <Link
                             key={i}
                             className={`${classes.linkClass} w-2/6 lg:pl-6`}
